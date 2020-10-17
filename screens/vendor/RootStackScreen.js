@@ -9,7 +9,6 @@ import PersonalDetailsScreen from '../common/PersonalDetailsScreen';
 import PaymentDetailsScreen from '../common/PaymentDetailsScreen';
 import RecoverAccountScreen from '../common/RecoverAccountScreen';
 import NewPassword from '../common/NewPasswordScreen';
-import CameraComponent from '../common/CameraScreen';
 
 const RootStack = createStackNavigator();
 
@@ -22,7 +21,6 @@ const RootStackScreen = () => (
          <RootStack.Screen name="LoginScreen" component={LoginScreen}/>
          <RootStack.Screen name="Recover Account" component={RecoverAccountScreen} />  
          <RootStack.Screen name="New Password" component={NewPassword} />  
-         <RootStack.Screen name="Camera" component={CameraComponent}/> 
     </RootStack.Navigator>
 );
 

@@ -1,0 +1,22 @@
+{
+  "name": "vendorapp",
+  "displayName": "vendorapp"
+}
+
+
+{
+  "expo": {
+   "name": "vendorapp",
+  //  "icon": "./path/to/your/app-icon.png",
+   "version": "1.0.0",
+   "slug": "vendorapp-slug",
+   "ios": {
+     "bundleIdentifier": "com.uniworksdesigns.vendorapp",
+     "buildNumber": "1.0.0"
+   },
+   "android": {
+     "package": "com.uniworksdesigns.vendorapp",
+     "versionCode": 1
+   }
+  }
+}

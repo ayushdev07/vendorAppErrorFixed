@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Dimensions, CheckBox, Image, FlatList, TextInput } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, CheckBox, Image, FlatList, TextInput, LogBox } from 'react-native';
 import Feather from 'react-native-vector-icons/FontAwesome'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Spinner from 'react-native-loading-spinner-overlay'
+import RenderMilestones from '../../components/RenderMilestones'
+
+LogBox.ignoreAllLogs();
 
 const UpcomingTaskSupervisorScreen = ({ navigation }) => {
   const [showDescription, setShowDescription] = useState(false)
@@ -13,63 +16,22 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
   const [areaId, setAreaId] = useState([])
   const [projectAreaWise, setProjectAreaWise] = useState()
 
-  let PreRequisite = ['White marking make a detailed mark at joints and a simple line for pipes'
-    , 'Check the pipes dia and set the chipping depth'
-    , 'Check if any damage are there in pipes'
-    , 'In case of damage inform site engineer immediately and get it replaced before chipping is done']
+  let PreRequisite = [
+    'White marking make a detailed mark at joints and a simple line for pipes',
+    'Check the pipes dia and set the chipping depth',
+    'Check if any damage are there in pipes',
+    'In case of damage inform site engineer immediately and get it replaced before chipping is done'
+  ]
+
   var data = {
     descriptionText: 'Prepare the wall by Making & Chipping (wall choosing). Installation by Pipe installation & Waterproofing Testing by pressure & leakge testing.Finishing by Filling the condult with mortar . Hacking the finish for bonding.Fixing mesh on the closed conduits'
   }
-  let mileStones = {
-    milestone1: [
-      {
-        checked: true,
-        name: 'Preapre the fitting',
-        prepareFittingMileStones: [
-          {
-            mileStone: 'Solid wood for frame/support',
-            chekced: true
-          },
-          {
-            mileStone: 'Plywood for frame/support',
-            chekced: false
-          },
-          {
-            mileStone: 'Plywood for panels',
-            chekced: true
-          },
-          {
-            mileStone: 'Plywood for partition',
-            chekced: true
-          },
-          {
-            mileStone: 'Fixing supports',
-            chekced: true
-          },
-          {
-            mileStone: 'Fixing panels',
-            chekced: false
-          },
-          {
-            mileStone: 'Check with level scale and plumb',
-            chekced: true
-          },
-          {
-            mileStone: 'Cutting the Veneer as per size',
-            chekced: false
-          },
-          {
-            mileStone: 'Fixing of veneer on the panels',
-            chekced: false
-          },
-        ]
-      }
-    ]
-  }
+
   useEffect(() => {
     fetchAreaId()
     let isMounted = true
-  },[])
+  }, [])
+
   const fetchAreaId = async () => {
     let result = await fetch('https://uniworksvendorapis.herokuapp.com/vendor/projectArea/3')
       .then(response => {
@@ -87,6 +49,7 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
         setLoading(false)
       }).finally(e => setLoading(false))
   }
+
   const fetchAreas = async (areas) => {
     let result = await fetch('https://uniworksvendorapis.herokuapp.com/vendor/projectArea/3/' + areas[0].toString())
       .then(response => {
@@ -101,42 +64,17 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
         setLoading(false)
       })
   }
+
   const handleResponse = (json) => {
     setProjectAreaWise(json)
     setLoading(false)
     console.log(json)
   }
-  let array = []
-  let sunarray = []
-  mileStones.milestone1.map((item) => {
-    array.push(item.prepareFittingMileStones)
-    array.map((element) => {
-      element.map((item) => {
-        sunarray.push(item)
-      })
-    })
-  })
+
   const handleShowDescription = () => {
     setShowDescription(!showDescription)
   }
-  const renderEachMileStones = ({ item }) => {
-    return (
-      <View style={{ marginStart: 5 }} >
-        <View style={{ flexDirection: 'row', marginTop: '10%' }}  >
-          <Text style={{ color: "#353535", fontSize: 18, maxWidth: '60%' }}>{item.mileStone}</Text>
-          <View style={{ flex: 1, flexDirection: 'row' }} />
-          <CheckBox value={item.chekced} style={{ alignSelf: 'center' }} />
-          {item.chekced ? null :
-            <View style={{ alignSelf: 'center', marginStart: 8 }}  >
-              <TouchableOpacity  >
-                <Feather name='image' size={24} />
-              </TouchableOpacity>
-            </View>
-          }
-        </View>
-      </View>
-    )
-  }
+
   const renderPrerequisite = ({ item }) => {
     return (
       <View style={{ marginStart: '5%', marginBottom: 15 }} >
@@ -144,22 +82,11 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
       </View>
     )
   }
-  const renderMileStoneNames = () => {
-    return (
-      <View style={{ marginHorizontal: '10%' }} >
-        <View >
-          <FlatList
-            data={sunarray}
-            renderItem={renderEachMileStones}
-          />
-        </View>
-      </View>
-    )
-  }
+
   return (
+
     <ScrollView>
       {isLoading ?
-
         <Spinner
           //visibility of Overlay Loading Spinner
           visible={isLoading}
@@ -167,12 +94,11 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
           textContent={'Fetching Data...'}
           //Text style of the Spinner Text
           textStyle={{ color: '#000', }}
-
         />
         :
         <View style={styles.mainContainer} >
           <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }} >Wooden Partition</Text>
-          <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }} >{projectAreaWise.miniCategory[0].miniCategoryName}</Text>
+          {/* <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }} >{projectAreaWise.miniCategory[0].miniCategoryName}</Text> */}
           <View style={{ flexDirection: 'row', marginTop: 15, alignItems: 'center', justifyContent: 'center' }} >
             <TouchableOpacity style={{ borderRadius: 30, padding: 8, backgroundColor: '#ffffff', borderWidth: 3, borderColor: "rgba(128,128,128,1)" }} >
               <FeatherIcon name="arrow-left" size={30} style={{ color: '#000000' }} ></FeatherIcon>
@@ -187,15 +113,14 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
           <View style={{ backgroundColor: '#000000', alignItems: 'center', marginBottom: '5%', marginTop: '5%' }} >
             <View style={{ alignItems: 'center', marginBottom: '5%' }} >
               <Text style={{ paddingTop: 15, color: '#ffffff', fontSize: 20 }}>Description</Text>
-              <View style={{ marginTop: 10, alignItems: 'center', width: '75%' }} >
+              {/* <View style={{ marginTop: 10, alignItems: 'center', width: '75%' }} >
                 {
                   showDescription ?
                     <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{projectAreaWise.projectArea.description}</Text>
                     :
                     <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{projectAreaWise.projectArea.description.substring(0, 100)}</Text>
                 }
-
-              </View>
+              </View> */}
               <View style={{ marginTop: '5%' }} >
                 <View style={styles.knowMore} >
                   <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row' }} onPress={handleShowDescription}>
@@ -220,10 +145,7 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
           </View>
           <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }} >Milestones</Text>
           <View style={{ flex: 1, marginTop: 15 }} >
-            <FlatList
-              data={mileStones.milestone1}
-              renderItem={renderMileStoneNames}
-            />
+            <RenderMilestones />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginEnd: '5%', marginTop: 60 }} >
             <Text style={{ color: '#353535', fontWeight: 'bold', fontSize: 18 }}>Today's Target</Text>

@@ -12,7 +12,7 @@ function SplashScreen({navigation}) {
       >
       <TouchableOpacity
         style={styles.button}
-        onPress = {() => navigation.navigate('UpcomingTaskSupervisorScreen')}
+        onPress = {() => navigation.navigate('SignInScreen')}
       >
         <View style = {styles.containerButton} >
         <Text styles ={styles.text} >Get Started</Text>

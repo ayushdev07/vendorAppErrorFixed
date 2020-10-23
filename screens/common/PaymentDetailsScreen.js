@@ -131,12 +131,12 @@ function PaymentDetailsScreen(props, route) {
         <View style={{ flexDirection: 'row' }} >
           <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >Aadhar Details</Text>
           <View style={{ flex: 1, flexDirection: 'row' }} ></View>
-          <View style={{ marginRight: '15%' }} >
-            {/* <TouchableOpacity style={{ flexDirection: 'row' }}  >
+          {/* <View style={{ marginRight: '15%' }} >
+            <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('Camera')} >
               <Text style={{ color: '#546AD9', fontSize: 14 }}>Upload Photo</Text>
               <MaterialIcons name='camera-alt' style={{ alignSelf: 'center', color: '#546AD9' }} size={20} />
-            </TouchableOpacity> */}
-          </View>
+            </TouchableOpacity>
+          </View> */}
         </View>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >

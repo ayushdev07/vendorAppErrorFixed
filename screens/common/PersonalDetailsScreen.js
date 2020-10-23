@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import * as Location from 'react-native-location';
+// import * as Location from 'react-native-location';
 import MapView, { Marker } from 'react-native-maps';
 
 function PersonalDetailsScreen({navigation}) {
-  var mapStyle = [{ "elementType": "geometry", "stylers": [{ "color": "#242f3e" }] }, { "elementType": "labels.text.fill", "stylers": [{ "color": "#746855" }] }, { "elementType": "labels.text.stroke", "stylers": [{ "color": "#242f3e" }] }, { "featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#263c3f" }] }, { "featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [{ "color": "#6b9a76" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#38414e" }] }, { "featureType": "road", "elementType": "geometry.stroke", "stylers": [{ "color": "#212a37" }] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#9ca5b3" }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#746855" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#1f2835" }] }, { "featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [{ "color": "#f3d19c" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#2f3948" }] }, { "featureType": "transit.station", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#17263c" }] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "color": "#515c6d" }] }, { "featureType": "water", "elementType": "labels.text.stroke", "stylers": [{ "color": "#17263c" }] }];
-  const [latitude, setlatitude] = useState(17.437328);
-  const [longitude, setlongitude] = useState(78.394665);
+  // var mapStyle = [{ "elementType": "geometry", "stylers": [{ "color": "#242f3e" }] }, { "elementType": "labels.text.fill", "stylers": [{ "color": "#746855" }] }, { "elementType": "labels.text.stroke", "stylers": [{ "color": "#242f3e" }] }, { "featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#263c3f" }] }, { "featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [{ "color": "#6b9a76" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#38414e" }] }, { "featureType": "road", "elementType": "geometry.stroke", "stylers": [{ "color": "#212a37" }] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#9ca5b3" }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#746855" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#1f2835" }] }, { "featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [{ "color": "#f3d19c" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#2f3948" }] }, { "featureType": "transit.station", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#17263c" }] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "color": "#515c6d" }] }, { "featureType": "water", "elementType": "labels.text.stroke", "stylers": [{ "color": "#17263c" }] }];
+  // const [latitude, setlatitude] = useState(17.437328);
+  // const [longitude, setlongitude] = useState(78.394665);
   const [errorMsg, setErrorMsg] = useState(null);
   const[data, setData]=useState({
     email:'',
@@ -20,18 +20,18 @@ function PersonalDetailsScreen({navigation}) {
     building:'',
     flatNo:'',
   })
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-      }
-      let location = await Location.getCurrentPositionAsync({});
-      setlatitude(location.coords.latitude);
-      setlongitude(location.coords.longitude)
-      console.log(latitude + "  " + longitude)
-    })();
-  });
+  // useEffect(() => {
+  //   (async () => {
+  //     let { status } = await Location.requestPermissionsAsync();
+  //     if (status !== 'granted') {
+  //       setErrorMsg('Permission to access location was denied');
+  //     }
+  //     let location = await Location.getCurrentPositionAsync({});
+  //     setlatitude(location.coords.latitude);
+  //     setlongitude(location.coords.longitude)
+  //     console.log(latitude + "  " + longitude)
+  //   })();
+  // });
   const handleSubmit = async () =>{
     console.log(data)
     let array=[]
@@ -60,8 +60,8 @@ function PersonalDetailsScreen({navigation}) {
           building:data.building,
           flat:data.flatNo,
           zip:273001,
-          lat:latitude,
-          long:longitude,
+          // lat:latitude,
+          // long:longitude,
           agreement: "A letter of agreement is an important document in a business relationship, but with so many types of agreements, it can be difficult to know what each one needs to include. Using an agreement template makes the task much easier. That way you can focus your time and energy on more important aspects of your business transaction. Below, we have different agreement templates arranged by purpose, which saves you the trouble of making one from scratch. Learn about the different kinds of agreements here, and then choose the one that works best for your needs.",
           categories:array,
         })
@@ -193,7 +193,7 @@ function PersonalDetailsScreen({navigation}) {
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:15 }} >Flat No.</Text>
           </View>
         </View>
-        <MapView
+        {/* <MapView
         style={{ top: 20, width: '100%', height: 200 }}
         scrollEnabled={true}
         initialRegion={{
@@ -211,7 +211,7 @@ function PersonalDetailsScreen({navigation}) {
           pinColor={"white"}
           title={"UniworksDesigns"}
           description={"just for testing"} />
-      </MapView>
+      </MapView> */}
 
         <TouchableOpacity style = {styles.SubmitButtonStyle} onPress={handleSubmit}>
             <Text style = {{ fontSize:20 , top:13, color:'#ffffff'}}  >Proceed</Text>

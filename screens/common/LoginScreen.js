@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   bottomContainer: {
-    top: '70%',
+    top: '40%',
     alignItems: 'center',
   },
   textInput: {

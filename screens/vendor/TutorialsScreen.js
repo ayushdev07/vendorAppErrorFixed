@@ -1,69 +1,70 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, AsyncStorage, Image } from 'react-native'
-import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Spinner from 'react-native-loading-spinner-overlay'
-import images from '../../assets/images'
+/* eslint-disable prettier/prettier */
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, AsyncStorage, Image } from 'react-native';
+import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Spinner from 'react-native-loading-spinner-overlay';
+import images from '../../assets/images';
 import { Appbar } from 'react-native-paper';
 
 const TutorialsScreen = ({ navigation }) => {
     const [showList, setShowList] = useState(false);
-    const [chosenCategory, setChosenCatgeory] = useState('Select Category')
-    const [chosenSubCategory, setChosenSubCategory] = useState([])
-    const [vendorPersonal, setVendorPersonal] = useState([])
+    const [chosenCategory, setChosenCatgeory] = useState('Select Category');
+    const [chosenSubCategory, setChosenSubCategory] = useState([]);
+    const [vendorPersonal, setVendorPersonal] = useState([]);
     const [isLoading, setLoading] = useState(false);
     const [categoryDetails, setCategoryDetails] = useState([]);
-    const [showSubCategory, setShowSubCategory] = useState(false)
-    const [prerequisite, setPreRequisite] = useState([])
-    const [tutorials, setTutorials] = useState([])
+    const [showSubCategory, setShowSubCategory] = useState(false);
+    const [prerequisite, setPreRequisite] = useState([]);
+    const [tutorials, setTutorials] = useState([]);
     const show = () => {
-        setShowList(!showList)
+        setShowList(!showList);
         if (showList == true)
-            setChosenCatgeory('Select Category')
-    }
+            setChosenCatgeory('Select Category');
+    };
 
     const fetchData = async () => {
-        let contact = await AsyncStorage.getItem('contact')
-        let role = await AsyncStorage.getItem('role')
-        let middleware = ''
+        let contact = await AsyncStorage.getItem('contact');
+        let role = await AsyncStorage.getItem('role');
+        let middleware = '';
         if (role == 'CSVD') {
-            middleware = 'vendor'
+            middleware = 'vendor';
         } else {
-            middleware = 'supervisor'
+            middleware = 'supervisor';
         }
-        console.log(contact + '  ' + role)
+        console.log(contact + '  ' + role);
         let result = await fetch('https://uniworksvendorapis.herokuapp.com/' + middleware + '/' + contact)
             .then(response => {
-                return response.json()
+                return response.json();
             }).then(json => {
                 if (middleware == 'supervisor') {
-                    setVendorPersonal(json.supervisor)
-                    saveDetails(json.supervisor)
+                    setVendorPersonal(json.supervisor);
+                    saveDetails(json.supervisor);
                 } else {
-                    setVendorPersonal(json.vendor)
-                    saveDetails(json.supervisor)
+                    setVendorPersonal(json.vendor);
+                    saveDetails(json.supervisor);
                 }
-                setCategoryDetails(json.categorydetails)
-                setChosenCatgeory(json.categorydetails[0].categoryName)
-                showSubcategories(json.categorydetails[0].id)
-            })
-    }
+                setCategoryDetails(json.categorydetails);
+                setChosenCatgeory(json.categorydetails[0].categoryName);
+                showSubcategories(json.categorydetails[0].id);
+            });
+    };
     const saveDetails = async (val) => {
-        await AsyncStorage.setItem('userName', val.userName)
-        await AsyncStorage.setItem('vendorId', JSON.stringify(val.id))
-    }
+        await AsyncStorage.setItem('userName', val.userName);
+        await AsyncStorage.setItem('vendorId', JSON.stringify(val.id));
+    };
     useEffect(() => {
-        fetchData()
+        fetchData();
     }, []);
     const showSubcategories = (id) => {
         categoryDetails.forEach(element => {
             if (id == element.id) {
-                setChosenSubCategory(element.subcategories)
-                setShowSubCategory(true)
+                setChosenSubCategory(element.subcategories);
+                setShowSubCategory(true);
             }
-        })
+        });
 
-    }
+    };
     const renderNames = ({ item }) => {
         return (
             <View style={{
@@ -78,32 +79,32 @@ const TutorialsScreen = ({ navigation }) => {
                 marginStart: '14%'
             }} >
                 <TouchableOpacity onPress={() => {
-                    setChosenCatgeory(item.categoryName)
-                    showSubcategories(item.id)
-                    setShowList(!showList)
-                    setShowSubCategory(!showSubCategory)
+                    setChosenCatgeory(item.categoryName);
+                    showSubcategories(item.id);
+                    setShowList(!showList);
+                    setShowSubCategory(!showSubCategory);
                 }}>
                     <Text style={{ color: '#000000', fontSize: 16, fontWeight: 'bold' }} >{item.categoryName}</Text>
                 </TouchableOpacity>
             </View>
-        )
-    }
+        );
+    };
     const showPrequisiteAndTutorials = (id) => {
         chosenSubCategory.forEach(element => {
             if (id == element.id) {
-                setPreRequisite(element.prerequisites)
-                setTutorials(element.tutorials)
+                setPreRequisite(element.prerequisites);
+                setTutorials(element.tutorials);
             }
-        })
-    }
+        });
+    };
 
     const renderPrerequisite = ({ item }) => {
         return (
             <View style={{ marginStart: '12%' }} >
                 <Text>- {item.description}</Text>
             </View>
-        )
-    }
+        );
+    };
 
     const renderSubcategory = ({ item }) => {
         return (
@@ -123,9 +124,9 @@ const TutorialsScreen = ({ navigation }) => {
                     <Text style={{ color: '#000000', fontSize: 14, fontWeight: 'bold' }} >{item.subcategoryName}</Text>
                 </TouchableOpacity>
             </View>
-        )
+        );
 
-    }
+    };
 
     const renderTutorials = ({ item }) => {
         return (
@@ -142,8 +143,8 @@ const TutorialsScreen = ({ navigation }) => {
                 </View>
 
             </TouchableOpacity>
-        )
-    }
+        );
+    };
 
     const FlatListItemSeparator = () => {
         return (
@@ -155,7 +156,7 @@ const TutorialsScreen = ({ navigation }) => {
                 }}
             />
         );
-    }
+    };
     return (
 
         <ScrollView>
@@ -176,10 +177,10 @@ const TutorialsScreen = ({ navigation }) => {
             <View style={{ flex: 1 }} >
                 <View  />
                 <View style={{ flex: 1, flexDirection: 'row', marginLeft: '10%', marginTop: 10 }} >
-                    <View>
+                    {/* <View>
                         <Text style={{ color: '#000000', fontSize: 24, fontWeight: 'bold', }} >Welcome, </Text>
                         <Text style={{ color: '#000000', fontSize: 20, alignSelf: 'center', textAlign: 'center' }} >{vendorPersonal.name}</Text>
-                    </View>
+                    </View> */}
                 </View>
                 <View style={{ flex: 1 }} >
                     <TouchableOpacity onPress={show} style={{ marginTop: '5%' }} >
@@ -228,9 +229,9 @@ const TutorialsScreen = ({ navigation }) => {
             </View>
         </ScrollView>
 
-    )
+    );
 
-}
+};
 
 
 const styles = StyleSheet.create(
@@ -265,5 +266,5 @@ const styles = StyleSheet.create(
             bottom: 0,
         },
     }
-)
+);
 export default TutorialsScreen;

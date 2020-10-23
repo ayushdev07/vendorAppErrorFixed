@@ -6,6 +6,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Spinner from 'react-native-loading-spinner-overlay'
 import RenderMilestones from '../../components/RenderMilestones'
+import ImageSlider from 'react-native-image-slider';
 
 LogBox.ignoreAllLogs();
 
@@ -113,14 +114,14 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
           <View style={{ backgroundColor: '#000000', alignItems: 'center', marginBottom: '5%', marginTop: '5%' }} >
             <View style={{ alignItems: 'center', marginBottom: '5%' }} >
               <Text style={{ paddingTop: 15, color: '#ffffff', fontSize: 20 }}>Description</Text>
-              {/* <View style={{ marginTop: 10, alignItems: 'center', width: '75%' }} >
+              <View style={{ marginTop: 10, alignItems: 'center', width: '75%' }} >
                 {
                   showDescription ?
-                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{projectAreaWise.projectArea.description}</Text>
+                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{data.descriptionText}</Text>
                     :
-                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{projectAreaWise.projectArea.description.substring(0, 100)}</Text>
+                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}></Text>
                 }
-              </View> */}
+              </View>
               <View style={{ marginTop: '5%' }} >
                 <View style={styles.knowMore} >
                   <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row' }} onPress={handleShowDescription}>
@@ -132,10 +133,17 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
             </View>
           </View>
           <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, opacity: 0.7, fontWeight: 'bold' }} >Drawings</Text>
-          <Image
+          
+          <View style={{width: '100%', height: 250, marginTop: 8}}>
+            <ImageSlider images={[
+              'http://placeimg.com/640/480/any',
+              'http://placeimg.com/640/480/any',
+              'http://placeimg.com/640/480/any']}/>
+          </View>
+          {/* <Image
             style={{ width: '100%', height: 250, marginTop: 8 }}
             source={require('../../assets/images/unnamed.jpg')}
-          />
+          /> */}
           <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }} >Prerequisite</Text>
           <View style={{ flex: 1, marginTop: 15 }} >
             <FlatList

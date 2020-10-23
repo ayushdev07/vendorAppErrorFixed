@@ -19,6 +19,7 @@
     "react-native": "0.63.3",
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-image-slider": "^2.0.3",
     "react-native-loading-spinner-overlay": "^2.0.0",
     "react-native-location": "^2.5.0",
     "react-native-maps": "0.27.1",

@@ -167,12 +167,12 @@ class PersonalScreen extends React.Component{
             </TouchableOpacity>
             <View style={styles.containerRecatnglePhone}>
             <View style={styles.rect3} >
-              <TextInput style={styles.textInputPhone}
+              {/* <TextInput style={styles.textInputPhone}
                 onChangeText={(number) => this.setState({ phoneNumber: number })}
                 keyboardType="numeric"
                 maxLength={10}
                 placeholder={this.state.personalData.personal.contact}
-              />
+              /> */}
               <TouchableOpacity
                 style={styles.eyeIcon}
                 disable={true}
@@ -197,19 +197,19 @@ class PersonalScreen extends React.Component{
        </View>
         <View style={styles.containerRecatngleName}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.emergencyContact}
             onChangeText={(number)=>this.setState({emergencyNumber:number})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >Emergency Contact</Text>
           </View>
         </View>
         <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.email}
             onChangeText={(email)=>this.setState({email:email})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >Email</Text>
           </View>
         </View>
@@ -226,55 +226,55 @@ class PersonalScreen extends React.Component{
        </View>
        <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.state}
             onChangeText={(state)=>this.setState({state:state})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >State</Text>
           </View>
         </View>
         <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.city}
             onChangeText={(city)=>this.setState({city:city})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >City</Text>
           </View>
         </View>
         <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.area}
             onChangeText={(area)=>this.setState({area:area})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >Area</Text>
           </View>
         </View>
         <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.street}
             onChangeText={(street)=>this.setState({street:street})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >Street</Text>
           </View>
         </View>
         <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.building}
             onChangeText={(building)=>this.setState({building:building})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >Building</Text>
           </View>
         </View>
         <View style={styles.containerRecatngle}>
           <View style= {styles.rect3} >
-          <TextInput style = {styles.textInputPhone}
+          {/* <TextInput style = {styles.textInputPhone}
             placeholder={this.state.personalData.personal.flat}
             onChangeText={(flatNo)=>this.setState({flatNo:flatNo})}
-          />
+          /> */}
           <Text style={{ color: 'black' , marginTop:15,marginRight:10, fontSize:12 }} >Flat No.</Text>
           </View>
         </View>

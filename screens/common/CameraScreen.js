@@ -1,17 +1,18 @@
+// /* eslint-disable prettier/prettier */
 // import React, { useState, useEffect } from 'react';
 // import { Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
-// // import { Camera } from 'react-native-camera';
+// import { RNCamera } from 'react-native-camera';
 //  const  CameraComponent = ({navigation})=> {
 //   const [hasPermission, setHasPermission] = useState(null);
 //   const [cameraRef, setCameraRef] = useState(null)
-//   const [type] = useState(Camera.Constants.Type.back);
+//   const [type] = useState(RNCamera.Constants.Type.back);
 //   const handlePhotoUrl=async(val)=>{
 //     console.log(val)
 //    navigation.navigate('Payment Details')
 //   }
 // useEffect(() => {
 //     (async () => {
-//       const { status } = await Camera.requestPermissionsAsync();
+//       const { status } = await RNCamera.requestPermissionsAsync();
 //       setHasPermission(status === 'granted');
 //     })();
 //   }, []);
@@ -23,7 +24,7 @@
 //   }
 //   return (
 //     <View style={{ flex: 1 }}>
-//       <Camera style={{ flex: 1 }} type={type} ref={ref => {
+//       <RNCamera style={{ flex: 1 }} type={type} ref={ref => {
 //         setCameraRef(ref) ;
 //   }}>
 //         <View
@@ -59,7 +60,7 @@
 //             </View>
 //           </TouchableOpacity>
 //         </View>
-//       </Camera>
+//       </RNCamera>
 //     </View>
 //   );
 // }

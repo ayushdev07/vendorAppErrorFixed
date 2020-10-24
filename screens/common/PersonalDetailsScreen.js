@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import * as Location from 'react-native-location';
+// import * as Location from 'react-native-location';
 import MapView, { Marker } from 'react-native-maps';
 
 function PersonalDetailsScreen({ navigation }) {

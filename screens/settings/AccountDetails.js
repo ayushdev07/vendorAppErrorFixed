@@ -66,8 +66,8 @@ function AccountDetailsScreen(props) {
       GSTIN: uploadData.GSTIN
     }))
     try {
-      
-      const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/"+contact, {
+
+      const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/" + contact, {
         method: 'PUT',
         headers: {
           Accept: '*/*',

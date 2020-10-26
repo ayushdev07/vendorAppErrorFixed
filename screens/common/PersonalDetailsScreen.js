@@ -1,37 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, } from "react-native";
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Alert, PermissionsAndroid } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-// import * as Location from 'react-native-location';
+import Geolocation from "react-native-geolocation-service";
 import MapView, { Marker } from 'react-native-maps';
 
 function PersonalDetailsScreen({ navigation }) {
+
   var mapStyle = [{ "elementType": "geometry", "stylers": [{ "color": "#242f3e" }] }, { "elementType": "labels.text.fill", "stylers": [{ "color": "#746855" }] }, { "elementType": "labels.text.stroke", "stylers": [{ "color": "#242f3e" }] }, { "featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#263c3f" }] }, { "featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [{ "color": "#6b9a76" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#38414e" }] }, { "featureType": "road", "elementType": "geometry.stroke", "stylers": [{ "color": "#212a37" }] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#9ca5b3" }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#746855" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#1f2835" }] }, { "featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [{ "color": "#f3d19c" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#2f3948" }] }, { "featureType": "transit.station", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#17263c" }] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "color": "#515c6d" }] }, { "featureType": "water", "elementType": "labels.text.stroke", "stylers": [{ "color": "#17263c" }] }];
+
   const [latitude, setlatitude] = useState(17.437328);
   const [longitude, setlongitude] = useState(78.394665);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [data, setData] = useState({
-    email: '',
-    emergencyNumber: '',
-    category: '',
-    state: '',
-    city: '',
-    area: '',
-    street: '',
-    building: '',
-    flatNo: '',
-  })
+  const [data, setData] = useState({ email: '', emergencyNumber: '', category: '', state: '', city: '', area: '', street: '', building: '', flatNo: '' });
+
+  async function requestPermissions() {
+    if (Platform.OS === 'ios') {
+      Geolocation.requestAuthorization();
+      Geolocation.setRNConfiguration({ skipPermissionRequests: false, authorizationLevel: 'whenInUse' });
+    }
+    if (Platform.OS === 'android') {
+      await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
+    }
+  }
+
   useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-      }
-      let location = await Location.getCurrentPositionAsync({});
-      setlatitude(location.coords.latitude);
-      setlongitude(location.coords.longitude)
-      console.log(latitude + "  " + longitude)
-    })();
+    requestPermissions();
+    Geolocation.getCurrentPosition(
+      (position) => { setlatitude(position.coords.latitude); setlongitude(position.coords.longitude); },
+      error => { Alert.alert(error.message.toString()); },
+      { showLocationDialog: true, enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    );
   });
+
   const handleSubmit = async () => {
     console.log(data)
     let array = []
@@ -76,6 +75,7 @@ function PersonalDetailsScreen({ navigation }) {
       console.log(e)
     }
   }
+
   return (
     <ScrollView>
       <View style={styles.mainContainer} >
@@ -202,17 +202,16 @@ function PersonalDetailsScreen({ navigation }) {
           }}
           customMapStyle={mapStyle}
         >
-          <Marker coordinate={{
-            latitude: latitude,
-            longitude: longitude,
-            latitudeDelta: 0.02,
-            longitudeDelta: 0.02
-          }}
+          <Marker
+            coordinate={{
+              latitude: latitude,
+              longitude: longitude,
+              latitudeDelta: 0.02,
+              longitudeDelta: 0.02
+            }}
             pinColor={"white"}
-            title={"UniworksDesigns"}
-            description={"just for testing"} />
+            title={"You are here"} />
         </MapView>
-
         <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmit}>
           <Text style={{ fontSize: 20, top: 13, color: '#ffffff' }}  >Proceed</Text>
         </TouchableOpacity>
@@ -243,7 +242,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     flexDirection: "row",
     paddingStart: 20
-
   },
   textInputPhone: {
     flex: 1,

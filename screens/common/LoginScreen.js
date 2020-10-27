@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, } from "react-native";
 import Feather from 'react-native-vector-icons/Feather';
@@ -67,7 +68,7 @@ function LoginScreen({ navigation: { goBack }, navigation }) {
     console.log(val.role)
     console.log(val.accessToken)
     if(val.role == "CSVD"){
-    navigation.navigate('HomeScreen')
+    navigation.navigate('UpcomingTaskSupervisorScreen')
   } else {
     navigation.navigate('SuperVisorBottom')
   }
@@ -86,7 +87,7 @@ function LoginScreen({ navigation: { goBack }, navigation }) {
           />
         <View style={styles.mainContainer} >
           <View style={styles.signInRow}>
-            <Text style={styles.signIn} onPress={() => goBack()}>Sign in</Text>
+            <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text>
             <View style={styles.signInFiller}></View>
             <Text style={styles.logIn} >Log in</Text>
           </View>
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   bottomContainer: {
-    top: '40%',
+    top: '20%',
     alignItems: 'center',
   },
   textInput: {

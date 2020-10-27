@@ -4,7 +4,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function AccountDetailsScreen(props) {
+
   const [fetchedData, setFetchedData] = useState(props.route.params)
+
   const [data, setData] = useState({
     accountNum: '',
     confirmAccoutNum: '',
@@ -15,89 +17,88 @@ function AccountDetailsScreen(props) {
     GSTIN: '',
     confirmAccoutnNo: ''
   })
-  const handleSubmission = async () => {
-    let uploadData = {
-      accountNum: '',
-      IFSC: '',
-      accountHolder: '',
-      PAN: '',
-      aadharlink: '',
-      GSTIN: ''
-    }
-    if (data.GSTIN != '') {
-      uploadData.GSTIN = data.GSTIN
-    } else {
-      uploadData.GSTIN = fetchedData.personal.GSTIN
-    }
-    if (data.accountNum != '' && data.confirmAccoutNum != '' && data.confirmAccoutNum == data.accountNum) {
-      uploadData.accountNum = data.accountNum
-    } else {
-      uploadData.accountNum = fetchedData.personal.accountNum
-    }
-    if (data.IFSC != '') {
-      uploadData.IFSC = data.IFSC
-    } else {
-      uploadData.IFSC = fetchedData.personal.IFSC
-    }
-    if (data.accountHolder != '') {
-      uploadData.accountHolder = data.accountHolder
-    } else {
-      uploadData.accountHolder = fetchedData.personal.accountHolder
-    }
-    if (data.PAN != '') {
-      uploadData.PAN = data.PAN
-    } else {
-      uploadData.PAN = fetchedData.personal.PAN
-    }
-    if (data.aadharlink != '') {
-      uploadData.aadharlink = data.aadharlink
-    } else {
-      uploadData.aadharlink = fetchedData.personal.aadharlink
-    }
-    let contact = await AsyncStorage.getItem('contact')
-    console.log(JSON.stringify({
-      userName: 'Kar0711',
-      contact: contact,
-      accountNum: uploadData.accountNum,
-      IFSC: uploadData.IFSC,
-      accountHolder: uploadData.accountHolder,
-      PAN: uploadData.PAN,
-      aadharlink: uploadData.aadharlink,
-      GSTIN: uploadData.GSTIN
-    }))
-    try {
 
-      const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/" + contact, {
-        method: 'PUT',
-        headers: {
-          Accept: '*/*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userName: 'Kar0711',
-          contact: contact,
-          accountNum: uploadData.accountNum,
-          IFSC: uploadData.IFSC,
-          accountHolder: uploadData.accountHolder,
-          PAN: uploadData.PAN,
-          aadharlink: uploadData.aadharlink,
-          GSTIN: uploadData.GSTIN
-        })
-      }).then((response) => {
-        const statusCode = response.status
-        console.log(statusCode)
-        return response.json()
+  // const handleSubmission = async () => {
+  //   let uploadData = {
+  //     accountNum: '',
+  //     IFSC: '',
+  //     accountHolder: '',
+  //     PAN: '',
+  //     aadharlink: '',
+  //     GSTIN: ''
+  //   }
+  //   if (data.GSTIN != '') {
+  //     uploadData.GSTIN = data.GSTIN
+  //   } else {
+  //     uploadData.GSTIN = fetchedData.personal.GSTIN
+  //   }
+  //   if (data.accountNum != '' && data.confirmAccoutNum != '' && data.confirmAccoutNum == data.accountNum) {
+  //     uploadData.accountNum = data.accountNum
+  //   } else {
+  //     uploadData.accountNum = fetchedData.personal.accountNum
+  //   }
+  //   if (data.IFSC != '') {
+  //     uploadData.IFSC = data.IFSC
+  //   } else {
+  //     uploadData.IFSC = fetchedData.personal.IFSC
+  //   }
+  //   if (data.accountHolder != '') {
+  //     uploadData.accountHolder = data.accountHolder
+  //   } else {
+  //     uploadData.accountHolder = fetchedData.personal.accountHolder
+  //   }
+  //   if (data.PAN != '') {
+  //     uploadData.PAN = data.PAN
+  //   } else {
+  //     uploadData.PAN = fetchedData.personal.PAN
+  //   }
+  //   if (data.aadharlink != '') {
+  //     uploadData.aadharlink = data.aadharlink
+  //   } else {
+  //     uploadData.aadharlink = fetchedData.personal.aadharlink
+  //   }
+  //   let contact = await AsyncStorage.getItem('contact')
+  //   console.log(JSON.stringify({
+  //     userName: 'Kar0711',
+  //     contact: contact,
+  //     accountNum: uploadData.accountNum,
+  //     IFSC: uploadData.IFSC,
+  //     accountHolder: uploadData.accountHolder,
+  //     PAN: uploadData.PAN,
+  //     aadharlink: uploadData.aadharlink,
+  //     GSTIN: uploadData.GSTIN
+  //   }))
+  //   try {
+  //     const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/" + contact, {
+  //       method: 'PUT',
+  //       headers: {
+  //         Accept: '*/*',
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         userName: 'Kar0711',
+  //         contact: contact,
+  //         accountNum: uploadData.accountNum,
+  //         IFSC: uploadData.IFSC,
+  //         accountHolder: uploadData.accountHolder,
+  //         PAN: uploadData.PAN,
+  //         aadharlink: uploadData.aadharlink,
+  //         GSTIN: uploadData.GSTIN
+  //       })
+  //     }).then((response) => {
+  //       const statusCode = response.status
+  //       console.log(statusCode)
+  //       return response.json()
 
-      }).then(json => {
-        props.navigation.navigate("HomeScreen");
-        console.log(json)
-      })
-        .catch(e => alert(e.toString()))
-    } catch (e) {
-      console.log(e)
-    }
-    // 
-  }
+  //     }).then(json => {
+  //       props.navigation.navigate("HomeScreen");
+  //       console.log(json)
+  //     })
+  //       .catch(e => alert(e.toString()))
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
 
   return (
     <ScrollView   >
@@ -109,7 +110,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.accountNum}
+              // placeholder={fetchedData.personal.accountNum}
               onChangeText={(accoutnNo) => {
                 setData({
                   ...data,
@@ -123,7 +124,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.accountNum}
+              // placeholder={fetchedData.personal.accountNum}
               onChangeText={(confirmAccoutnNo) => {
                 setData({
                   ...data,
@@ -137,7 +138,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.IFSC}
+              // placeholder={fetchedData.personal.IFSC}
               onChangeText={(ifscCode) => {
                 setData({
                   ...data,
@@ -151,7 +152,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.accountHolder}
+              // placeholder={fetchedData.personal.accountHolder}
               onChangeText={(name) => {
                 setData({
                   ...data,
@@ -165,7 +166,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.PAN}
+              // placeholder={fetchedData.personal.PAN}
               onChangeText={(pan) => {
                 setData({
                   ...data,
@@ -179,7 +180,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.aadharLink}
+              // placeholder={fetchedData.personal.aadharLink}
               onChangeText={(aadhar) => {
                 setData({
                   ...data,
@@ -193,7 +194,7 @@ function AccountDetailsScreen(props) {
           <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >Aadhar Details</Text>
           <View style={{ flex: 1, flexDirection: 'row' }} ></View>
           <View style={{ marginRight: '15%' }} >
-          <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('Camera')} >
+            <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('CameraScreen')} >
               <Text style={{ color: '#546AD9', fontSize: 14 }}>Upload Photo</Text>
               <MaterialIcons name='camera-alt' style={{ alignSelf: 'center', color: '#546AD9' }} size={20} />
             </TouchableOpacity>
@@ -202,7 +203,7 @@ function AccountDetailsScreen(props) {
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
-              placeholder={fetchedData.personal.GSTIN}
+              // placeholder={fetchedData.personal.GSTIN}
               onChangeText={(gst) => {
                 setData({
                   ...data,
@@ -213,7 +214,8 @@ function AccountDetailsScreen(props) {
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >GSTIN Details</Text>
-        <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmission} >
+        {/* <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmission} > */}
+        <TouchableOpacity style={styles.SubmitButtonStyle} >
           <Text style={{ fontSize: 20, top: 13, color: '#ffffff' }} >Proceed</Text>
         </TouchableOpacity>
       </View>

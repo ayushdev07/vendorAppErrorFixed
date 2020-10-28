@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Aler
 import { ScrollView } from "react-native-gesture-handler";
 import Geolocation from "react-native-geolocation-service";
 import MapView, { Marker } from 'react-native-maps';
+import { Picker } from '@react-native-picker/picker';
 
 function PersonalDetailsScreen({ navigation }) {
 
@@ -11,6 +12,7 @@ function PersonalDetailsScreen({ navigation }) {
   const [latitude, setlatitude] = useState(17.437328);
   const [longitude, setlongitude] = useState(78.394665);
   const [data, setData] = useState({ email: '', emergencyNumber: '', category: '', state: '', city: '', area: '', street: '', building: '', flatNo: '' });
+  const [selectedValue, setSelectedValue] = useState("Carpenter");
 
   async function requestPermissions() {
     if (Platform.OS === 'ios') {
@@ -67,7 +69,7 @@ function PersonalDetailsScreen({ navigation }) {
       }).then((response) => {
         const statusCode = response.status
         console.log(statusCode)
-        navigation.navigate("Payment Details");
+        navigation.navigate("HomeBottomTab");
         return response.json();
       }).then(json => console.log(json))
         .catch(e => console.log(e.toString()))
@@ -78,142 +80,115 @@ function PersonalDetailsScreen({ navigation }) {
 
   return (
     <ScrollView>
-      <View style={styles.mainContainer} >
+      <View style={styles.mainContainer}>
         <View style={{ alignItems: 'center', marginTop: 72 }}>
-          <Text style={{ fontSize: 36 }} >Personal Details</Text>
+          <Text style={{ fontSize: 36 }}>Personal Details</Text>
         </View>
-        <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangleName}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="98393xxxx"
               keyboardType="numeric"
-              onChangeText={(number) => setData({
-                ...data,
-                emergencyNumber: number,
-              })}
+              onChangeText={(number) => setData({ ...data, emergencyNumber: number })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Emergency Contact</Text>
+            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>Emergency Contact</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
-              placeholder="Email"
-              onChangeText={(email) => setData({
-                ...data,
-                email: email,
-              })}
+              placeholder="abc@gmail.com"
+              onChangeText={(email) => setData({ ...data, email: email })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Category</Text>
+            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>Email ID</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              placeholder="Carpenter"
-              onChangeText={(category) => setData({
-                ...data,
-                category: category,
-              })} />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Category</Text>
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
+            <Picker
+              selectedValue={selectedValue}
+              mode="dropdown"
+              style={[styles.textInputPhone, { height: 40, width: '90%', marginTop: 10 }]}
+              onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
+              <Picker.Item label="Carpenter" value="Carpenter" />
+              <Picker.Item label="Labour" value="Labour" />
+              <Picker.Item label="Electrician" value="Electrician" />
+            </Picker>
+            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>Category</Text>
           </View>
         </View>
-        <View style={{ marginLeft: '15%', marginTop: '5%' }} >
-          <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal' }} >Address</Text>
+        {/* <View style={{ marginLeft: '15%', marginTop: '5%' }}>
+          <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal' }}>Address</Text>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+         <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="Telangana"
-              onChangeText={(state) => setData({
-                ...data,
-                state: state,
-              })}
+              onChangeText={(state) => setData({ ...data, state: state })}
             />
             <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >State</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="Hyderabad"
-              onChangeText={(city) => setData({
-                ...data,
-                city: city,
-              })}
+              onChangeText={(city) => setData({ ...data, city: city })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >City</Text>
+            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>City</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="Kavuri Hills"
-              onChangeText={(area) => setData({
-                ...data,
-                area: area,
-              })}
+              onChangeText={(area) => setData({ ...data, area: area })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Area</Text>
+            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>Area</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="Jon Snow"
-              onChangeText={(street) => setData({
-                ...data,
-                street: street,
-              })}
+              onChangeText={(street) => setData({ ...data, street: street })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Street</Text>
+            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>Street</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="Lamba Trendz Uniworks"
-              onChangeText={(building) => setData({
-                ...data,
-                building: building,
-              })}
+              onChangeText={(building) => setData({ ...data, building: building })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Building</Text>
+            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>Building</Text>
           </View>
         </View>
-        <View style={styles.containerRecatngle}>
-          <View style={styles.rect3} >
+        <View style={styles.containerRectangle}>
+          <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="2nd Floor"
-              onChangeText={(flatNo) => setData({
-                ...data,
-                flatNo: flatNo,
-              })}
+              onChangeText={(flatNo) => setData({ ...data, flatNo: flatNo })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Flat No.</Text>
+            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>Flat No.</Text>
           </View>
-        </View>
+        </View> */}
         <MapView
-          style={{ top: 20, width: '100%', height: 200 }}
+          style={{ top: 30, width: '100%', height: 200 }}
           scrollEnabled={true}
-          Region={{
-            latitude: latitude,
-            longitude: longitude,
-          }}
+          Region={{ latitude: latitude, longitude: longitude }}
           customMapStyle={mapStyle}
         >
           <Marker
-            coordinate={{
-              latitude: latitude,
-              longitude: longitude,
-              latitudeDelta: 0.02,
-              longitudeDelta: 0.02
-            }}
+            coordinate={{ latitude: latitude, longitude: longitude, latitudeDelta: 0.02, longitudeDelta: 0.02 }}
             pinColor={"white"}
-            title={"You are here"} />
+            title={"You are here"}
+          />
         </MapView>
         <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmit}>
-          <Text style={{ fontSize: 20, top: 13, color: '#ffffff' }}  >Proceed</Text>
+          <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>Proceed</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -224,11 +199,11 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 4
   },
-  containerRecatngleName: {
+  containerRectangleName: {
     marginTop: 40,
     alignItems: 'center'
   },
-  containerRecatngle: {
+  containerRectangle: {
     marginTop: 15,
     alignItems: 'center'
   },
@@ -253,6 +228,7 @@ const styles = StyleSheet.create({
   },
   SubmitButtonStyle: {
     marginTop: '15%',
+    marginBottom: '15%',
     marginLeft: '10%',
     height: 60,
     marginRight: '10%',

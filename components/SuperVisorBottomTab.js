@@ -13,7 +13,7 @@ import { AsyncStorage } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
-const SupervisorBottomTabScreen = (props) => (
+const SupervisorBottomTab = (props) => (
 
   <Tab.Navigator
     initialRouteName="Home"
@@ -23,10 +23,10 @@ const SupervisorBottomTabScreen = (props) => (
       name="Tutorials"
       component={TutorialsScreen}
       options={{
-        tabBarLabel: 'Tutorials',
+        tabBarLabel: 'Home',
         tabBarColor: '#009387',
         tabBarIcon: ({ color }) => (
-          <MaterialIcons name="ondemand-video" color={color} size={26} />
+          <MaterialIcons name="home" color={color} size={26} />
         ),
       }}
     />
@@ -59,5 +59,5 @@ const SupervisorBottomTabScreen = (props) => (
 
 );
 
-export default SupervisorBottomTabScreen;
+export default SupervisorBottomTab;
 

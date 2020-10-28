@@ -71,75 +71,59 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
     if (val.role == "CSVD") {
       navigation.navigate('UpcomingTaskSupervisorScreen')
     } else {
-      navigation.navigate('SuperVisorBottom')
+      navigation.navigate('SuperVisorBottomTab')
     }
+  }
 
-    return (
-      <ScrollView>
-        <Spinner
-          //visibility of Overlay Loading Spinner
-          visible={isLoading}
-          //Text with the Spinner
-          textContent={'Logging In...'}
-          //Text style of the Spinner Text
-          textStyle={{ color: '#000' }}
-        />
-        <View style={styles.mainContainer} >
-          <View style={styles.signInRow}>
-            <Text style={styles.signIn} onPress={() => goBack()}>Sign in</Text>
-            <View style={styles.signInFiller}></View>
-            <Text style={styles.logIn}>Log in</Text>
-          </View>
-          <View style={styles.containerRectanglePhone}>
-            <TextInput style={styles.rect3}
-              placeholder="9839xxxxxx"
-              keyboardType="numeric"
-              maxLength={10}
-              onChangeText={(phoneNumber) => setData({ ...data, phoneNumber: phoneNumber })}
+  return (
+    <ScrollView>
+      <Spinner visible={isLoading} textContent={'Logging In...'} textStyle={{ color: '#000' }} />
+      <View style={styles.mainContainer}>
+        <View style={styles.signInRow}>
+          <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text>
+          <View style={styles.signInFiller}></View>
+          <Text style={styles.logIn}>Log In</Text>
+        </View>
+        <View style={styles.containerRectanglePhone}>
+          <TextInput style={styles.rect3}
+            placeholder="9839xxxxxx"
+            keyboardType="numeric"
+            maxLength={10}
+            onChangeText={(phoneNumber) => setData({ ...data, phoneNumber: phoneNumber })}
+          />
+        </View>
+        <View style={styles.containerRectanglePassword}>
+          <View style={styles.rect3}>
+            <TextInput style={styles.textInput}
+              secureTextEntry={data.secureTextEntry ? true : false}
+              onChangeText={(val) => handlePasswordChange(val)}
+              placeholder="Password"
             />
-            <View style={styles.mainContainer} >
-              <View style={styles.signInRow}>
-                <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text>
-                <View style={styles.signInFiller}></View>
-                <Text style={styles.logIn} >Log in</Text>
-              </View>
-              <View style={styles.containerRecatnglePhone}>
-                <TextInput style={styles.rect3}
-                  placeholder="9839xxxxxx"
-                  keyboardType="numeric"
-                  maxLength={10}
-                  onChangeText={(phoneNumber) => setData({ ...data, phoneNumber: phoneNumber })}
-                />
-                <TouchableOpacity
-                  style={styles.eyeIcon}
-                  onPress={updateSecureTextEntry}
-                >
-                  {data.secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{ alignItems: 'flex-end', marginRight: '15%', top: 10 }} >
-              <TouchableOpacity onPress={() => navigation.navigate('Recover Account')} >
-                <Text style={{ color: '#5356C1' }} >Forgot Password?</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.bottomContainer}>
-              <TouchableOpacity onPress={login} >
-                <View>
-                  <View style={styles.icon1Stack}>
-                    <FeatherIcon name="arrow-right" style={styles.icon1}></FeatherIcon>
-                    <View style={styles.rect4}>
-                      <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.eyeIcon} onPress={updateSecureTextEntry}>
+              {data.secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
+            </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
-    );
-  }
+        <View style={{ alignItems: 'flex-end', marginRight: '15%', top: 10 }}>
+          <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
+            <Text style={{ color: '#5356C1' }}>Forgot Password?</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.bottomContainer}>
+          <TouchableOpacity onPress={login}>
+            <View>
+              <View style={styles.icon1Stack}>
+                <FeatherIcon name="arrow-right" style={styles.icon1}></FeatherIcon>
+                <View style={styles.rect4}>
+                  <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { Component } from "react";
-import { StyleSheet, View, StatusBar, Image, TouchableOpacity, Button, Text, ImageBackground } from "react-native";
+import React from "react";
+import { StyleSheet, View, TouchableOpacity, Text, ImageBackground } from "react-native";
 
 function SplashScreen({ navigation }) {
   return (
@@ -13,7 +13,7 @@ function SplashScreen({ navigation }) {
       >
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('AccountDetailsScreen')}
+          onPress={() => navigation.navigate('PersonalDetailsScreen')}
         >
           <View style={styles.containerButton} >
             <Text styles={styles.text} >Get Started</Text>

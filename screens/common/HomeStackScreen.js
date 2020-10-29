@@ -11,7 +11,7 @@ import AccountDetailsScreen from '../settings/AccountDetails';
 import SecurityScreen from '../settings/SecurityScreen';
 import VideoScreen from './VideoScreen';
 import HomeBottomTab from '../../components/HomeBottomTab';
-import SupervisorBottomTab from '../../components/SupervisorBottomTab';
+import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
 import StartSiteScreen from '../supervisors/StartSiteScreen';
 import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
 
@@ -24,8 +24,8 @@ function Login() { return <RootStackScreen /> }
 const HomeStackScreen = () => (
   <HomeStack.Navigator headerMode='none'>
     <HomeStack.Screen name="Login" component={Login} />
-    <HomeStack.Screen name="HomeBottomTab" component={HomeBottomTab} />
-    <HomeStack.Screen name="SupervisorBottomTab" component={SupervisorBottomTab} />
+    <HomeStack.Screen name="HomeScreen" component={HomeBottomTab} />
+    <HomeStack.Screen name="SuperVisorBottom" component={SupervisorBottomTabScreen}/>
     <HomeStack.Screen name="AfterAcceptScreen" component={AfterAcceptScreen} />
     <HomeStack.Screen name="SiteRequestScreen" component={SiteRequestScreen} />
     <HomeStack.Screen name="After Reaching Site" component={UpcomingTaskScreen} />

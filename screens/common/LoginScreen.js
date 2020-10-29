@@ -71,7 +71,7 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
     if (val.role == "CSVD") {
       navigation.navigate('UpcomingTaskSupervisorScreen')
     } else {
-      navigation.navigate('SupervisorBottomTab')
+      navigation.navigate('SuperVisorBottom')
     }
   }
 

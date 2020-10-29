@@ -13,7 +13,7 @@ import { AsyncStorage } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
-const HomeTabScreen = (props) => (
+const HomeBottomTab = (props) => (
 
   <Tab.Navigator
     initialRouteName="Home"
@@ -72,5 +72,5 @@ const HomeTabScreen = (props) => (
 
 );
 
-export default HomeTabScreen;
+export default HomeBottomTab;
 

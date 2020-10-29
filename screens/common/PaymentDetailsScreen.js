@@ -4,14 +4,14 @@ import { ScrollView } from "react-native-gesture-handler";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function PaymentDetailsScreen(props, route) {
-  const[data, setData] = useState({
-    accountNum:'',
-          IFSC:'',
-          accountHolder:'',
-          PAN:'',
-          aadharNumber:'',
-          GSTIN:'',
-          confirmAccoutnNo:''
+  const [data, setData] = useState({
+    accountNum: '',
+    IFSC: '',
+    accountHolder: '',
+    PAN: '',
+    aadharNumber: '',
+    GSTIN: '',
+    confirmAccoutnNo: ''
   })
   const handleSubmission = async () => {
     console.log(data)
@@ -23,23 +23,24 @@ function PaymentDetailsScreen(props, route) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          contact:'+918174033803',
+          contact: '+918174033803',
           userName: "Kar1596977190778",
-          accountNum:data.accountNum,
-          IFSC:data.IFSC,
-          accountHolder:data.accountHolder,
-          PAN:data.PAN,
-          aadharlink:data.aadharNumber,
-          GSTIN:data.GSTIN,
+          accountNum: data.accountNum,
+          IFSC: data.IFSC,
+          accountHolder: data.accountHolder,
+          PAN: data.PAN,
+          aadharlink: data.aadharNumber,
+          GSTIN: data.GSTIN,
         })
       }).then((response) => {
         const statusCode = response.status
         console.log(statusCode)
         return response.json()
-      }).then(json=>{
-        props.navigation.navigate("HomeScreen");
-        console.log(json)})
-      .catch(e=>alert(e.toString()))
+      }).then(json => {
+        props.navigation.navigate("HomeBottomTab");
+        console.log(json)
+      })
+        .catch(e => alert(e.toString()))
     } catch (e) {
       console.log(e)
     }
@@ -57,7 +58,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(accoutnNo) => {
                 setData({
                   ...data,
-                  accountNum:accoutnNo
+                  accountNum: accoutnNo
                 })
               }}
             />
@@ -70,7 +71,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(confirmAccoutnNo) => {
                 setData({
                   ...data,
-                  confirmAccoutnNo:confirmAccoutnNo
+                  confirmAccoutnNo: confirmAccoutnNo
                 })
               }}
             />
@@ -83,7 +84,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(ifscCode) => {
                 setData({
                   ...data,
-                  IFSC:ifscCode
+                  IFSC: ifscCode
                 })
               }}
             />
@@ -96,7 +97,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(name) => {
                 setData({
                   ...data,
-                  accountHolder:name
+                  accountHolder: name
                 })
               }}
             />
@@ -109,7 +110,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(pan) => {
                 setData({
                   ...data,
-                  PAN:pan
+                  PAN: pan
                 })
               }}
             />
@@ -122,7 +123,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(aadhar) => {
                 setData({
                   ...data,
-                  aadharNumber:aadhar
+                  aadharNumber: aadhar
                 })
               }}
             />
@@ -144,7 +145,7 @@ function PaymentDetailsScreen(props, route) {
               onChangeText={(gst) => {
                 setData({
                   ...data,
-                  GSTIN:gst
+                  GSTIN: gst
                 })
               }}
             />

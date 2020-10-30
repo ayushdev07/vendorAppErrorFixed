@@ -14,6 +14,7 @@ import HomeBottomTab from '../../components/HomeBottomTab';
 import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
 import StartSiteScreen from '../supervisors/StartSiteScreen';
 import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
+import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen';
 
 import PersonalDetailsScreen from '../common/PersonalDetailsScreen';
 
@@ -31,6 +32,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="After Reaching Site" component={UpcomingTaskScreen} />
     <HomeStack.Screen name="UpcomingTaskScreen" component={UpcomingTaskScreen} />
     <HomeStack.Screen name="UpcomingTaskSupervisorScreen" component={UpcomingTaskSupervisorScreen} />
+    <HomeStack.Screen name="UpcomingTaskContractorScreen" component={UpcomingTaskContractorScreen} />
     <HomeStack.Screen name="SelectSupervisorScreen" component={SelectSuperVisorScreen} />
     <HomeStack.Screen name="PersonalScreen" component={PersonalScreen} />
     <HomeStack.Screen name="SuperVisorsScreen" component={SupervisorsScreen} />
@@ -38,7 +40,6 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="SecuirtyScreen" component={SecurityScreen} />
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
-
     <HomeStack.Screen name="PersonalDetailsScreen" component={PersonalDetailsScreen} />
 
   </HomeStack.Navigator>

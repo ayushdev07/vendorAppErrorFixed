@@ -95,22 +95,15 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
 
     <ScrollView>
       {isLoading ?
-        <Spinner
-          //visibility of Overlay Loading Spinner
-          visible={isLoading}
-          //Text with the Spinner
-          textContent={'Fetching Data...'}
-          //Text style of the Spinner Text
-          textStyle={{ color: '#000', }}
-        />
+        <Spinner visible={isLoading} textContent={'Fetching Data...'} textStyle={{ color: '#000' }} />
         :
         <View style={styles.mainContainer} >
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <TouchableOpacity onPress={() => i18n.changeLanguage('en')} style={styles.button}>
-              <Text style={{ color: '#fff' }}>EN</Text>
+              <Text style={{ color: '#fff' }}>English</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => i18n.changeLanguage('hi')} style={styles.button}>
-              <Text style={{ color: '#fff' }}>HI</Text>
+              <Text style={{ color: '#fff' }}>हिंदी</Text>
             </TouchableOpacity>
           </View>
           <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{t('Wooden Partition')}</Text>
@@ -488,7 +481,7 @@ const styles = StyleSheet.create({
     maxWidth: '90%'
   },
   button: {
-    backgroundColor: '#61e3a5',
+    backgroundColor: 'limegreen',
     padding: 10,
     borderRadius: 10,
     margin: 10,

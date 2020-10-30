@@ -258,8 +258,7 @@ import images from '../../assets/images';
 import { Appbar } from 'react-native-paper';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { ListItem, Left, Right, Thumbnail, Body, Button } from 'native-base';
-import  VideoSlider  from './VideoSlider';
-
+import VideoSlider from './VideoSlider';
 
 const TutorialsScreen = ({ navigation }) => {
   const [tutorials, setTutorials] = useState([]);
@@ -309,9 +308,9 @@ const TutorialsScreen = ({ navigation }) => {
   return (
 
     <ScrollView>
-      <Appbar.Header style={{ backgroundColor:'#99DD70' }} >
+      <Appbar.Header style={{ backgroundColor: '#99DD70' }} >
         {/* <Appbar.Content title="Indus" style={{ fontSize: 80, marginLeft: 280 }} /> */}
-        <Text style={{fontSize: 20, marginLeft: 350 }} >Indus</Text>
+        <Text style={{ fontSize: 20, marginLeft: 350 }} >Indus</Text>
       </Appbar.Header>
 
       <View style={{ flex: 1 }} >
@@ -323,11 +322,11 @@ const TutorialsScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={{ flex: 1 }} >
-        <VideoSlider 
-        height={250}
-        marginTop = {30}
-        />
-         <View style={{ marginTop: 30 }} >
+          <VideoSlider
+            height={250}
+            marginTop={30}
+          />
+          <View style={{ marginTop: 30 }} >
             {/* <View style={{ marginTop: '5%' }}>
               <YoutubePlayer
                 height={200}
@@ -337,9 +336,9 @@ const TutorialsScreen = ({ navigation }) => {
                 onChangeState={onStateChange}
               />
             </View> */}
-              {/* <Button title={playing ? "pause" : "play"} onPress={togglePlaying} /> */}
-            </View>
-            {/* <ListItem thumbnail style={{ marginTop: '5%' }}>
+            {/* <Button title={playing ? "pause" : "play"} onPress={togglePlaying} /> */}
+          </View>
+          {/* <ListItem thumbnail style={{ marginTop: '5%' }}>
               <Left>
                 <Thumbnail square source={{ uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWBAMAAADOL2zRAAAAG1BMVEXMzMyWlpajo6PFxcW3t7ecnJyqqqq+vr6xsbGXmO98AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABPUlEQVRoge3Tv0/CQBjG8YcWaMcebymOENLI2MZoHMHEvVUKjq1K4lhM2Kvxx7/tUUiamDhc6GSez8INzbf3HleAiIiIiIiIiIiIiNozAGzvuJYTW2reXmso7bX8YN96HUR1a7RZ6+VVOgU+p4LuZGrSkqK0PWfwfl+3ht/hcpdvPkJ0g0fBYpYZtS7HttfPMatbAbZzJ1kjjnqVK1ihNzdpdX3b65S4qVsjXbG9EtuoEzliC/RbDFoIL7wY2NZrQayPzw1VpH/FUUqNjVrx0+9W8Rzrlt7yMMvMWq7fzHhoCTp6Rr0vw0uiH8+as69bov/AyNqf/Rms3Ky1aO7EYV93X2nlBIXg7WVSmrWs5q4eWrvVdYLbpR4/PTeZ8S9O82mdzMr7SVstV6mqrRaKh9ZSRERERERERET0n/wAZwMqI9kyPcoAAAAASUVORK5CYII=' }} />
               </Left>

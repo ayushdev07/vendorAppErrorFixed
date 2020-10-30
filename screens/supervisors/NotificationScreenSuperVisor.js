@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, _FlatList, FlatList } from 'react-native'
+import { View, Text, StyleSheet, _FlatList, FlatList, Alert } from 'react-native'
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Feather from 'react-native-vector-icons/Feather'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 const NotificationSuperVisorScreen = ({ navigation }) => {
+
+    const { t } = useTranslation();
+
     const [upcomingTasks, setUpcomingTasks] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const fetchData = async () => {
@@ -18,21 +23,20 @@ const NotificationSuperVisorScreen = ({ navigation }) => {
                 setLoading(false)
             })
     }
+
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            console.log(global.lang)
+            if (global.lang == "en") { i18n.changeLanguage('en') }
+            else if (global.lang == "hi") { i18n.changeLanguage('hi') }
+        });
+    }, [navigation]);
+
     useEffect(() => {
         fetchData()
     }, []);
 
-    const FlatListItemSeparator = () => {
-        return (
-            <View
-                style={{
-                    height: 20,
-                    width: "100%",
-                    backgroundColor: "#FFF",
-                }}
-            />
-        );
-    }
+    const FlatListItemSeparator = () => { return (<View style={{ height: 20, width: "100%", backgroundColor: "#FFF" }} />); }
 
     const renderUpcomingTasks = ({ item }) => {
         return (
@@ -52,7 +56,7 @@ const NotificationSuperVisorScreen = ({ navigation }) => {
                         marginTop: 15,
                         marginBottom: 10
                     }} >
-                        <Text  >{item.address.substring(0, 20)}...</Text>
+                        <Text>{item.address.substring(0, 20)}...</Text>
                         <View style={{ flex: 1, flexDirection: 'row' }} />
                         <Text style={{ fontSize: 20, fontWeight: 'bold', alignSelf: 'center', bottom: 5 }} >₹ {item.budget}</Text>
                     </View>
@@ -60,47 +64,34 @@ const NotificationSuperVisorScreen = ({ navigation }) => {
             </View>
         )
     }
+
     return (
-        <View style={{ flex: 1, backgroundColor: '#ffffff' }} >
-
-                <Spinner
-                    //visibility of Overlay Loading Spinner
-                    visible={isLoading}
-                    //Text with the Spinner
-                    textContent={'Fetching Notifications...'}
-                    //Text style of the Spinner Text
-                    textStyle={{ color: '#000000', }}
-                />
-                
-
-                <View style={{ flex: 1 }} >
-                    <Text style={{ alignSelf: 'center', marginTop: '10%', color: '#353535', fontSize: 24, fontWeight: 'bold', marginBottom: '5%' }} >Notifications</Text>
-                    <View style={styles.rect3} >
-                        <TextInput
-                            placeholder='Search'
-                            style={styles.textInputPhone}
-                        />
-                        <View style={{ alignSelf: 'center', marginEnd: '2%' }}  >
-                            <TouchableOpacity  >
-                                <Feather name='search' size={24} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{
-                        marginTop: 20,
-                        flex: 1
-                    }} >
-                        <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 18,marginStart:"7%" }} >Upcoming Tasks</Text>
-                        <FlatList
-                            data={upcomingTasks}
-                            style={{ marginTop: 20, marginHorizontal:'9%' }}
-                            keyExtractor={item => item.bookingId}
-                            renderItem={renderUpcomingTasks}
-                            ItemSeparatorComponent={FlatListItemSeparator}
-                        />
+        <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+            <Spinner visible={isLoading} textContent={'Fetching Notifications...'} textStyle={{ color: '#000000' }} />
+            <View style={{ flex: 1 }} >
+                <Text style={{ alignSelf: 'center', marginTop: '10%', color: '#353535', fontSize: 24, fontWeight: 'bold', marginBottom: '5%' }}>
+                    {t('Notifications')}
+                </Text>
+                <View style={styles.rect3}>
+                    <TextInput placeholder='Search' style={styles.textInputPhone} />
+                    <View style={{ alignSelf: 'center', marginEnd: '2%' }}>
+                        <TouchableOpacity>
+                            <Feather name='search' size={24} />
+                        </TouchableOpacity>
                     </View>
                 </View>
-            
+                <View style={{ marginTop: 20, flex: 1 }}>
+                    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 18, marginStart: "7%" }}>Upcoming Tasks</Text>
+                    <FlatList
+                        data={upcomingTasks}
+                        style={{ marginTop: 20, marginHorizontal: '9%' }}
+                        keyExtractor={item => item.bookingId}
+                        renderItem={renderUpcomingTasks}
+                        ItemSeparatorComponent={FlatListItemSeparator}
+                    />
+                </View>
+            </View>
+
         </View>
     )
 }

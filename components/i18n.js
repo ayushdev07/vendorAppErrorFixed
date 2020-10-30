@@ -46,6 +46,7 @@ i18n.use(initReactI18next).init({
                 'Semi-skilled': 'Semi-skilled',
                 'Unskilled': 'Unskilled',
                 'Submit': 'Submit',
+                'Notifications': 'Notifications',
             },
         },
         hi: {
@@ -88,6 +89,7 @@ i18n.use(initReactI18next).init({
                 'Semi-skilled': 'अर्धकुशल',
                 'Unskilled': 'अकुशल',
                 'Submit': 'प्रस्तुत',
+                'Notifications': 'सूचनाएं',
             },
         },
     },

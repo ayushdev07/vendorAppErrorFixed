@@ -9,6 +9,7 @@ import PersonalScreen from '../settings/PersonalScreen';
 import SupervisorsScreen from '../settings/SupervisorsScreen';
 import AccountDetailsScreen from '../settings/AccountDetails';
 import SecurityScreen from '../settings/SecurityScreen';
+import LanguageScreen from '../settings/LanguageScreen';
 import VideoScreen from './VideoScreen';
 import HomeBottomTab from '../../components/HomeBottomTab';
 import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
@@ -26,7 +27,7 @@ const HomeStackScreen = () => (
   <HomeStack.Navigator headerMode='none'>
     <HomeStack.Screen name="Login" component={Login} />
     <HomeStack.Screen name="HomeScreen" component={HomeBottomTab} />
-    <HomeStack.Screen name="SuperVisorBottom" component={SupervisorBottomTabScreen}/>
+    <HomeStack.Screen name="SuperVisorBottom" component={SupervisorBottomTabScreen} />
     <HomeStack.Screen name="AfterAcceptScreen" component={AfterAcceptScreen} />
     <HomeStack.Screen name="SiteRequestScreen" component={SiteRequestScreen} />
     <HomeStack.Screen name="After Reaching Site" component={UpcomingTaskScreen} />
@@ -38,6 +39,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="SuperVisorsScreen" component={SupervisorsScreen} />
     <HomeStack.Screen name="AccountDetailsScreen" component={AccountDetailsScreen} />
     <HomeStack.Screen name="SecuirtyScreen" component={SecurityScreen} />
+    <HomeStack.Screen name="LanguageScreen" component={LanguageScreen} />
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
     <HomeStack.Screen name="PersonalDetailsScreen" component={PersonalDetailsScreen} />

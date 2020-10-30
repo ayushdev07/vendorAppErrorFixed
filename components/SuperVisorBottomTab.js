@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 const SupervisorBottomTabScreen = (props) => (
 
   <Tab.Navigator
-    initialRouteName="Home"
+    initialRouteName="Tutorials"
     activeColor="#fff"
   >
     <Tab.Screen

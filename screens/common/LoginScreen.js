@@ -80,7 +80,7 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
       <Spinner visible={isLoading} textContent={'Logging In...'} textStyle={{ color: '#000' }} />
       <View style={styles.mainContainer}>
         <View style={styles.signInRow}>
-          <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text>
+          {/* <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text> */}
           <View style={styles.signInFiller}></View>
           <Text style={styles.logIn}>Log In</Text>
         </View>
@@ -104,9 +104,16 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ alignItems: 'flex-end', marginRight: '15%', top: 10 }}>
+        <View style={{ alignItems: 'flex-start', marginLeft: '15%', top: 10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
             <Text style={{ color: '#5356C1' }}>Forgot Password?</Text>
+            {/* <Text style={{ color:'#5356C1'}} onPress={() => goBack()}>Sign Up</Text> */}
+          </TouchableOpacity>
+        </View>
+        <View style={{ alignItems: 'flex-end', marginRight:'15%', top: -10 }}>
+          <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
+            <Text style={{ color: '#121212', fontSize:15 }}>Dont have account?</Text>
+            <Text style={{ color:'#5356C1'}} onPress={() => goBack()}>Sign Up</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerRectanglePhone: {
-    marginTop: '30%',
+    marginTop: '15%',
     alignItems: 'center'
   },
   signIn: {
@@ -155,6 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     height: 50,
     width: 124,
+    marginRight:'30%'
   },
   signInRow: {
     height: 40,

@@ -577,7 +577,7 @@ export default class SignInScreen extends Component {
           <View style={styles.signInRow}>
             <Text style={styles.signIn} >Sign Up</Text>
             <View style={styles.signInFiller}></View>
-            <Text style={styles.logIn} onPress={() => this.props.navigation.navigate('LoginScreen')}>Log in</Text>
+            {/* <Text style={styles.logIn} onPress={() => this.props.navigation.navigate('LoginScreen')}>Log in</Text> */}
           </View>
           <View style={styles.containerRecatngleName}>
             <View style={styles.rect3} >
@@ -640,6 +640,10 @@ export default class SignInScreen extends Component {
                 </View>
               </View>
               : null}
+          </View>
+          <View>
+          <Text style={styles.logIn}>Already have an account</Text>
+          <Text style={styles.clickLogin} onPress={() => this.props.navigation.navigate('LoginScreen')}>Click to login</Text>
           </View>
           <View>
             {
@@ -748,7 +752,8 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 36,
     height: 50,
-    width: 147
+    width: 147,
+    marginLeft:105
   },
   signInFiller: {
     flex: 1,
@@ -756,10 +761,21 @@ const styles = StyleSheet.create({
   },
   logIn: {
     color: "#121212",
-    fontSize: 36,
-    height: 50,
-    width: 124,
-    opacity: 0.5
+    fontSize: 17,
+    // height: 50,
+    // width: 120,
+    opacity: 0.8,
+    marginLeft:170,
+    marginTop: 15
+  },
+  clickLogin:{
+    color: '#5356C1',
+    fontSize: 17,
+    fontWeight:'bold',
+    opacity: 0.8,
+    marginLeft:250,
+    marginTop: 10
+
   },
   signInRow: {
     height: 40,

@@ -50,7 +50,7 @@ i18n.use(initReactI18next).init({
         },
         hi: {
             translation: {
-                'Wooden Partition': 'लकड़ी का बँटवारा',
+                'Wooden Partition': 'लकड़ी का division',
                 'Area 1': 'क्षेत्र 1',
                 'Description': 'विवरण',
                 'See More': 'और देखें',
@@ -60,7 +60,7 @@ i18n.use(initReactI18next).init({
                 'Finishing by filling the conduit with mortar': 'नाली को मोर्टार से भरना',
                 'Hacking the finish for bonding': 'बॉन्डिंग के लिए फिनिशिंग हैकिंग',
                 'Fixing mesh on the closed conduits': 'बंद कंडे पर जाली ठीक करना',
-                'Drawings': 'चित्र',
+                'Drawings': 'Drawings',
                 'Prerequisite': 'शर्त',
                 'White marking make a detailed mark at joints and a simple line for pipes': 'सफेद अंकन जोड़ों पर एक विस्तृत चिह्न और पाइप के लिए एक सरल रेखा बनाते हैं',
                 'Check the pipes dia and set the chipping depth': 'पाइप व्यास की जाँच करें और चिपिंग गहराई सेट करें',

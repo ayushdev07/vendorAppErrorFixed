@@ -9,6 +9,7 @@ i18n.use(initReactI18next).init({
         en: {
             translation: {
                 // UpcomingTaskSupervisorScreen.js
+                'Fetching Data': 'Fetching Data',
                 'Wooden Partition': 'Wooden Partition',
                 'Area 1': 'Area 1',
                 'Description': 'Description',
@@ -48,6 +49,7 @@ i18n.use(initReactI18next).init({
                 'Unskilled': 'Unskilled',
                 'Submit': 'Submit',
                 // NotificationScreenSuperVisor.js
+                'Fetching Notifications': 'Fetching Notifications',
                 'Notifications': 'Notifications',
                 'Upcoming Tasks': 'Upcoming Tasks',
                 'Booking ID': 'Booking ID',
@@ -95,7 +97,25 @@ i18n.use(initReactI18next).init({
                 'Supervisors': 'Supervisors',
                 // LanguageScreen.js
                 'Change Language': 'Change Language',
-                'abc': 'abc',
+                // VideoSlider.js
+                'Uniworks Movies': 'Uniworks Movies',
+                'Electrical': 'Electrical',
+                'Carpenter': 'Carpenter',
+                // SuperVisorBottomTab.js
+                'Home': 'Home',
+                'Profile': 'Profile',
+                // HomeBottomTab.js
+                'Wallet': 'Wallet',
+                // NotificationsScreen.js
+                'Approve': 'Approve',
+                'Site Request': 'Site Request',
+                'Approvals': 'Approvals',
+                // StartSiteScreen.js
+                'Loading': 'Loading',
+                'Tools': 'Tools',
+                'Start Site': 'Start Site',
+                'to': 'to',
+
                 'abc': 'abc',
                 'abc': 'abc',
                 'abc': 'abc',
@@ -113,6 +133,7 @@ i18n.use(initReactI18next).init({
         hi: {
             translation: {
                 // UpcomingTaskSupervisorScreen.js
+                'Fetching Data': 'डेटा लाया जा रहा है',
                 'Wooden Partition': 'लकड़ी का division',
                 'Area': 'क्षेत्र',
                 'Description': 'विवरण',
@@ -152,6 +173,7 @@ i18n.use(initReactI18next).init({
                 'Unskilled': 'अकुशल',
                 'Submit': 'प्रस्तुत',
                 // NotificationScreenSuperVisor.js
+                'Fetching Notifications': 'सूचनाएं आ राही है',
                 'Notifications': 'सूचनाएं',
                 'Upcoming Tasks': 'आगामी कार्य',
                 'Booking ID': 'बुकिंग ID',
@@ -200,7 +222,23 @@ i18n.use(initReactI18next).init({
                 'Supervisors': 'सुपरवाइज़र',
                 // LanguageScreen.js
                 'Change Language': 'भाषा बदलें',
-                'abc': 'abc',
+                // VideoSlider.js
+                'Uniworks Movies': 'Uniworks फिल्में',
+                'Electrical': 'विद्युतीय',
+                'Carpenter': 'बढ़ई',
+                'Home': 'होम',
+                'Profile': 'प्रोफ़ाइल',
+                // HomeBottomTab.js
+                'Wallet': 'बटुआ',
+                // NotificationsScreen.js
+                'Approve': 'स्वीकृत करें',
+                'Site Request': 'साइट अनुरोध',
+                'Approvals': 'स्वीकृति',
+                // StartSiteScreen.js
+                'Loading': 'लोड हो रहा है',
+                'Tools': 'उपकरण',
+                'Start Site': 'साइट शुरू करें',
+                'to': 'से',
                 'abc': 'abc',
                 'abc': 'abc',
                 'abc': 'abc',

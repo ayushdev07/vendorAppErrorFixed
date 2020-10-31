@@ -7,6 +7,7 @@ import FeatherIcon from "react-native-vector-icons/Feather"
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Spinner from 'react-native-loading-spinner-overlay'
 import ImageSlider from 'react-native-image-slider'
+import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 
@@ -15,6 +16,15 @@ LogBox.ignoreAllLogs();
 const UpcomingTaskSupervisorScreen = ({ navigation }) => {
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
+    });
+  }, [navigation]);
 
   const [showDescription, setShowDescription] = useState(false)
   const [siteCleaned, setSiteCleaned] = useState(false)
@@ -95,19 +105,14 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
 
     <ScrollView>
       {isLoading ?
-        <Spinner visible={isLoading} textContent={'Fetching Data...'} textStyle={{ color: '#000' }} />
-        :
+        <Spinner visible={isLoading} textContent={t('Fetching Data')} textStyle={{ color: '#000' }} /> :
         <View style={styles.mainContainer} >
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity onPress={() => i18n.changeLanguage('en')} style={styles.button}>
-              <Text style={{ color: '#fff' }}>English</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => i18n.changeLanguage('hi')} style={styles.button}>
-              <Text style={{ color: '#fff' }}>हिंदी</Text>
-            </TouchableOpacity>
-          </View>
           <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{t('Wooden Partition')}</Text>
-          {/* <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }}>{projectAreaWise.miniCategory[0].miniCategoryName}</Text> */}
+          {/*
+            <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }}>
+              {projectAreaWise.miniCategory[0].miniCategoryName}
+            </Text>
+          */}
           <View style={{ flexDirection: 'row', marginTop: 15, alignItems: 'center', justifyContent: 'center' }}>
             <TouchableOpacity style={{ borderRadius: 30, padding: 8, backgroundColor: '#fff', borderWidth: 3, borderColor: "rgba(128,128,128,1)" }}>
               <FeatherIcon name="arrow-left" size={30} style={{ color: '#000' }}></FeatherIcon>
@@ -479,13 +484,7 @@ const styles = StyleSheet.create({
     color: '#05375a',
     flexDirection: 'row',
     maxWidth: '90%'
-  },
-  button: {
-    backgroundColor: 'limegreen',
-    padding: 10,
-    borderRadius: 10,
-    margin: 10,
-  },
+  }
 })
 
-export default UpcomingTaskSupervisorScreen;
+export default UpcomingTaskSupervisorScreen

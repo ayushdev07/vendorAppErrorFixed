@@ -61,7 +61,7 @@ const NotificationSuperVisorScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
-            <Spinner visible={isLoading} textContent={'Fetching Notifications...'} textStyle={{ color: '#000000' }} />
+            <Spinner visible={isLoading} textContent={t('Fetching Notifications')} textStyle={{ color: '#000000' }} />
             <View style={{ flex: 1 }} >
                 <Text style={{ alignSelf: 'center', marginTop: '10%', color: '#353535', fontSize: 24, fontWeight: 'bold', marginBottom: '5%' }}>
                     {t('Notifications')}

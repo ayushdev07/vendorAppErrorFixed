@@ -11,6 +11,15 @@ const WalletScreen = () => {
 
     const { t } = useTranslation();
 
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            AsyncStorage.getItem('LANG').then((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
+        });
+    }, [navigation]);
+
     let Date = '23/06/2020'
 
     return (

@@ -113,7 +113,7 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
               <FeatherIcon name="arrow-left" size={30} style={{ color: '#000' }}></FeatherIcon>
             </TouchableOpacity>
             <View style={styles.rect3} >
-              <Text style={{ fontSize: 20, alignSelf: 'center' }}>{t('Area 1')}</Text>
+              <Text style={{ fontSize: 20, alignSelf: 'center' }}>{t('Area')} 1</Text>
             </View>
             <TouchableOpacity style={{ borderRadius: 30, marginStart: 20, padding: 8, backgroundColor: '#fff', borderWidth: 3, borderColor: "rgba(128,128,128,1)" }}>
               <FeatherIcon name="arrow-right" size={30} style={{ color: '#000' }}></FeatherIcon>
@@ -273,7 +273,7 @@ const UpcomingTaskSupervisorScreen = ({ navigation }) => {
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginEnd: '5%', marginTop: 60 }}>
             <Text style={{ color: '#353535', fontWeight: 'bold', fontSize: 18 }}>{t('Today\'s Target')}</Text>
-            <Text style={{ marginStart: '5%', color: '#353535', fontSize: 18 }}>{t('45,698 Sqft')}</Text>
+            <Text style={{ marginStart: '5%', color: '#353535', fontSize: 18 }}>45,698 {t('Sqft')}</Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginEnd: '5%', marginTop: 25 }}>
             <Text style={{ color: '#353535', fontWeight: 'bold', fontSize: 18 }}>{t('Work Done')}</Text>

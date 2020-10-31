@@ -1,74 +1,63 @@
-import React from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, } from "react-native";
-import Feather from 'react-native-vector-icons/Feather';
-import FeatherIcon from "react-native-vector-icons/Feather";
+import React, { useEffect } from "react"
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native"
+import Feather from 'react-native-vector-icons/Feather'
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 const SecurityScreen = ({ navigation }) => {
-    const [data, setData] = React.useState({
-        password: '',
-        confirmPassword: '',
-        secureTextEntry: true,
-        confirmSecureTextEntry: true
-    })
 
-    const handlePasswordChange = (val) => {
-        setData({
-            ...data,
-            password: val
-        })
-    }
-    const handleConfirmPasswordChange = (val) => {
-        setData({
-            ...data,
-            confirmPassword: val
-        })
-    }
-    const updateSecureTextEntry = () => {
-        setData({
-            ...data,
-            secureTextEntry: !data.secureTextEntry
-        })
-    }
-    const updateConfirmSecureTextEntry = () => {
-        setData({
-            ...data,
-            confirmSecureTextEntry: !data.confirmSecureTextEntry
-        })
-    }
+    const { t } = useTranslation();
+
+    const [data, setData] = React.useState({ password: '', confirmPassword: '', secureTextEntry: true, confirmSecureTextEntry: true })
+
+    const handlePasswordChange = (val) => { setData({ ...data, password: val }) }
+    const handleConfirmPasswordChange = (val) => { setData({ ...data, confirmPassword: val }) }
+    const updateSecureTextEntry = () => { setData({ ...data, secureTextEntry: !data.secureTextEntry }) }
+    const updateConfirmSecureTextEntry = () => { setData({ ...data, confirmSecureTextEntry: !data.confirmSecureTextEntry }) }
+
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            AsyncStorage.getItem('LANG').then((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
+        });
+    }, [navigation]);
 
     return (
         <View style={{ flex: 1 }}>
-            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '10%' }} >
+            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '10%' }}>
                 <Feather name='lock' size={32} />
-                <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>Security</Text>
+                <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>{t('Security')}</Text>
             </TouchableOpacity>
-            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 25 }} >Old Password</Text>
+            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 25 }} >{t('Old Password')}</Text>
             <View style={styles.containerRecatnglePassword}>
                 <View style={styles.rect3} >
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handlePasswordChange(val)}
-                        placeholder="Password"
+                        placeholder={t('Password')}
                     />
                     <View style={{ alignItems: 'flex-end', alignSelf: 'center', marginRight: 10 }} >
                         <TouchableOpacity onPress={() => navigation.navigate('Recover Account')} >
-                            <Text style={{ color: '#5356C1' }} >Confirm</Text>
+                            <Text style={{ color: '#5356C1' }} >{t('Confirm')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
             <View style={{ alignItems: 'flex-end', marginRight: '15%', top: 10 }} >
                 <TouchableOpacity onPress={() => navigation.navigate('Recover Account')} >
-                    <Text style={{ color: '#5356C1' }} >Forgot Password?</Text>
+                    <Text style={{ color: '#5356C1' }} >{t('Forgot Password?')}</Text>
                 </TouchableOpacity>
             </View>
-            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 20 }} >Change Password</Text>
+            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 20 }} >{t('Change Password')}</Text>
             <View style={styles.containerRecatnglePassword2}>
                 <View style={styles.rect3} >
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handlePasswordChange(val)}
-                        placeholder="Password"
+                        placeholder={t('Password')}
                     />
                     <TouchableOpacity
                         style={styles.eyeIcon}
@@ -95,7 +84,7 @@ const SecurityScreen = ({ navigation }) => {
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handleConfirmPasswordChange(val)}
-                        placeholder="Confirm Password"
+                        placeholder={t('Change Password')}
                     />
                     <TouchableOpacity
                         style={styles.eyeIcon}
@@ -117,10 +106,10 @@ const SecurityScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={{flex:1, justifyContent:'flex-end', width:'30%', alignSelf:'center', marginBottom:'10%'}} >
-            <TouchableOpacity style={styles.SubmitButtonStyle}  >
-                <Text style={{ fontSize: 20, color: '#ffffff', alignSelf: 'center' }}  >Proceed</Text>
-            </TouchableOpacity>
+            <View style={{ flex: 1, justifyContent: 'flex-end', width: '30%', alignSelf: 'center', marginBottom: '10%' }} >
+                <TouchableOpacity style={styles.SubmitButtonStyle}  >
+                    <Text style={{ fontSize: 18, color: '#ffffff', alignSelf: 'center' }}  >{t('Proceed')}</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -129,11 +118,11 @@ const SecurityScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     containerRecatnglePassword: {
         marginTop: 20,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     containerRecatnglePassword2: {
         marginTop: 20,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     rect3: {
         width: "75%",
@@ -145,7 +134,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         flexDirection: "row",
         paddingStart: 20
-
     },
     SubmitButtonStyle: {
         backgroundColor: '#99DD70',
@@ -154,7 +142,7 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
         padding: 10,
         paddingRight: 20,
-        paddingLeft: 20,
+        paddingLeft: 20
     },
     textInput: {
         flex: 1,
@@ -165,11 +153,11 @@ const styles = StyleSheet.create({
         maxWidth: '80%'
     },
     eyeIcon: {
-        marginTop: 20,
+        marginTop: 20
     },
     bottomContainer: {
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     icon1Stack: {
         width: 60,

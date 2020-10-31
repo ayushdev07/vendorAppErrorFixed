@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import React, { useState } from "react"
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 function AccountDetailsScreen(props) {
+
+  const { t } = useTranslation();
 
   const [fetchedData, setFetchedData] = useState(props.route.params)
 
@@ -105,7 +110,7 @@ function AccountDetailsScreen(props) {
       <View style={styles.mainContainer} >
         <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '10%' }} >
           <MaterialIcons name='credit-card' size={32} />
-          <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>Account Details</Text>
+          <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>{t('Account Details')}</Text>
         </TouchableOpacity>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
@@ -120,7 +125,7 @@ function AccountDetailsScreen(props) {
             />
           </View>
         </View>
-        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >Account Number</Text>
+        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('Account Number')}</Text>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
@@ -134,7 +139,7 @@ function AccountDetailsScreen(props) {
             />
           </View>
         </View>
-        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >Confirm Account Number</Text>
+        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('Confirm Account Number')}</Text>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
@@ -148,7 +153,7 @@ function AccountDetailsScreen(props) {
             />
           </View>
         </View>
-        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >IFSC Code</Text>
+        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('IFSC Code')}</Text>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
@@ -162,7 +167,7 @@ function AccountDetailsScreen(props) {
             />
           </View>
         </View>
-        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >Account Holder's Name</Text>
+        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('Account Holder\'s Name')}</Text>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
@@ -176,7 +181,7 @@ function AccountDetailsScreen(props) {
             />
           </View>
         </View>
-        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >PAN Number</Text>
+        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('PAN Number')}</Text>
         <View style={styles.containerRecatngleName}>
           <View style={styles.rect3} >
             <TextInput style={styles.textInputPhone}
@@ -191,11 +196,11 @@ function AccountDetailsScreen(props) {
           </View>
         </View>
         <View style={{ flexDirection: 'row' }} >
-          <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >Aadhar Details</Text>
+          <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('Aadhar Details')}</Text>
           <View style={{ flex: 1, flexDirection: 'row' }} ></View>
           <View style={{ marginRight: '15%' }} >
             <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('CameraScreen')} >
-              <Text style={{ color: '#546AD9', fontSize: 14 }}>Upload Photo</Text>
+              <Text style={{ color: '#546AD9', fontSize: 14 }}>{t('Upload Photo')}</Text>
               <MaterialIcons name='camera-alt' style={{ alignSelf: 'center', color: '#546AD9' }} size={20} />
             </TouchableOpacity>
           </View>
@@ -213,10 +218,10 @@ function AccountDetailsScreen(props) {
             />
           </View>
         </View>
-        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >GSTIN Details</Text>
+        <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }} >{t('GSTIN Details')}</Text>
         {/* <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmission} > */}
         <TouchableOpacity style={styles.SubmitButtonStyle} >
-          <Text style={{ fontSize: 20, top: 13, color: '#ffffff' }} >Proceed</Text>
+          <Text style={{ fontSize: 20, top: 13, color: '#ffffff' }} >{t('Proceed')}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

@@ -95,12 +95,24 @@
 // camera testing setup
 
 'use strict';
-import React, { PureComponent } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RNCamera } from 'react-native-camera';
+import React, { PureComponent } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { RNCamera } from 'react-native-camera'
+import AsyncStorage from '@react-native-community/async-storage'
+import { withTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
-export default class CameraScreen extends PureComponent {
+class CameraScreen extends PureComponent {
+
+    componentDidMount() {
+        AsyncStorage.getItem('LANG').then((value) => {
+            if (value == "en") { i18n.changeLanguage('en') }
+            else if (value == "hi") { i18n.changeLanguage('hi') }
+        });
+    }
+
     render() {
+        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <RNCamera
@@ -128,7 +140,7 @@ export default class CameraScreen extends PureComponent {
                 />
                 <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
                     <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-                        <Text style={{ fontSize: 14 }}> SNAP </Text>
+                        <Text style={{ fontSize: 14 }}>{t('Snap')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -143,6 +155,8 @@ export default class CameraScreen extends PureComponent {
         }
     };
 }
+
+export default withTranslation()(CameraScreen)
 
 const styles = StyleSheet.create({
     container: {

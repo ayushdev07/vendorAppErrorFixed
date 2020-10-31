@@ -431,14 +431,17 @@
 //     shadowOffset: { width: 2, height: 10 },
 //   },
 // });
-import React, { Component } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Dimensions, Alert, } from "react-native";
-import Feather from 'react-native-vector-icons/Feather';
-import { ScrollView } from "react-native-gesture-handler";
-import OTP from "../../components/OTP";
-import FeatherIcon from "react-native-vector-icons/Feather";
+import React, { Component } from "react"
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from "react-native"
+import Feather from 'react-native-vector-icons/Feather'
+import { ScrollView } from "react-native-gesture-handler"
+import OTP from "../../components/OTP"
+import FeatherIcon from "react-native-vector-icons/Feather"
+import AsyncStorage from '@react-native-community/async-storage'
+import { withTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
-export default class SignInScreen extends Component {
+class SignInScreen extends Component {
 
   constructor(props) {
     super(props)
@@ -464,11 +467,9 @@ export default class SignInScreen extends Component {
     }
   }
 
-
   updateSecureTextEntry = () => {
     this.setState({ secureTextEntry: !this.state.secureTextEntry })
   }
-
 
   signUp = async () => {
     console.log(this.state)
@@ -499,6 +500,7 @@ export default class SignInScreen extends Component {
       console.log(e)
     }
   }
+
   saveOtp = (val1, val2, val3, val4, val5, val6) => {
     console.log(val1, val2, val3, val4, val5, val6)
     this.setState({
@@ -537,29 +539,30 @@ export default class SignInScreen extends Component {
         Alert.alert(e.toString())
       }
     } else {
-      if(this.state.Contractor) {
-        const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/+91"+this.state.phoneNumber, {
-          method:'PUT',
+      if (this.state.Contractor) {
+        const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/+91" + this.state.phoneNumber, {
+          method: 'PUT',
           headers: {
             Accept: '*/*',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            role:"CSVD",
-            contact:"+91"+this.state.phoneNumber
+            role: "CSVD",
+            contact: "+91" + this.state.phoneNumber
           })
-        }).then(response=>response.text())
-        .then(json=>{
-          this.saveRole("CSVD")
-        }).catch(e=>Alert.alert(e.toString()))
+        }).then(response => response.text())
+          .then(json => {
+            this.saveRole("CSVD")
+          }).catch(e => Alert.alert(e.toString()))
       }
     }
   }
 
-  saveRole = async(role) =>{
+  saveRole = async (role) => {
     await AsyncStorage.setItem("role", "CSVD")
     this.props.navigation.navigate("Personal Details")
   }
+
   saveTokenandNavigate = async (val) => {
     await AsyncStorage.setItem('accessToken', val)
     await AsyncStorage.setItem('userName', this.state.userName)
@@ -570,30 +573,38 @@ export default class SignInScreen extends Component {
     this.setState({ Contractor: !this.state.Contractor, SuperVisor: !this.state.SuperVisor })
   }
 
+  componentDidMount() {
+    AsyncStorage.getItem('LANG').then((value) => {
+      if (value == "en") { i18n.changeLanguage('en') }
+      else if (value == "hi") { i18n.changeLanguage('hi') }
+    });
+  }
+
   render() {
+    const { t } = this.props;
     return (
-      <ScrollView scrollEnabled={true} >
-        <View style={styles.mainContainer} >
+      <ScrollView scrollEnabled={true}>
+        <View style={styles.mainContainer}>
           <View style={styles.signInRow}>
-            <Text style={styles.signIn} >Sign Up</Text>
+            <Text style={styles.signIn}>{t('Sign Up')}</Text>
             <View style={styles.signInFiller}></View>
             {/* <Text style={styles.logIn} onPress={() => this.props.navigation.navigate('LoginScreen')}>Log in</Text> */}
           </View>
           <View style={styles.containerRecatngleName}>
             <View style={styles.rect3} >
-              <TextInput placeholder='Name'
+              <TextInput placeholder={t('Name')}
                 style={styles.textInput}
                 onChangeText={(username) => this.setState({ userName: username })}
                 value={this.state.userName} />
-              <Text style={{ marginTop: 15 }} >Name</Text>
+              <Text style={{ marginTop: 15 }}>{t('Name')}</Text>
             </View>
           </View>
           <View style={styles.containerRecatnglePassword}>
-            <View style={styles.rect3} >
+            <View style={styles.rect3}>
               <TextInput style={styles.textInput}
                 secureTextEntry={this.state.secureTextEntry ? true : false}
                 onChangeText={(passWord) => this.setState({ password: passWord })}
-                placeholder="Password"
+                placeholder={t('Password')}
               />
               <TouchableOpacity
                 style={styles.eyeIcon}
@@ -627,14 +638,14 @@ export default class SignInScreen extends Component {
                 style={styles.eyeIcon}
                 disable={true}
               >
-                <Text style={{ color: 'grey', marginRight: 10 }} onPress={this.signUp} >Confirm</Text>
+                <Text style={{ color: 'grey', marginRight: 10 }} onPress={this.signUp}>{t('Confirm')}</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View >
             {this.state.showOtp ?
               <View style={styles.otpmainContainer}>
-                <Text style={{ fontSize: 35 }} >OTP</Text>
+                <Text style={{ fontSize: 35 }}>OTP</Text>
                 <View style={styles.otpContainer}>
                   <OTP save={this.saveOtp} ></OTP>
                 </View>
@@ -642,15 +653,15 @@ export default class SignInScreen extends Component {
               : null}
           </View>
           <View>
-          <Text style={styles.logIn}>Already have an account</Text>
-          <Text style={styles.clickLogin} onPress={() => this.props.navigation.navigate('LoginScreen')}>Click to login</Text>
+            <Text style={styles.logIn}>{t('Already have an account?')}</Text>
+            <Text style={styles.clickLogin} onPress={() => this.props.navigation.navigate('LoginScreen')}>{t('Click to login')}</Text>
           </View>
           <View>
             {
               this.state.showType ?
                 <View>
                   <View style={{ marginStart: '20%', marginTop: '15%' }} >
-                    <Text style={{ color: '#000000', fontSize: 20, fontWeight: 'bold' }} >I am</Text>
+                    <Text style={{ color: '#000000', fontSize: 20, fontWeight: 'bold' }}>{t('I am')}</Text>
                   </View>
                   <View
                     style={[
@@ -667,7 +678,7 @@ export default class SignInScreen extends Component {
                       ]}
                       onPress={this.handleTypechosen}
                     >
-                      <Text style={{ color: this.state.Contractor ? '#76C662' : "#000000" }}>Contractor</Text>
+                      <Text style={{ color: this.state.Contractor ? '#76C662' : "#000000" }}>{t('Contractor')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={[
@@ -676,17 +687,21 @@ export default class SignInScreen extends Component {
                       ]}
                       onPress={this.handleTypechosen}
                     >
-                      <Text style={{ color: this.state.SuperVisor ? '#76C662' : "#000000" }}>Supervisor</Text>
+                      <Text style={{ color: this.state.SuperVisor ? '#76C662' : "#000000" }}>{t('Supervisor')}</Text>
                     </TouchableOpacity>
                   </View>
 
                   {this.state.Contractor ?
-                    <View style={{ justifyContent: 'center', flexDirection: 'row', marginTop: 5 }} >
-                      <Text style={{ color: '#353535', fontSize: 14, fontStyle: 'normal', maxWidth: '60%', opacity: 0.5 }} >Contractor is a person who owns the firm.</Text>
+                    <View style={{ justifyContent: 'center', flexDirection: 'row', marginTop: 5 }}>
+                      <Text style={{ color: '#353535', fontSize: 14, fontStyle: 'normal', maxWidth: '60%', opacity: 0.5 }}>
+                        {t('Contractor is a person who owns the firm')}
+                      </Text>
                     </View>
                     :
-                    <View style={{ justifyContent: 'center', flexDirection: 'row', marginTop: 5 }} >
-                      <Text style={{ color: '#353535', fontSize: 14, fontStyle: 'normal', maxWidth: '60%', opacity: 0.5 }} >Supervisor is the person who works under the contractor.</Text>
+                    <View style={{ justifyContent: 'center', flexDirection: 'row', marginTop: 5 }}>
+                      <Text style={{ color: '#353535', fontSize: 14, fontStyle: 'normal', maxWidth: '60%', opacity: 0.5 }}>
+                        {t('Supervisor is a person who works under the contractor')}
+                      </Text>
                     </View>
                   }
                   {
@@ -703,7 +718,9 @@ export default class SignInScreen extends Component {
                             style={styles.eyeIcon}
                             disable={true}
                           >
-                            <Text style={{ color: 'grey', marginRight: 10 }} onPress={this.signUp} >Contractor's Phone</Text>
+                            <Text style={{ color: 'grey', marginRight: 10 }} onPress={this.signUp}>
+                              {t('Contractor\'s Phone')}
+                            </Text>
                           </TouchableOpacity>
                         </View>
                       </View> :
@@ -731,6 +748,8 @@ export default class SignInScreen extends Component {
   }
 }
 
+export default withTranslation()(SignInScreen)
+
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -753,7 +772,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     height: 50,
     width: 147,
-    marginLeft:105
+    marginLeft: 105
   },
   signInFiller: {
     flex: 1,
@@ -762,20 +781,17 @@ const styles = StyleSheet.create({
   logIn: {
     color: "#121212",
     fontSize: 17,
-    // height: 50,
-    // width: 120,
     opacity: 0.8,
-    marginLeft:170,
+    marginLeft: 170,
     marginTop: 15
   },
-  clickLogin:{
+  clickLogin: {
     color: '#5356C1',
     fontSize: 17,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     opacity: 0.8,
-    marginLeft:250,
+    marginLeft: 250,
     marginTop: 10
-
   },
   signInRow: {
     height: 40,
@@ -794,7 +810,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     flexDirection: "row",
     paddingStart: 20
-
   },
   complete: {
     justifyContent: 'center',
@@ -891,5 +906,3 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 10 },
   },
 });
-
-

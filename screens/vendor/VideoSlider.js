@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import data from '../../components/Data';
 import AsyncStorage from '@react-native-community/async-storage'
 import { withTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 class VideoSlider extends Component {
 

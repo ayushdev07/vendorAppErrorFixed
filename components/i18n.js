@@ -123,12 +123,37 @@ i18n.use(initReactI18next).init({
                 // SelectSuperVisorScreen.js
                 'Assign To': 'Assign To',
                 'Supservisor Name': 'SupserVisor Name',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
+                // CameraScreen.js
+                'Snap': 'Snap',
+                // LoginScreen.js
+                'Log In': 'Log In',
+                'Don\'t have an account?': 'Don\'t have an account?',
+                'Sign Up': 'Sign Up',
+                // NewPasswordScreen.js
+                'New Password': 'New Password',
+                // PaymentDetailsScreen.js
+                'Payment Details': 'Payment Details',
+                // PersonalDetailsScreen.js
+                'you\'re almost there': 'you\'re almost there',
+                'Landmark': 'Landmark',
+                'Nearby place': 'Nearby place',
+                // RecoverAccountScreen.js
+                'Recover Account': 'Recover Account',
+                'Phone': 'Phone',
+                // SignInScreen.js
+                'Name': 'Name',
+                'Already have an account?': 'Already have an account?',
+                'Click to login': 'Click to login',
+                'I am': 'I am',
+                'Contractor': 'Contractor',
+                'Supervisor': 'Supervisor',
+                'Contractor is a person who owns the firm': 'Contractor is a person who owns the firm',
+                'Supervisor is a person who works under the contractor': 'Supervisor is a person who works under the contractor',
+                'Contractor\'s Phone': 'Contractor\'s Phone',
+                // VideoScreen.js
+                'Video has finished playing!': 'Video has finished playing!',
+                'pause': 'pause',
+                'play': 'play',
             },
         },
         hi: {
@@ -248,12 +273,37 @@ i18n.use(initReactI18next).init({
                 // SelectSuperVisorScreen.js
                 'Assign To': 'सौंपे',
                 'Supservisor Name': 'सुपरवाइज़र का नाम',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
-                'abc': 'abc',
+                // CameraScreen.js
+                'Snap': 'फ़ोटो ले',
+                // LoginScreen.js
+                'Log In': 'लॉग इन',
+                'Don\'t have an account?': 'खाता नहीं है?',
+                'Sign Up': 'साइन अप',
+                // NewPasswordScreen.js
+                'New Password': 'नया पासवर्ड',
+                // PaymentDetailsScreen.js
+                'Payment Details': 'भुगतान विवरण',
+                // PersonalDetailsScreen.js
+                'you\'re almost there': 'आप लगभग वहाँ है',
+                'Landmark': 'भूमि-चिह्न',
+                'Nearby place': 'पास की जगह',
+                // RecoverAccountScreen.js
+                'Recover Account': 'खाते की वसूली',
+                'Phone': 'फ़ोन',
+                // SignInScreen.js
+                'Name': 'नाम',
+                'Already have an account?': 'पहले से ही एक खाता है?',
+                'Click to login': 'लॉगिन करने के लिए क्लिक करें',
+                'I am': 'मैं हूँ',
+                'Contractor': 'ठेकेदार',
+                'Supervisor': 'सुपरवाइज़र',
+                'Contractor is a person who owns the firm': 'ठेकेदार एक ऐसा व्यक्ति है जो फर्म का मालिक है',
+                'Supervisor is a person who works under the contractor': 'सुपरवाइज़र एक व्यक्ति है जो ठेकेदार के तहत काम करता है',
+                'Contractor\'s Phone': 'ठेकेदार का फोन',
+                // VideoScreen.js
+                'Video has finished playing!': 'वीडियो चलना समाप्त हो गया है!',
+                'pause': 'रोकें',
+                'play': 'चलाए',
             },
         },
     },

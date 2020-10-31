@@ -10,6 +10,15 @@ function AccountDetailsScreen(props) {
 
   const { t } = useTranslation();
 
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
+    });
+  }, [navigation]);
+
   const [fetchedData, setFetchedData] = useState(props.route.params)
 
   const [data, setData] = useState({
@@ -106,7 +115,7 @@ function AccountDetailsScreen(props) {
   // }
 
   return (
-    <ScrollView   >
+    <ScrollView>
       <View style={styles.mainContainer} >
         <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '10%' }} >
           <MaterialIcons name='credit-card' size={32} />

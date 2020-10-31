@@ -17,8 +17,6 @@ import StartSiteScreen from '../supervisors/StartSiteScreen';
 import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
 import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen';
 
-import PersonalDetailsScreen from '../common/PersonalDetailsScreen';
-
 const HomeStack = createStackNavigator();
 
 function Login() { return <RootStackScreen /> }
@@ -42,8 +40,6 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="LanguageScreen" component={LanguageScreen} />
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
-    <HomeStack.Screen name="PersonalDetailsScreen" component={PersonalDetailsScreen} />
-
   </HomeStack.Navigator>
 );
 

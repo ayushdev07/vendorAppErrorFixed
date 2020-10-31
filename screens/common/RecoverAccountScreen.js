@@ -1,41 +1,55 @@
-import React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import FeatherIcon from "react-native-vector-icons/Feather";
+import React from 'react'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import FeatherIcon from "react-native-vector-icons/Feather"
+import AsyncStorage from '@react-native-community/async-storage'
+import { withTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
-class RecoverAccountScreen extends React.Component  {
-    constructor(props){
+class RecoverAccountScreen extends React.Component {
+
+    constructor(props) {
         super(props)
     }
-    render(){
-    return (
-        <View style={styles.mainContainer}>
-            <View style={{ alignItems: 'center', marginTop: 72 }}>
-                <Text style={{ fontSize: 36 }} >Recover Account</Text>
-            </View>
-            <View style={styles.containerRecatngleName}>
-                <View style={styles.rect3} >
-                    <TextInput style={styles.textInputPhone}
-                        placeholder="983939xxxx"
-                    />
-                    <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }} >Phone</Text>
+
+    componentDidMount() {
+        AsyncStorage.getItem('LANG').then((value) => {
+            if (value == "en") { i18n.changeLanguage('en') }
+            else if (value == "hi") { i18n.changeLanguage('hi') }
+        });
+    }
+
+    render() {
+        const { t } = this.props;
+        return (
+            <View style={styles.mainContainer}>
+                <View style={{ alignItems: 'center', marginTop: 72 }}>
+                    <Text style={{ fontSize: 36 }}>{t('Recover Account')}</Text>
                 </View>
-            </View>
-            <View style={styles.bottomContainer}>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('New Password')} >
-                    <View >
-                        <View style={styles.icon1Stack}>
-                            <View style={styles.rect4}>
-                                <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>
+                <View style={styles.containerRecatngleName}>
+                    <View style={styles.rect3} >
+                        <TextInput style={styles.textInputPhone}
+                            placeholder="983939xxxx"
+                        />
+                        <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>{t('Phone')}</Text>
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('New Password')}>
+                        <View >
+                            <View style={styles.icon1Stack}>
+                                <View style={styles.rect4}>
+                                    <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    )
+        )
+    }
 }
-}
+
+export default withTranslation()(RecoverAccountScreen)
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -55,7 +69,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         flexDirection: "row",
         paddingStart: 20
-
     },
     textInputPhone: {
         flex: 1,
@@ -103,5 +116,3 @@ const styles = StyleSheet.create({
         marginLeft: 9
     },
 })
-
-export default RecoverAccountScreen;

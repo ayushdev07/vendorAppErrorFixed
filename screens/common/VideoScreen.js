@@ -46,17 +46,32 @@
 
 // export default VideoScreen;
 
-import React, { useState, useCallback, useRef } from "react";
-import { Button, View, Alert } from "react-native";
-import YoutubePlayer from "react-native-youtube-iframe";
+import React, { useState, useCallback, useRef } from "react"
+import { Button, View, Alert } from "react-native"
+import YoutubePlayer from "react-native-youtube-iframe"
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
-export default function VideoScreen() {
+const VideoScreen = ({ navigation }) => {
+
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
+    });
+  }, [navigation]);
+
   const [playing, setPlaying] = useState(false);
 
   const onStateChange = useCallback((state) => {
     if (state === "ended") {
       setPlaying(false);
-      Alert.alert("video has finished playing!");
+      Alert.alert(t('Video has finished playing!'));
     }
   }, []);
 
@@ -72,7 +87,9 @@ export default function VideoScreen() {
         videoId={"iee2TATGMyI"}
         onChangeState={onStateChange}
       />
-      <Button title={playing ? "pause" : "play"} onPress={togglePlaying} />
+      <Button title={playing ? t('pause') : t('play')} onPress={togglePlaying} />
     </View>
   );
 }
+
+export default VideoScreen;

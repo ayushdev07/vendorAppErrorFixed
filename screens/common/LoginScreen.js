@@ -1,12 +1,26 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, } from "react-native";
-import Feather from 'react-native-vector-icons/Feather';
-import FeatherIcon from "react-native-vector-icons/Feather";
-import { ScrollView } from "react-native-gesture-handler";
+import React, { useEffect, useState } from "react"
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native"
+import Feather from 'react-native-vector-icons/Feather'
+import FeatherIcon from "react-native-vector-icons/Feather"
+import { ScrollView } from "react-native-gesture-handler"
 import Spinner from 'react-native-loading-spinner-overlay'
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 export default function LoginScreen({ navigation: { goBack }, navigation }) {
+
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
+    });
+  }, [navigation]);
 
   const [data, setData] = React.useState({
     password: '',
@@ -82,7 +96,7 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
         <View style={styles.signInRow}>
           {/* <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text> */}
           <View style={styles.signInFiller}></View>
-          <Text style={styles.logIn}>Log In</Text>
+          <Text style={styles.logIn}>{t('Log In')}</Text>
         </View>
         <View style={styles.containerRectanglePhone}>
           <TextInput style={styles.rect3}
@@ -97,7 +111,7 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
             <TextInput style={styles.textInput}
               secureTextEntry={data.secureTextEntry ? true : false}
               onChangeText={(val) => handlePasswordChange(val)}
-              placeholder="Password"
+              placeholder={t("Password")}
             />
             <TouchableOpacity style={styles.eyeIcon} onPress={updateSecureTextEntry}>
               {data.secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
@@ -106,14 +120,14 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
         </View>
         <View style={{ alignItems: 'flex-start', marginLeft: '15%', top: 10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
-            <Text style={{ color: '#5356C1' }}>Forgot Password?</Text>
+            <Text style={{ color: '#5356C1' }}>{t('Forgot Password?')}</Text>
             {/* <Text style={{ color:'#5356C1'}} onPress={() => goBack()}>Sign Up</Text> */}
           </TouchableOpacity>
         </View>
-        <View style={{ alignItems: 'flex-end', marginRight:'15%', top: -10 }}>
+        <View style={{ alignItems: 'flex-end', marginRight: '15%', top: -10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
-            <Text style={{ color: '#121212', fontSize:15 }}>Dont have account?</Text>
-            <Text style={{ color:'#5356C1'}} onPress={() => goBack()}>Sign Up</Text>
+            <Text style={{ color: '#121212', fontSize: 15 }}>{t('Don\'t have an account?')}</Text>
+            < Text style={{ color: '#5356C1' }} onPress={() => goBack()}>{t('Sign Up')}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
@@ -162,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     height: 50,
     width: 124,
-    marginRight:'30%'
+    marginRight: '30%'
   },
   signInRow: {
     height: 40,

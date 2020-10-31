@@ -1,9 +1,24 @@
-import React from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, } from "react-native";
-import Feather from 'react-native-vector-icons/Feather';
-import FeatherIcon from "react-native-vector-icons/Feather";
+import React, { useEffect } from "react"
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, } from "react-native"
+import Feather from 'react-native-vector-icons/Feather'
+import FeatherIcon from "react-native-vector-icons/Feather"
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
-const NewPassword = ({navigation}) => {
+const NewPassword = ({ navigation }) => {
+
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            AsyncStorage.getItem('LANG').then((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
+        });
+    }, [navigation]);
+
     const [data, setData] = React.useState({
         password: '',
         confirmPassword: '',
@@ -39,32 +54,17 @@ const NewPassword = ({navigation}) => {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ alignItems: 'center', marginTop: 72 }}>
-                <Text style={{ fontSize: 36 }} >New Password</Text>
+                <Text style={{ fontSize: 36 }}>{t('New Password')}</Text>
             </View>
             <View style={styles.containerRecatnglePassword}>
-                <View style={styles.rect3} >
+                <View style={styles.rect3}>
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handlePasswordChange(val)}
                         placeholder="Password"
                     />
-                    <TouchableOpacity
-                        style={styles.eyeIcon}
-                        onPress={updateSecureTextEntry}
-                    >
-                        {data.secureTextEntry ?
-                            <Feather
-                                name="eye-off"
-                                color="grey"
-                                size={20}
-                            />
-                            :
-                            <Feather
-                                name="eye"
-                                color="grey"
-                                size={20}
-                            />
-                        }
+                    <TouchableOpacity style={styles.eyeIcon} onPress={updateSecureTextEntry}>
+                        {data.secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -79,19 +79,7 @@ const NewPassword = ({navigation}) => {
                         style={styles.eyeIcon}
                         onPress={updateConfirmSecureTextEntry}
                     >
-                        {data.confirmSecureTextEntry ?
-                            <Feather
-                                name="eye-off"
-                                color="grey"
-                                size={20}
-                            />
-                            :
-                            <Feather
-                                name="eye"
-                                color="grey"
-                                size={20}
-                            />
-                        }
+                        {data.confirmSecureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -107,7 +95,7 @@ const NewPassword = ({navigation}) => {
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -125,7 +113,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         flexDirection: "row",
         paddingStart: 20
-
     },
     textInput: {
         flex: 1,

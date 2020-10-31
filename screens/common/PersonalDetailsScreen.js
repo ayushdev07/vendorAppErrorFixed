@@ -244,14 +244,28 @@
 // export default PersonalDetailsScreen;
 
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Alert, PermissionsAndroid } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import Geolocation from "react-native-geolocation-service";
-import MapView, { Marker } from 'react-native-maps';
-import { Picker } from '@react-native-picker/picker';
+import React, { useState, useEffect } from "react"
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, PermissionsAndroid } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
+import Geolocation from "react-native-geolocation-service"
+import MapView, { Marker } from 'react-native-maps'
+import { Picker } from '@react-native-picker/picker'
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 function PersonalDetailsScreen({ navigation }) {
+
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
+    });
+  }, [navigation]);
 
   var mapStyle = [{ "elementType": "geometry", "stylers": [{ "color": "#242f3e" }] }, { "elementType": "labels.text.fill", "stylers": [{ "color": "#746855" }] }, { "elementType": "labels.text.stroke", "stylers": [{ "color": "#242f3e" }] }, { "featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#263c3f" }] }, { "featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [{ "color": "#6b9a76" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#38414e" }] }, { "featureType": "road", "elementType": "geometry.stroke", "stylers": [{ "color": "#212a37" }] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#9ca5b3" }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#746855" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#1f2835" }] }, { "featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [{ "color": "#f3d19c" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#2f3948" }] }, { "featureType": "transit.station", "elementType": "labels.text.fill", "stylers": [{ "color": "#d59563" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#17263c" }] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "color": "#515c6d" }] }, { "featureType": "water", "elementType": "labels.text.stroke", "stylers": [{ "color": "#17263c" }] }];
 
@@ -327,9 +341,9 @@ function PersonalDetailsScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.mainContainer}>
-        <View style={{ marginLeft:55, marginTop: 10 }}>
-        <Text style={{ fontWeight: 'Sansserif', fontSize: 28 }}>Hey, Arun !</Text>
-          <Text style={{ color:'rgb(150,150,150)' ,marginTop: 25, fontWeight: 'Sansserif', fontSize: 20 }}>you're almost there...  </Text>
+        <View style={{ marginLeft: 55, marginTop: 10 }}>
+          <Text style={{ fontFamily: 'Sansserif', fontSize: 28 }}>Hey, Arun!</Text>
+          <Text style={{ color: 'rgb(150,150,150)', marginTop: 25, fontFamily: 'Sansserif', fontSize: 20 }}>{t('you\'re almost there')}{"..."} </Text>
         </View>
         <View style={styles.containerRectangleName}>
           <View style={styles.rect3}>
@@ -338,7 +352,7 @@ function PersonalDetailsScreen({ navigation }) {
               keyboardType="numeric"
               onChangeText={(number) => setData({ ...data, emergencyNumber: number })}
             />
-            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>Emergency Contact</Text>
+            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>{t('Emergency Contact')}</Text>
           </View>
         </View>
         <View style={styles.containerRectangle}>
@@ -347,7 +361,7 @@ function PersonalDetailsScreen({ navigation }) {
               placeholder="abc@gmail.com"
               onChangeText={(email) => setData({ ...data, email: email })}
             />
-            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>Email ID</Text>
+            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>{t('E-mail')}</Text>
           </View>
         </View>
         <View style={styles.containerRectangle}>
@@ -362,13 +376,13 @@ function PersonalDetailsScreen({ navigation }) {
               <Picker.Item label="Labour" value="Labour" />
               <Picker.Item label="Electrician" value="Electrician" />
             </Picker>
-            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>Category</Text>
+            <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>{t('Category')}</Text>
           </View>
         </View>
         {/* <View style={{ marginLeft: '15%', marginTop: '5%' }}>
           <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal' }}>Address</Text>
         </View> */}
-         {/* <View style={styles.containerRectangle}>
+        {/* <View style={styles.containerRectangle}>
           <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
               placeholder="Telangana"
@@ -398,10 +412,10 @@ function PersonalDetailsScreen({ navigation }) {
         <View style={styles.containerRectangle}>
           <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
-              placeholder="Landmark"
+              placeholder={t('Landmark')}
               onChangeText={(street) => setData({ ...data, street: street })}
             />
-            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>Street</Text>
+            <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>{t('Street')}</Text>
           </View>
         </View>
         {/* <View style={styles.containerRectangle}>
@@ -416,14 +430,14 @@ function PersonalDetailsScreen({ navigation }) {
         <View style={styles.containerRectangle}>
           <View style={styles.rect3}>
             <TextInput style={styles.textInputPhone}
-              placeholder="Near by place"
+              placeholder={t('Nearby place')}
               onChangeText={(flatNo) => setData({ ...data, flatNo: flatNo })}
             />
             {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}></Text> */}
           </View>
         </View>
         <MapView
-          style={{ marginLeft:55, top: 30, width: '74%', height: 200, borderRadius:60 }}
+          style={{ marginLeft: 55, top: 30, width: '74%', height: 200, borderRadius: 60 }}
           scrollEnabled={true}
           Region={{ latitude: latitude, longitude: longitude }}
           customMapStyle={mapStyle}
@@ -435,7 +449,7 @@ function PersonalDetailsScreen({ navigation }) {
           />
         </MapView>
         <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmit}>
-          <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>Proceed</Text>
+          <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>{t('Proceed')}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -445,7 +459,7 @@ function PersonalDetailsScreen({ navigation }) {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 4,
-    backgroundColor:'rgb(245,275,245)'
+    backgroundColor: 'rgb(245,275,245)'
   },
   containerRectangleName: {
     marginTop: 40,

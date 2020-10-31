@@ -11,6 +11,15 @@ const NotificationSuperVisorScreen = ({ navigation }) => {
 
     const { t } = useTranslation();
 
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            AsyncStorage.getItem('LANG').then((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
+        });
+    }, [navigation]);
+
     const [upcomingTasks, setUpcomingTasks] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const fetchData = async () => {
@@ -23,15 +32,6 @@ const NotificationSuperVisorScreen = ({ navigation }) => {
                 setLoading(false)
             })
     }
-
-    useEffect(() => {
-        navigation.addListener('focus', () => {
-            AsyncStorage.getItem('LANG').then((value) => {
-                if (value == "en") { i18n.changeLanguage('en') }
-                else if (value == "hi") { i18n.changeLanguage('hi') }
-            });
-        });
-    }, [navigation]);
 
     useEffect(() => { fetchData() }, []);
 

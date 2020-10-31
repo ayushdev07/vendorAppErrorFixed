@@ -5,6 +5,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import OTP from '../../components/OTP'
 import AsyncStorage from '@react-native-community/async-storage'
 import { withTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 class PersonalScreen extends React.Component {
 

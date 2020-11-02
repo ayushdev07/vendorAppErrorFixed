@@ -273,6 +273,7 @@ function PersonalDetailsScreen({ navigation }) {
   const [longitude, setlongitude] = useState(78.394665);
   const [data, setData] = useState({ email: '', emergencyNumber: '', category: '', state: '', city: '', area: '', street: '', building: '', flatNo: '' });
   const [selectedValue, setSelectedValue] = useState("Carpenter");
+  const [errors, setErrors] = useState([])
 
   async function requestPermissions() {
     if (Platform.OS === 'ios') {
@@ -294,6 +295,14 @@ function PersonalDetailsScreen({ navigation }) {
   });
 
   const handleSubmit = async () => {
+
+    let errors = []
+    if (data.emergencyNumber === '') { errors.push('emergencyNumber') }
+    if (data.email === '') { errors.push('email') }
+    if (data.street === '') { errors.push('street') }
+    if (data.flatNo === '') { errors.push('flatNo') }
+    if (errors.length) { setErrors(errors) }
+
     console.log(data)
     let array = []
     if (data.category == 'Carpentery') {
@@ -346,7 +355,7 @@ function PersonalDetailsScreen({ navigation }) {
           <Text style={{ color: 'rgb(150,150,150)', marginTop: 25, fontFamily: 'Sansserif', fontSize: 20 }}>{t('you\'re almost there')}{"..."} </Text>
         </View>
         <View style={styles.containerRectangleName}>
-          <View style={styles.rect3}>
+          <View style={[styles.rect3, { borderColor: errors.includes('emergencyNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
             <TextInput style={styles.textInputPhone}
               placeholder="98393xxxx"
               keyboardType="numeric"
@@ -356,7 +365,7 @@ function PersonalDetailsScreen({ navigation }) {
           </View>
         </View>
         <View style={styles.containerRectangle}>
-          <View style={styles.rect3}>
+          <View style={[styles.rect3, { borderColor: errors.includes('email') ? 'red' : 'rgba(112,112,112,1)' }]}>
             <TextInput style={styles.textInputPhone}
               placeholder="abc@gmail.com"
               onChangeText={(email) => setData({ ...data, email: email })}
@@ -410,7 +419,7 @@ function PersonalDetailsScreen({ navigation }) {
           </View>
         </View> */}
         <View style={styles.containerRectangle}>
-          <View style={styles.rect3}>
+          <View style={[styles.rect3, { borderColor: errors.includes('street') ? 'red' : 'rgba(112,112,112,1)' }]}>
             <TextInput style={styles.textInputPhone}
               placeholder={t('Landmark')}
               onChangeText={(street) => setData({ ...data, street: street })}
@@ -428,7 +437,7 @@ function PersonalDetailsScreen({ navigation }) {
           </View>
         </View> */}
         <View style={styles.containerRectangle}>
-          <View style={styles.rect3}>
+          <View style={[styles.rect3, { borderColor: errors.includes('flatNo') ? 'red' : 'rgba(112,112,112,1)' }]}>
             <TextInput style={styles.textInputPhone}
               placeholder={t('Nearby place')}
               onChangeText={(flatNo) => setData({ ...data, flatNo: flatNo })}
@@ -436,18 +445,20 @@ function PersonalDetailsScreen({ navigation }) {
             {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}></Text> */}
           </View>
         </View>
-        <MapView
-          style={{ marginLeft: 55, top: 30, width: '74%', height: 200, borderRadius: 60 }}
-          scrollEnabled={true}
-          Region={{ latitude: latitude, longitude: longitude }}
-          customMapStyle={mapStyle}
-        >
-          <Marker
-            coordinate={{ latitude: latitude, longitude: longitude, latitudeDelta: 0.02, longitudeDelta: 0.02 }}
-            pinColor={"white"}
-            title={"You are here"}
-          />
-        </MapView>
+        <View style={{ alignSelf: 'center', top: 30, width: '75%', height: 200, borderRadius: 10, overflow: 'hidden' }}>
+          <MapView
+            style={{ width: '100%', height: 200 }}
+            scrollEnabled={true}
+            Region={{ latitude: latitude, longitude: longitude }}
+            customMapStyle={mapStyle}
+          >
+            <Marker
+              coordinate={{ latitude: latitude, longitude: longitude, latitudeDelta: 0.02, longitudeDelta: 0.02 }}
+              pinColor={"white"}
+              title={"You are here"}
+            />
+          </MapView>
+        </View>
         <TouchableOpacity style={styles.SubmitButtonStyle} onPress={handleSubmit}>
           <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>{t('Proceed')}</Text>
         </TouchableOpacity>

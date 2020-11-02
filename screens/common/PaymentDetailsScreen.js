@@ -28,7 +28,20 @@ const PaymentDetailsScreen = ({ props, navigation }) => {
     confirmAccoutnNo: ''
   })
 
+  const [errors, setErrors] = useState([])
+
   const handleSubmission = async () => {
+
+    let errors = []
+    if (data.accountNum === '') { errors.push('accountNum') }
+    if (data.IFSC === '') { errors.push('IFSC') }
+    if (data.accountHolder === '') { errors.push('accountHolder') }
+    if (data.PAN === '') { errors.push('PAN') }
+    if (data.aadharNumber === '') { errors.push('aadharNumber') }
+    if (data.GSTIN === '') { errors.push('GSTIN') }
+    if (data.confirmAccoutnNo === '') { errors.push('confirmAccoutnNo') }
+    if (errors.length) { setErrors(errors) }
+
     console.log(data)
     try {
       const result = await fetch("https://uniworksvendorapis.herokuapp.com/user/+918174033803", {
@@ -68,102 +81,55 @@ const PaymentDetailsScreen = ({ props, navigation }) => {
           <Text style={{ fontSize: 36 }}>{t('Payment Details')}</Text>
         </View>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(accoutnNo) => {
-                setData({
-                  ...data,
-                  accountNum: accoutnNo
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('accountNum') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(accoutnNo) => { setData({ ...data, accountNum: accoutnNo }) }} />
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('Account Number')}</Text>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(confirmAccoutnNo) => {
-                setData({
-                  ...data,
-                  confirmAccoutnNo: confirmAccoutnNo
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('confirmAccoutnNo') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(confirmAccoutnNo) => { setData({ ...data, confirmAccoutnNo: confirmAccoutnNo }) }} />
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('Confirm Account Number')}</Text>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(ifscCode) => {
-                setData({
-                  ...data,
-                  IFSC: ifscCode
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('IFSC') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(ifscCode) => { setData({ ...data, IFSC: ifscCode }) }} />
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('IFSC Code')}</Text>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(name) => {
-                setData({
-                  ...data,
-                  accountHolder: name
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('accountHolder') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(name) => { setData({ ...data, accountHolder: name }) }} />
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('Account Holder\'s Name')}</Text>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(pan) => {
-                setData({
-                  ...data,
-                  PAN: pan
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('PAN') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(pan) => { setData({ ...data, PAN: pan }) }} />
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('PAN Number')}</Text>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(aadhar) => {
-                setData({
-                  ...data,
-                  aadharNumber: aadhar
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('aadharNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(aadhar) => { setData({ ...data, aadharNumber: aadhar }) }} />
           </View>
         </View>
         <View style={{ flexDirection: 'row' }}>
           <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('Aadhar Details')}</Text>
           <View style={{ flex: 1, flexDirection: 'row' }}></View>
-          {/* <View style={{ marginRight: '15%' }}>
-            <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('Camera')} >
-              <Text style={{ color: '#546AD9', fontSize: 14 }}>Upload Photo</Text>
-              <MaterialIcons name='camera-alt' style={{ alignSelf: 'center', color: '#546AD9' }} size={20} />
-            </TouchableOpacity>
-          </View> */}
+          {/*
+            <View style={{ marginRight: '15%' }}>
+              <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => props.navigation.navigate('Camera')} >
+                <Text style={{ color: '#546AD9', fontSize: 14 }}>Upload Photo</Text>
+                <MaterialIcons name='camera-alt' style={{ alignSelf: 'center', color: '#546AD9' }} size={20} />
+              </TouchableOpacity>
+            </View>
+          */}
         </View>
         <View style={styles.containerRecatngleName}>
-          <View style={styles.rect3} >
-            <TextInput style={styles.textInputPhone}
-              onChangeText={(gst) => {
-                setData({
-                  ...data,
-                  GSTIN: gst
-                })
-              }}
-            />
+          <View style={[styles.rect3, { borderColor: errors.includes('GSTIN') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInputPhone} onChangeText={(gst) => { setData({ ...data, GSTIN: gst }) }} />
           </View>
         </View>
         <Text style={{ marginLeft: '18%', color: '#353535', fontSize: 14, top: 4 }}>{t('GSTIN Details')}</Text>

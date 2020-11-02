@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, } from "react-native"
 import Feather from 'react-native-vector-icons/Feather'
 import FeatherIcon from "react-native-vector-icons/Feather"
@@ -25,30 +25,18 @@ const NewPassword = ({ navigation }) => {
         secureTextEntry: true,
         confirmSecureTextEntry: true
     })
+    const [errors, setErrors] = useState([])
 
-    const handlePasswordChange = (val) => {
-        setData({
-            ...data,
-            password: val
-        })
-    }
-    const handleConfirmPasswordChange = (val) => {
-        setData({
-            ...data,
-            confirmPassword: val
-        })
-    }
-    const updateSecureTextEntry = () => {
-        setData({
-            ...data,
-            secureTextEntry: !data.secureTextEntry
-        })
-    }
-    const updateConfirmSecureTextEntry = () => {
-        setData({
-            ...data,
-            confirmSecureTextEntry: !data.confirmSecureTextEntry
-        })
+    const handlePasswordChange = (val) => { setData({ ...data, password: val }) }
+    const handleConfirmPasswordChange = (val) => { setData({ ...data, confirmPassword: val }) }
+    const updateSecureTextEntry = () => { setData({ ...data, secureTextEntry: !data.secureTextEntry }) }
+    const updateConfirmSecureTextEntry = () => { setData({ ...data, confirmSecureTextEntry: !data.confirmSecureTextEntry }) }
+
+    const onSubmit = () => {
+        let errors = []
+        if (data.password === '') { errors.push('password') }
+        if (data.confirmPassword === '') { errors.push('confirmPassword') }
+        if (errors.length) { setErrors(errors) }
     }
 
     return (
@@ -57,7 +45,7 @@ const NewPassword = ({ navigation }) => {
                 <Text style={{ fontSize: 36 }}>{t('New Password')}</Text>
             </View>
             <View style={styles.containerRecatnglePassword}>
-                <View style={styles.rect3}>
+                <View style={[styles.rect3, { borderColor: errors.includes('password') ? 'red' : 'rgba(112,112,112,1)' }]}>
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handlePasswordChange(val)}
@@ -69,7 +57,7 @@ const NewPassword = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.containerRecatnglePassword}>
-                <View style={styles.rect3} >
+                <View style={[styles.rect3, { borderColor: errors.includes('confirmPassword') ? 'red' : 'rgba(112,112,112,1)' }]}>
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handleConfirmPasswordChange(val)}
@@ -84,8 +72,8 @@ const NewPassword = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.bottomContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('')} >
-                    <View >
+                <TouchableOpacity onPress={onSubmit}>
+                    <View>
                         <View style={styles.icon1Stack}>
                             <View style={styles.rect4}>
                                 <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>

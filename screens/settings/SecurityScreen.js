@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native"
 import Feather from 'react-native-vector-icons/Feather'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -10,6 +10,7 @@ const SecurityScreen = ({ navigation }) => {
     const { t } = useTranslation();
 
     const [data, setData] = React.useState({ password: '', confirmPassword: '', secureTextEntry: true, confirmSecureTextEntry: true })
+    const [errors, setErrors] = useState([])
 
     const handlePasswordChange = (val) => { setData({ ...data, password: val }) }
     const handleConfirmPasswordChange = (val) => { setData({ ...data, confirmPassword: val }) }
@@ -25,15 +26,22 @@ const SecurityScreen = ({ navigation }) => {
         });
     }, [navigation]);
 
+    const onSubmit = () => {
+        let errors = []
+        if (data.password === '') { errors.push('password') }
+        if (data.confirmPassword === '') { errors.push('confirmPassword') }
+        if (errors.length) { setErrors(errors) }
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '10%' }}>
                 <Feather name='lock' size={32} />
                 <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>{t('Security')}</Text>
             </TouchableOpacity>
-            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 25 }} >{t('Old Password')}</Text>
+            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 25 }}>{t('Old Password')}</Text>
             <View style={styles.containerRecatnglePassword}>
-                <View style={styles.rect3} >
+                <View style={[styles.rect3, { borderColor: errors.includes('password') ? 'red' : 'rgba(112,112,112,1)' }]}>
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handlePasswordChange(val)}
@@ -41,7 +49,7 @@ const SecurityScreen = ({ navigation }) => {
                     />
                     <View style={{ alignItems: 'flex-end', alignSelf: 'center', marginRight: 10 }} >
                         <TouchableOpacity onPress={() => navigation.navigate('Recover Account')} >
-                            <Text style={{ color: '#5356C1' }} >{t('Confirm')}</Text>
+                            <Text style={{ color: '#5356C1' }}>{t('Confirm')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -51,64 +59,34 @@ const SecurityScreen = ({ navigation }) => {
                     <Text style={{ color: '#5356C1' }} >{t('Forgot Password?')}</Text>
                 </TouchableOpacity>
             </View>
-            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 20 }} >{t('Change Password')}</Text>
+            <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal', marginStart: '15%', marginTop: 20 }}>{t('Change Password')}</Text>
             <View style={styles.containerRecatnglePassword2}>
-                <View style={styles.rect3} >
+                <View style={[styles.rect3, { borderColor: errors.includes('password') ? 'red' : 'rgba(112,112,112,1)' }]}>
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handlePasswordChange(val)}
                         placeholder={t('Password')}
                     />
-                    <TouchableOpacity
-                        style={styles.eyeIcon}
-                        onPress={updateSecureTextEntry}
-                    >
-                        {data.secureTextEntry ?
-                            <Feather
-                                name="eye-off"
-                                color="grey"
-                                size={20}
-                            />
-                            :
-                            <Feather
-                                name="eye"
-                                color="grey"
-                                size={20}
-                            />
-                        }
+                    <TouchableOpacity style={styles.eyeIcon} onPress={updateSecureTextEntry}>
+                        {data.secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.containerRecatnglePassword}>
-                <View style={styles.rect3} >
+                <View style={[styles.rect3, { borderColor: errors.includes('confirmPassword') ? 'red' : 'rgba(112,112,112,1)' }]}>
                     <TextInput style={styles.textInput}
                         secureTextEntry={data.secureTextEntry ? true : false}
                         onChangeText={(val) => handleConfirmPasswordChange(val)}
                         placeholder={t('Change Password')}
                     />
-                    <TouchableOpacity
-                        style={styles.eyeIcon}
-                        onPress={updateConfirmSecureTextEntry}
-                    >
-                        {data.confirmSecureTextEntry ?
-                            <Feather
-                                name="eye-off"
-                                color="grey"
-                                size={20}
-                            />
-                            :
-                            <Feather
-                                name="eye"
-                                color="grey"
-                                size={20}
-                            />
-                        }
+                    <TouchableOpacity style={styles.eyeIcon} onPress={updateConfirmSecureTextEntry}>
+                        {data.confirmSecureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={{ flex: 1, justifyContent: 'flex-end', width: '30%', alignSelf: 'center', marginBottom: '10%' }} >
-                <TouchableOpacity style={styles.SubmitButtonStyle}  >
-                    <Text style={{ fontSize: 18, color: '#ffffff', alignSelf: 'center' }}  >{t('Proceed')}</Text>
+            <View style={{ flex: 1, justifyContent: 'flex-end', width: '30%', alignSelf: 'center', marginBottom: '10%' }}>
+                <TouchableOpacity style={styles.SubmitButtonStyle} onPress={onSubmit}>
+                    <Text style={{ fontSize: 18, color: '#ffffff', alignSelf: 'center' }}>{t('Proceed')}</Text>
                 </TouchableOpacity>
             </View>
         </View>

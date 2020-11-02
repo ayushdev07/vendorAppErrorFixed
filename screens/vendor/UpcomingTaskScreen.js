@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, Dimensions, CheckBox, Image, FlatList, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Text, View, StyleSheet, Dimensions, Image, FlatList, TextInput } from 'react-native'
+import { CheckBox } from 'react-native-elements'
 import Feather from 'react-native-vector-icons/FontAwesome'
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import FeatherIcon from "react-native-vector-icons/Feather";
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import FeatherIcon from "react-native-vector-icons/Feather"
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const UpcomingTaskScreen = ({ navigation }) => {
   const [showDescription, setShowDescription] = useState(false)
   const [siteCleaned, setSiteCleaned] = useState(false)
   const [upcomingTaskDetails, setUpcomingTaskDetails] = useState([])
+  const [workDone, setWorkDone] = useState('')
+  const [errors, setErrors] = useState([])
+
+  const onSubmit = () => {
+    let errors = []
+    if (workDone === '') { errors.push('workDone') }
+    if (errors.length) { setErrors(errors) }
+  }
 
   let PreRequisite = ['White marking make a detailed mark at joints and a simple line for pipes'
     , 'Check the pipes dia and set the chipping depth'
@@ -176,19 +185,19 @@ const UpcomingTaskScreen = ({ navigation }) => {
             </View>
           </View>
         </View>
-        <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, opacity: 0.7, fontWeight: 'bold' }} >Drawings</Text>
+        <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, opacity: 0.7, fontWeight: 'bold' }}>Drawings</Text>
         <Image
           style={{ width: '100%', height: 250, marginTop: 8 }}
           source={require('../../assets/images/unnamed.jpg')}
         />
-        <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }} >Prerequisite</Text>
+        <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }}>Prerequisite</Text>
         <View style={{ flex: 1, marginTop: 15 }} >
           <FlatList
             data={PreRequisite}
             renderItem={renderPrerequisite}
           />
         </View>
-        <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }} >Milestones</Text>
+        <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }}>Milestones</Text>
         <View style={{ flex: 1, marginTop: 15 }} >
           <FlatList
             data={mileStones.milestone1}
@@ -197,19 +206,24 @@ const UpcomingTaskScreen = ({ navigation }) => {
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginEnd: '5%', marginTop: 60 }} >
           <Text style={{ color: '#353535', fontWeight: 'bold', fontSize: 18 }}>Today's Target</Text>
-          <Text style={{ marginStart: '5%', color: '#353535', fontSize: 18 }} >45,698 Sqft</Text>
+          <Text style={{ marginStart: '5%', color: '#353535', fontSize: 18 }}>45,698 Sqft</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginEnd: '5%', marginTop: 25 }} >
           <Text style={{ color: '#353535', fontWeight: 'bold', fontSize: 18 }}>Work Done</Text>
-          <TextInput style={{ marginStart: '5%', borderRadius: 10, backgroundColor: '#AAAAAA', padding: 5, paddingStart: 10, paddingEnd: 10 }} placeholder='45,698' placeholderTextColor='#000000' keyboardType='numeric' >
-          </TextInput>
+          <TextInput
+            style={{
+              marginStart: '5%', borderWidth: 1, borderRadius: 10, backgroundColor: '#AAAAAA', padding: 5, paddingStart: 10, paddingEnd: 10,
+              borderColor: errors.includes('workDone') ? 'red' : 'rgba(112,112,112,1)'
+            }}
+            placeholder=''
+            placeholderTextColor='#000'
+            keyboardType='numeric'
+            onChangeText={(workDone) => setWorkDone(workDone)}
+          />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 15, marginRight: '10%', marginRight: '5%' }} >
           <Text style={{ alignSelf: 'center' }} >Site Cleaned</Text>
-          <CheckBox
-            value={siteCleaned}
-            onValueChange={() => setSiteCleaned(!siteCleaned)}
-          />
+          <CheckBox checked={siteCleaned} onPress={() => setSiteCleaned(!siteCleaned)} />
         </View>
         <View style={{ marginTop: '15%', alignItems: 'flex-end', marginRight: '10%' }} >
           <Text style={{ color: '#5D83C6', fontSize: 16 }} >Report an issue</Text>
@@ -252,8 +266,8 @@ const UpcomingTaskScreen = ({ navigation }) => {
             <Text style={styles.Number}>25</Text>
           </View>
         </View >
-        <View style={{ alignItems: 'center', marginTop: 50 }} >
-          <TouchableOpacity style={styles.approvedButton} onPress={() => navigation.replace('HomeScreen')} >
+        <View style={{ alignItems: 'center', marginTop: 50 }}>
+          <TouchableOpacity style={styles.approvedButton} onPress={() => { onSubmit(); navigation.replace('HomeScreen') }}>
             <View style={{ alignItems: 'center' }} >
               <Text style={{ fontSize: 20, color: '#ffffff' }}>Home Page</Text>
             </View>

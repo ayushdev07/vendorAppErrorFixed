@@ -40,6 +40,14 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
   const [checked7, setChecked7] = useState(false)
   const [checked8, setChecked8] = useState(false)
   const [checked9, setChecked9] = useState(false)
+  const [workDone, setWorkDone] = useState('')
+  const [errors, setErrors] = useState([])
+
+  const onSubmit = () => {
+    let errors = []
+    if (workDone === '') { errors.push('workDone') }
+    if (errors.length) { setErrors(errors) }
+  }
 
   let PreRequisite = [
     'White marking make a detailed mark at joints and a simple line for pipes',
@@ -277,8 +285,16 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginEnd: '5%', marginTop: 25 }}>
             <Text style={{ color: '#353535', fontWeight: 'bold', fontSize: 18 }}>{t('Work Done')}</Text>
-            <TextInput style={{ marginStart: '5%', borderRadius: 10, backgroundColor: '#AAAAAA', padding: 5, paddingStart: 10, paddingEnd: 10 }} placeholder='45,698' placeholderTextColor='#000' keyboardType='numeric' >
-            </TextInput>
+            <TextInput
+              style={{
+                marginStart: '5%', borderWidth: 1, borderRadius: 10, backgroundColor: '#AAAAAA', padding: 5, paddingStart: 10, paddingEnd: 10,
+                borderColor: errors.includes('workDone') ? 'red' : 'rgba(112,112,112,1)'
+              }}
+              placeholder=''
+              placeholderTextColor='#000'
+              keyboardType='numeric'
+              onChangeText={(workDone) => setWorkDone(workDone)}
+            />
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 15 }}>
             <Text style={{ alignSelf: 'center' }}>{t('Site Cleaned')}</Text>
@@ -323,7 +339,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
             </View>
           </View >
           <View style={{ alignItems: 'center', marginTop: 50 }}>
-            <TouchableOpacity style={styles.approvedButton} onPress={() => navigation.replace('HomeScreen')} >
+            <TouchableOpacity style={styles.approvedButton} onPress={() => { onSubmit(); navigation.replace('HomeScreen') }}>
               <View style={{ alignItems: 'center' }}>
                 <Text style={{ fontSize: 20, color: '#fff' }}>{t('Submit')}</Text>
               </View>

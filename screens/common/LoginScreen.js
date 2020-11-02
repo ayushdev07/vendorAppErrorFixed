@@ -29,24 +29,19 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
     phoneNumber: '',
     checkPhoneNumber: false
   })
-
+  const [errors, setErrors] = useState([])
   const [isLoading, setLoading] = useState(false)
 
-  const handlePasswordChange = (val) => {
-    setData({
-      ...data,
-      password: val
-    })
-  }
+  const handlePasswordChange = (val) => { setData({ ...data, password: val }) }
 
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry
-    })
-  }
+  const updateSecureTextEntry = () => { setData({ ...data, secureTextEntry: !data.secureTextEntry }) }
 
   const login = async () => {
+    let errors = []
+    if (data.password === '') { errors.push('password') }
+    if (data.phoneNumber === '') { errors.push('phoneNumber') }
+    if (errors.length) { setErrors(errors) }
+
     setLoading(true)
     try {
       const result = await fetch('https://uniworksvendorapis.herokuapp.com/auth/login', {
@@ -99,15 +94,17 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
           <Text style={styles.logIn}>{t('Log In')}</Text>
         </View>
         <View style={styles.containerRectanglePhone}>
-          <TextInput style={styles.rect3}
-            placeholder="9839xxxxxx"
-            keyboardType="numeric"
-            maxLength={10}
-            onChangeText={(phoneNumber) => setData({ ...data, phoneNumber: phoneNumber })}
-          />
+          <View style={[styles.rect3, { borderColor: errors.includes('phoneNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
+            <TextInput style={styles.textInput}
+              placeholder="9839xxxxxx"
+              keyboardType="numeric"
+              maxLength={10}
+              onChangeText={(phoneNumber) => setData({ ...data, phoneNumber: phoneNumber })}
+            />
+          </View>
         </View>
         <View style={styles.containerRectanglePassword}>
-          <View style={styles.rect3}>
+          <View style={[styles.rect3, { borderColor: errors.includes('password') ? 'red' : 'rgba(112,112,112,1)' }]}>
             <TextInput style={styles.textInput}
               secureTextEntry={data.secureTextEntry ? true : false}
               onChangeText={(val) => handlePasswordChange(val)}
@@ -127,7 +124,7 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
         <View style={{ alignItems: 'flex-end', marginRight: '15%', top: -10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
             <Text style={{ color: '#121212', fontSize: 15 }}>{t('Don\'t have an account?')}</Text>
-            < Text style={{ color: '#5356C1' }} onPress={() => goBack()}>{t('Sign Up')}</Text>
+            <Text style={{ color: '#5356C1' }} onPress={() => goBack()}>{t('Sign Up')}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>

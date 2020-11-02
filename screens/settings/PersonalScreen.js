@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 import Feather from 'react-native-vector-icons/Feather'
 import OTP from '../../components/OTP'
+import { Picker } from '@react-native-picker/picker'
 import AsyncStorage from '@react-native-community/async-storage'
 import { withTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
@@ -38,6 +39,8 @@ class PersonalScreen extends React.Component {
       street: '',
       building: '',
       flatNo: '',
+      errors: [],
+      selectedValue: "Carpenter",
     }
   }
 
@@ -77,6 +80,20 @@ class PersonalScreen extends React.Component {
   }
 
   handleSubmit = async () => {
+
+    let errors = []
+    let { phoneNumber, emergencyNumber, email, state, city, area, street, building, flatNo } = this.state
+    if (phoneNumber === '') { errors.push('phoneNumber') }
+    if (emergencyNumber === '') { errors.push('emergencyNumber') }
+    if (email === '') { errors.push('email') }
+    if (state === '') { errors.push('state') }
+    if (city === '') { errors.push('city') }
+    if (area === '') { errors.push('area') }
+    if (street === '') { errors.push('street') }
+    if (building === '') { errors.push('building') }
+    if (flatNo === '') { errors.push('flatNo') }
+    if (errors.length) { this.setState({ errors }) }
+
     let uploadData = {
       userName: 'Kar0711',
       contact: "+918318006807",
@@ -180,19 +197,22 @@ class PersonalScreen extends React.Component {
             <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>{t('Personal')}</Text>
           </TouchableOpacity>
           <View style={styles.containerRecatnglePhone}>
-            <View style={styles.rect3} >
+            <View style={[styles.rect3, { borderColor: this.state.errors.includes('phoneNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
               {/* <TextInput style={styles.textInputPhone}
                     onChangeText={(number) => this.setState({ phoneNumber: number })}
                     keyboardType="numeric"
                     maxLength={10}
                     placeholder={this.state.personalData.personal.contact}
                   /> */}
-              <TouchableOpacity
-                style={styles.eyeIcon}
-                disable={true}
-              >
+              <TextInput style={styles.textInputPhone}
+                onChangeText={(number) => this.setState({ phoneNumber: number })}
+                keyboardType="numeric"
+                maxLength={10}
+                placeholder={t('Change')}
+              />
+              {/* <TouchableOpacity style={styles.eyeIcon} disable={true}>
                 <Text style={{ color: 'grey', marginRight: 10 }} onPress={this.signUp}>{t('Change')}</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
           <View >
@@ -210,86 +230,133 @@ class PersonalScreen extends React.Component {
               <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal' }}>{t('Additional Information')}</Text>
             </View>
             <View style={styles.containerRecatngleName}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('emergencyNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.emergencyContact}
                       onChangeText={(number)=>this.setState({emergencyNumber:number})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Emergency Contact')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('Emergency Contact')}
+                  onChangeText={(number) => this.setState({ emergencyNumber: number })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Emergency Contact')}</Text> */}
               </View>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('email') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.email}
                       onChangeText={(email)=>this.setState({email:email})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('E-mail')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('E-mail')}
+                  onChangeText={(email) => this.setState({ email: email })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('E-mail')}</Text> */}
               </View>
             </View>
-            <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+            {/* <View style={styles.containerRecatngle}>
+              <View style={styles.rect3}>
                 <TextInput style={styles.textInputPhone}
                   placeholder="Carpenter"
                   onChangeText={(category) => this.setState({ category: category })} />
                 <Text style={{ color: 'black', marginTop: 20, marginRight: 10, fontSize: 12 }}>{t('Category')}</Text>
+              </View>
+            </View> */}
+            <View style={styles.containerRectangle}>
+              <View style={styles.rect3}>
+                <Picker
+                  selectedValue={this.state.selectedValue}
+                  mode="dropdown"
+                  style={[styles.textInputPhone, { height: 40, width: '90%', marginTop: 10 }]}
+                  onValueChange={(itemValue, itemIndex) => this.setState({ selectedValue: itemValue })}
+                >
+                  <Picker.Item label="Carpenter" value="Carpenter" />
+                  <Picker.Item label="Labour" value="Labour" />
+                  <Picker.Item label="Electrician" value="Electrician" />
+                </Picker>
+                <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>{t('Category')}</Text>
               </View>
             </View>
             <View style={{ marginLeft: '15%', marginTop: '5%' }} >
               <Text style={{ color: '#353535', fontSize: 18, fontStyle: 'normal' }}>{t('Address')}</Text>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('state') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.state}
                       onChangeText={(state)=>this.setState({state:state})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('State')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('State')}
+                  onChangeText={(state) => this.setState({ state: state })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('State')}</Text> */}
               </View>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('city') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.city}
                       onChangeText={(city)=>this.setState({city:city})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('City')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('City')}
+                  onChangeText={(city) => this.setState({ city: city })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('City')}</Text> */}
               </View>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('area') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.area}
                       onChangeText={(area)=>this.setState({area:area})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Area')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('Area')}
+                  onChangeText={(area) => this.setState({ area: area })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Area')}</Text> */}
               </View>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('street') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.street}
                       onChangeText={(street)=>this.setState({street:street})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Street')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('Street')}
+                  onChangeText={(street) => this.setState({ street: street })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Street')}</Text> */}
               </View>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('building') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.building}
                       onChangeText={(building)=>this.setState({building:building})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Building')}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('Building')}
+                  onChangeText={(building) => this.setState({ building: building })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Building')}</Text> */}
               </View>
             </View>
             <View style={styles.containerRecatngle}>
-              <View style={styles.rect3} >
+              <View style={[styles.rect3, { borderColor: this.state.errors.includes('flatNo') ? 'red' : 'rgba(112,112,112,1)' }]}>
                 {/* <TextInput style = {styles.textInputPhone}
                       placeholder={this.state.personalData.personal.flat}
                       onChangeText={(flatNo)=>this.setState({flatNo:flatNo})}
                     /> */}
-                <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Flat No')}{"."}</Text>
+                <TextInput style={styles.textInputPhone}
+                  placeholder={t('Flat No')}
+                  onChangeText={(flatNo) => this.setState({ flatNo: flatNo })}
+                />
+                {/* <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 12 }}>{t('Flat No')}{"."}</Text> */}
               </View>
             </View>
             {/* <MapView
@@ -387,6 +454,10 @@ const styles = StyleSheet.create({
     marginTop: 72,
     marginLeft: 33,
     marginRight: 27
+  },
+  containerRectangle: {
+    marginTop: 15,
+    alignItems: 'center'
   },
   rect3: {
     width: "75%",

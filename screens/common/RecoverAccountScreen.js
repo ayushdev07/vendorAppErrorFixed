@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native'
 import FeatherIcon from "react-native-vector-icons/Feather"
 import AsyncStorage from '@react-native-community/async-storage'
 import { withTranslation } from 'react-i18next'
@@ -9,6 +9,10 @@ class RecoverAccountScreen extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            phoneNumber: '',
+            errors: [],
+        }
     }
 
     componentDidMount() {
@@ -16,6 +20,13 @@ class RecoverAccountScreen extends React.Component {
             if (value == "en") { i18n.changeLanguage('en') }
             else if (value == "hi") { i18n.changeLanguage('hi') }
         });
+    }
+
+    onSubmit = () => {
+        let errors = []
+        let { phoneNumber } = this.state
+        if (phoneNumber === '') { errors.push('phoneNumber') }
+        if (errors.length) { this.setState({ errors }) }
     }
 
     render() {
@@ -26,16 +37,19 @@ class RecoverAccountScreen extends React.Component {
                     <Text style={{ fontSize: 36 }}>{t('Recover Account')}</Text>
                 </View>
                 <View style={styles.containerRecatngleName}>
-                    <View style={styles.rect3} >
+                    <View style={[styles.rect3, { borderColor: this.state.errors.includes('phoneNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
                         <TextInput style={styles.textInputPhone}
+                            onChangeText={(number) => this.setState({ phoneNumber: number })}
+                            keyboardType="numeric"
+                            maxLength={10}
                             placeholder="983939xxxx"
                         />
                         <Text style={{ color: 'black', marginTop: 15, marginRight: 10, fontSize: 15 }}>{t('Phone')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('New Password')}>
-                        <View >
+                    <TouchableOpacity onPress={() => { this.onSubmit(); this.props.navigation.navigate('New Password') }}>
+                        <View>
                             <View style={styles.icon1Stack}>
                                 <View style={styles.rect4}>
                                     <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>
@@ -44,7 +58,7 @@ class RecoverAccountScreen extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </View >
         )
     }
 }

@@ -450,6 +450,7 @@ class SignInScreen extends Component {
       password: "",
       secureTextEntry: true,
       phoneNumber: "",
+      errors: [],
       checkPhoneNumber: false,
       showOtp: false,
       otp1: "",
@@ -467,9 +468,7 @@ class SignInScreen extends Component {
     }
   }
 
-  updateSecureTextEntry = () => {
-    this.setState({ secureTextEntry: !this.state.secureTextEntry })
-  }
+  updateSecureTextEntry = () => { this.setState({ secureTextEntry: !this.state.secureTextEntry }) }
 
   signUp = async () => {
     console.log(this.state)
@@ -490,15 +489,10 @@ class SignInScreen extends Component {
         })
       }).then((response) => response.text())
         .then((json) => {
-          this.setState({
-            showOtp: true
-
-          })
+          this.setState({ showOtp: true })
           console.log(json)
         }).catch(e => Alert.alert(e.toString()))
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) { console.log(e) }
   }
 
   saveOtp = (val1, val2, val3, val4, val5, val6) => {
@@ -514,6 +508,14 @@ class SignInScreen extends Component {
   }
 
   confirmSignup = async () => {
+
+    let errors = []
+    let { userName, password, phoneNumber } = this.state
+    if (userName === '') { errors.push('userName') }
+    if (password === '') { errors.push('password') }
+    if (phoneNumber === '') { errors.push('phoneNumber') }
+    if (errors.length) { this.setState({ errors }) }
+
     var code = this.state.otp1 + this.state.otp2 + this.state.otp3 + this.state.otp4 + this.state.otp5 + this.state.otp6
     console.log(code)
     if (!this.state.showType) {
@@ -591,7 +593,7 @@ class SignInScreen extends Component {
             {/* <Text style={styles.logIn} onPress={() => this.props.navigation.navigate('LoginScreen')}>Log in</Text> */}
           </View>
           <View style={styles.containerRecatngleName}>
-            <View style={styles.rect3} >
+            <View style={[styles.rect3, { borderColor: this.state.errors.includes('userName') ? 'red' : 'rgba(112,112,112,1)' }]}>
               <TextInput placeholder={t('Name')}
                 style={styles.textInput}
                 onChangeText={(username) => this.setState({ userName: username })}
@@ -600,44 +602,26 @@ class SignInScreen extends Component {
             </View>
           </View>
           <View style={styles.containerRecatnglePassword}>
-            <View style={styles.rect3}>
+            <View style={[styles.rect3, { borderColor: this.state.errors.includes('password') ? 'red' : 'rgba(112,112,112,1)' }]}>
               <TextInput style={styles.textInput}
                 secureTextEntry={this.state.secureTextEntry ? true : false}
                 onChangeText={(passWord) => this.setState({ password: passWord })}
                 placeholder={t('Password')}
               />
-              <TouchableOpacity
-                style={styles.eyeIcon}
-                onPress={this.updateSecureTextEntry}
-              >
-                {this.state.secureTextEntry ?
-                  <Feather
-                    name="eye-off"
-                    color="grey"
-                    size={20}
-                  />
-                  :
-                  <Feather
-                    name="eye"
-                    color="grey"
-                    size={20}
-                  />
-                }
+              <TouchableOpacity style={styles.eyeIcon} onPress={this.updateSecureTextEntry}>
+                {this.state.secureTextEntry ? <Feather name="eye-off" color="grey" size={20} /> : <Feather name="eye" color="grey" size={20} />}
               </TouchableOpacity>
             </View>
           </View>
           <View style={styles.containerRecatnglePhone}>
-            <View style={styles.rect3} >
+            <View style={[styles.rect3, { borderColor: this.state.errors.includes('phoneNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>
               <TextInput style={styles.textInputPhone}
                 onChangeText={(number) => this.setState({ phoneNumber: number })}
                 keyboardType="numeric"
                 maxLength={10}
                 placeholder="9839xxxxxx"
               />
-              <TouchableOpacity
-                style={styles.eyeIcon}
-                disable={true}
-              >
+              <TouchableOpacity style={styles.eyeIcon} disable={true}>
                 <Text style={{ color: 'grey', marginRight: 10 }} onPress={this.signUp}>{t('Confirm')}</Text>
               </TouchableOpacity>
             </View>
@@ -647,7 +631,7 @@ class SignInScreen extends Component {
               <View style={styles.otpmainContainer}>
                 <Text style={{ fontSize: 35 }}>OTP</Text>
                 <View style={styles.otpContainer}>
-                  <OTP save={this.saveOtp} ></OTP>
+                  <OTP save={this.saveOtp}></OTP>
                 </View>
               </View>
               : null}
@@ -663,28 +647,19 @@ class SignInScreen extends Component {
                   <View style={{ marginStart: '20%', marginTop: '15%' }} >
                     <Text style={{ color: '#000000', fontSize: 20, fontWeight: 'bold' }}>{t('I am')}</Text>
                   </View>
-                  <View
-                    style={[
-                      styles.buttons,
-                    ], { flex: 1, justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}
-                  >
+                  <View style={[styles.buttons,], { flex: 1, justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
                     <TouchableOpacity
-                      style={[
-                        styles.button,
-                        {
-                          backgroundColor: this.state.Contractor ? "#ffffff" : "#EBEBEB",
-                          elevation: this.state.Contractor ? 2 : 0
-                        },
-                      ]}
+                      style={[styles.button, {
+                        backgroundColor: this.state.Contractor ? "#ffffff" : "#EBEBEB", elevation: this.state.Contractor ? 2 : 0
+                      }]}
                       onPress={this.handleTypechosen}
                     >
                       <Text style={{ color: this.state.Contractor ? '#76C662' : "#000000" }}>{t('Contractor')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                      style={[
-                        styles.button,
-                        { backgroundColor: this.state.SuperVisor ? "#ffffff" : "#EBEBEB", elevation: this.state.SuperVisor ? 2 : 0 },
-                      ]}
+                      style={[styles.button, {
+                        backgroundColor: this.state.SuperVisor ? "#ffffff" : "#EBEBEB", elevation: this.state.SuperVisor ? 2 : 0
+                      }]}
                       onPress={this.handleTypechosen}
                     >
                       <Text style={{ color: this.state.SuperVisor ? '#76C662' : "#000000" }}>{t('Supervisor')}</Text>
@@ -704,6 +679,7 @@ class SignInScreen extends Component {
                       </Text>
                     </View>
                   }
+
                   {
                     this.state.SuperVisor ?
                       <View style={styles.containerRecatnglePhone}>
@@ -805,7 +781,7 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
-    borderColor: "rgba(112,112,112,1)",
+    // borderColor: "rgba(112,112,112,1)",
     borderStyle: "solid",
     borderRadius: 100,
     flexDirection: "row",

@@ -9,7 +9,8 @@ import NotificationsScreen from '../screens/vendor/NotificationsScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import SettingsHomeScreen from '../screens/settings/SettingsHomeScreen';
 import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScreenSuperVisor';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, View } from 'react-native';
+import HomeMenuBar from '../screens/settings/HomeMenuBar';
 
 const Tab = createBottomTabNavigator();
 
@@ -66,7 +67,7 @@ const HomeBottomTab = (props) => (
         ),
       }}
     />
-
+    <HomeMenuBar/>
   </Tab.Navigator>
 
 

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, FlatList, Image, ScrollView
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import data from '../../components/Data';
+import YoutubePlayer from "react-native-youtube-iframe";
 
 
 class VideoSlider extends Component {
@@ -40,6 +42,13 @@ class VideoSlider extends Component {
             ItemSeparatorComponent={() => <View style={{width: 5}}/>}
             renderItem={({ item }) => this.renderItem(item)}
             data={data}
+            onPress = {()=>
+              <YoutubePlayer
+                height={200}
+                play={playing}
+                videoId={"iee2TATGMyI"}
+                onChangeState={onStateChange}
+              />}
           />
         </View>
         <View style = {{marginTop:30}}>

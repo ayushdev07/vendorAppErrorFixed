@@ -259,6 +259,7 @@ import { Appbar } from 'react-native-paper';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { ListItem, Left, Right, Thumbnail, Body, Button } from 'native-base';
 import VideoSlider from './VideoSlider';
+// import MenuBar from '../settings/HomeMenuBar'
 
 const TutorialsScreen = ({ navigation }) => {
   const [tutorials, setTutorials] = useState([]);
@@ -317,14 +318,14 @@ const TutorialsScreen = ({ navigation }) => {
         <View />
         <View style={{ flex: 1, flexDirection: 'row', marginLeft: '6%', marginTop: 10 }} >
           <View>
-            <Text > </Text>
-            <Text ></Text>
+            {/* <Text > </Text> */}
+            {/* <Text >Hey</Text> */}
+            {/* <MenuBar/> */}
           </View>
         </View>
         <View style={{ flex: 1 }} >
-          <VideoSlider
-            height={250}
-            marginTop={30}
+        {/* <MenuBar /> */}
+          <VideoSlider  
           />
           <View style={{ marginTop: 30 }} >
             {/* <View style={{ marginTop: '5%' }}>

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react'
 import { View, Text, AsyncStorage, Alert } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -37,8 +38,7 @@ const SettingsHomeScreen = ({ navigation }) => {
                 }
             })
     }
-
-    useEffect(() => {
+   useEffect(() => {
         fetchData();
     }, [])
 

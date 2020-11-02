@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 // import React, { useState, useEffect } from "react";
 // import { StyleSheet, View, Text, TextInput, TouchableOpacity, AsyncStorage, Alert, PermissionsAndroid } from "react-native";
 // import { ScrollView } from "react-native-gesture-handler";

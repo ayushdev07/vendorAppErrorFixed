@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import Icon from 'react-native-vector-icons/Ionicons';
 import TutorialsScreen from '../screens/vendor/TutorialsScreen';
 import WalletScreen from '../screens/vendor/WalletScreen';
@@ -9,69 +7,78 @@ import NotificationsScreen from '../screens/vendor/NotificationsScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import SettingsHomeScreen from '../screens/settings/SettingsHomeScreen';
 import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScreenSuperVisor';
-import { AsyncStorage, View } from 'react-native';
-import HomeMenuBar from '../screens/settings/HomeMenuBar';
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from './i18n'
 
 const Tab = createBottomTabNavigator();
 
-const HomeBottomTab = (props) => (
+const HomeBottomTab = ({ navigation }) => {
 
-  <Tab.Navigator
-    initialRouteName="Home"
-    activeColor="#fff"
-  >
-    <Tab.Screen
-      name="Tutorials"
-      component={TutorialsScreen}
-      options={{
-        tabBarLabel: 'Home',
-        tabBarColor: '#009387',
-        tabBarIcon: ({ color }) => (
-          <MaterialIcons name="home" color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Notifications"
-      component={NotificationsScreen}
-      options={{
-        tabBarLabel: 'Notifications',
-        tabBarColor: '#694fad',
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-notifications" color={color} size={26} />
-        ),
-      }}
-    />
+  const { t } = useTranslation();
 
-    <Tab.Screen
-      name="Wallet"
-      component={WalletScreen}
-      options={{
-        tabBarLabel: 'Wallet',
-        tabBarColor: '#1f65ff',
-        tabBarIcon: ({ color }) => (
-          <MaterialIcons name="account-balance-wallet" color={color} size={26} />
-        ),
-      }}
-    />
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
+    });
+  }, [navigation]);
 
+  return (
+    <Tab.Navigator initialRouteName="Home" activeColor="#fff">
 
-    <Tab.Screen
-      name="Profile"
-      component={SettingsHomeScreen}
-      options={{
-        tabBarLabel: 'Profile',
-        tabBarColor: '#d02860',
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-person" color={color} size={26} />
-        ),
-      }}
-    />
-    <HomeMenuBar/>
-  </Tab.Navigator>
+      <Tab.Screen
+        name="Tutorials"
+        component={TutorialsScreen}
+        options={{
+          tabBarLabel: t('Home'),
+          tabBarColor: '#009387',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="home" color={color} size={26} />
+          ),
+        }}
+      />
 
+      <Tab.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        options={{
+          tabBarLabel: t('Notifications'),
+          tabBarColor: '#694fad',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-notifications" color={color} size={26} />
+          ),
+        }}
+      />
 
-);
+      <Tab.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{
+          tabBarLabel: t('Wallet'),
+          tabBarColor: '#1f65ff',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="account-balance-wallet" color={color} size={26} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Profile"
+        component={SettingsHomeScreen}
+        options={{
+          tabBarLabel: t('Profile'),
+          tabBarColor: '#d02860',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+
+    </Tab.Navigator>
+  )
+}
 
 export default HomeBottomTab;
-

@@ -1,64 +1,53 @@
 import React, { Component } from 'react';
-import {
-  View, Text, StyleSheet, FlatList, Image, ScrollView
-} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import data from '../../components/Data';
-import YoutubePlayer from "react-native-youtube-iframe";
-
+import AsyncStorage from '@react-native-community/async-storage'
+import { withTranslation } from 'react-i18next'
+import i18n from '../../components/i18n'
 
 class VideoSlider extends Component {
-  renderItem(item) {
-    return(
-      <Image 
-        style={{
-          width: 120,
-          height: 180,
-          marginLeft: 10
-        }}
-        key={item.key}
-        source={{uri: item.image}}
-      />
-    );
+
+  renderItem(item) { return <Image style={{ width: 120, height: 180, marginLeft: 10 }} key={item.key} source={{ uri: item.image }} /> }
+
+  componentDidMount() {
+    AsyncStorage.getItem('LANG').then((value) => {
+      if (value == "en") { i18n.changeLanguage('en') }
+      else if (value == "hi") { i18n.changeLanguage('hi') }
+    });
   }
-  render() { 
-    return(
+
+  render() {
+    const { t } = this.props;
+    return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.text}>Uniworks Movies</Text>
+          <Text style={styles.text}>{t('Uniworks Movies')}</Text>
           <FlatList
-           style = {{marginTop:20}}
+            style={{ marginTop: 20 }}
             horizontal
-            ItemSeparatorComponent={() => <View style={{width: 5}}/>}
+            ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
             renderItem={({ item }) => this.renderItem(item)}
             data={data}
           />
         </View>
-        <View style = {{marginTop:30}}>
-          <Text style={styles.text}>Electrical</Text>
+        <View style={{ marginTop: 30 }}>
+          <Text style={styles.text}>{t('Electrical')}</Text>
           <FlatList
-          style = {{marginTop:20}}
+            style={{ marginTop: 20 }}
             horizontal
-            ItemSeparatorComponent={() => <View style={{width: 5}}/>}
+            ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
             renderItem={({ item }) => this.renderItem(item)}
             data={data}
-            onPress = {()=>
-              <YoutubePlayer
-                height={200}
-                play={playing}
-                videoId={"iee2TATGMyI"}
-                onChangeState={onStateChange}
-              />}
           />
         </View>
-        <View style = {{marginTop:30}}>
-          <Text style={styles.text}>Carpenter</Text>
+        <View style={{ marginTop: 30 }}>
+          <Text style={styles.text}>{t('Carpenter')}</Text>
           <FlatList
             horizontal
-            ItemSeparatorComponent={() => <View style={{width: 5}}/>}
+            ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
             renderItem={({ item }) => this.renderItem(item)}
             data={data}
-            style = {{marginTop:20}}
+            style={{ marginTop: 20 }}
           />
         </View>
       </View>
@@ -78,4 +67,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default VideoSlider;
+export default withTranslation()(VideoSlider)

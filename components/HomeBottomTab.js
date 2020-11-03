@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import TutorialsScreen from '../screens/vendor/TutorialsScreen';
+import VideoSlider from '../screens/vendor/VideoSlider';
 import WalletScreen from '../screens/vendor/WalletScreen';
 import NotificationsScreen from '../screens/vendor/NotificationsScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -31,7 +31,7 @@ const HomeBottomTab = ({ navigation }) => {
 
       <Tab.Screen
         name="Tutorials"
-        component={TutorialsScreen}
+        component={VideoSlider}
         options={{
           tabBarLabel: t('Home'),
           tabBarColor: '#009387',

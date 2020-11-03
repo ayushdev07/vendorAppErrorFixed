@@ -11,6 +11,7 @@ import AccountDetailsScreen from '../settings/AccountDetails';
 import SecurityScreen from '../settings/SecurityScreen';
 import LanguageScreen from '../settings/LanguageScreen';
 import VideoScreen from './VideoScreen';
+import VideoSlider from '../vendor/VideoSlider';
 import HomeBottomTab from '../../components/HomeBottomTab';
 import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
 import StartSiteScreen from '../supervisors/StartSiteScreen';
@@ -39,6 +40,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="SecuirtyScreen" component={SecurityScreen} />
     <HomeStack.Screen name="LanguageScreen" component={LanguageScreen} />
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
+    <HomeStack.Screen name="VideoSlider" component={VideoSlider} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
   </HomeStack.Navigator>
 );

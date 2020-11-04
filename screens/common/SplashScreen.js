@@ -81,7 +81,7 @@ function SplashScreen({ navigation }) {
         
       </ImageBackground></SplashScreen2><TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('UpcomingTaskContractorScreen')}
         >
           <View style={styles.containerButton} >
             <Text styles={styles.text} >Get Started</Text>

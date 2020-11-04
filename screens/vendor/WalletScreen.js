@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import WalletComponent from '../../components/WalletComponent'
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler'
@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 
-const WalletScreen = () => {
+const WalletScreen = ({navigation}) => {
 
     const { t } = useTranslation();
 

@@ -64,29 +64,23 @@
 // });
 
 // export default SplashScreen;
+
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text, ImageBackground } from "react-native";
 import SplashScreen2 from "./SplashScreen2";
 
 function SplashScreen({ navigation }) {
   return (
-    <View
-    style={styles.container}
-    >
-      <SplashScreen2 >
-      <ImageBackground
-        source={require("../../assets/images/green-plant-on-white-wooden-table-36447421.jpg")}
-        style={styles.image2}
-      >
-        
-      </ImageBackground></SplashScreen2><TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('UpcomingTaskContractorScreen')}
-        >
-          <View style={styles.containerButton} >
-            <Text styles={styles.text} >Get Started</Text>
-          </View>
-        </TouchableOpacity>
+    <View style={styles.container}>
+      <SplashScreen2>
+        <ImageBackground source={require("../../assets/images/green-plant-on-white-wooden-table-36447421.jpg")} style={styles.image2}>
+        </ImageBackground>
+      </SplashScreen2>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
+        <View style={styles.containerButton}>
+          <Text styles={styles.text}>Get Started</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -94,8 +88,8 @@ function SplashScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   image2: {
     height: '100%',

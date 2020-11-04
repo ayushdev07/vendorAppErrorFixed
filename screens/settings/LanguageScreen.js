@@ -13,12 +13,12 @@ const LanguageScreen = ({ navigation }) => {
 
     var touchProps1 = {
         onPress: () => {
-            AsyncStorage.setItem('LANG', "en"); setFocused1(true), setFocused2(false)
+            AsyncStorage.setItem('LANG', "en"); setFocused1(true); setFocused2(false);
         }, style: isFocused1 ? styles.selectedLang : styles.lang
     };
     var touchProps2 = {
         onPress: () => {
-            AsyncStorage.setItem('LANG', "hi"); setFocused2(true), setFocused1(false)
+            AsyncStorage.setItem('LANG', "hi"); setFocused2(true); setFocused1(false);
         }, style: isFocused2 ? styles.selectedLang : styles.lang
     };
     var textTouchProps1 = { style: isFocused1 ? styles.selectedLangText : styles.langText };

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
-import VideoSlider from '../screens/vendor/VideoSlider';
-import WalletScreen from '../screens/vendor/WalletScreen';
-import NotificationsScreen from '../screens/vendor/NotificationsScreen';
+import React, { useEffect } from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-vector-icons/Ionicons'
+import HomeDrawer from '../screens/common/HomeDrawer'
+import WalletScreen from '../screens/vendor/WalletScreen'
+import NotificationsScreen from '../screens/vendor/NotificationsScreen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import SettingsHomeScreen from '../screens/settings/SettingsHomeScreen';
-import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScreenSuperVisor';
+// import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScreenSuperVisor'
+// import SettingsHomeScreen from '../screens/settings/SettingsHomeScreen'
 import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from './i18n'
@@ -31,7 +31,7 @@ const HomeBottomTab = ({ navigation }) => {
 
       <Tab.Screen
         name="Tutorials"
-        component={VideoSlider}
+        component={HomeDrawer}
         options={{
           tabBarLabel: t('Home'),
           tabBarColor: '#009387',
@@ -65,7 +65,7 @@ const HomeBottomTab = ({ navigation }) => {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Profile"
         component={SettingsHomeScreen}
         options={{
@@ -75,7 +75,7 @@ const HomeBottomTab = ({ navigation }) => {
             <Icon name="ios-person" color={color} size={26} />
           ),
         }}
-      />
+      /> */}
 
     </Tab.Navigator>
   )

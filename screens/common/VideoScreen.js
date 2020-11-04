@@ -10,7 +10,7 @@ const VideoScreen = ({ videoId }) => {
 
   return (
     <View>
-      <YoutubePlayer  height={200} play={playing} videoId={videoId} onChangeState={onStateChange} />
+      <YoutubePlayer height={200} play={playing} videoId={videoId} onChangeState={onStateChange} />
     </View>
   );
 }

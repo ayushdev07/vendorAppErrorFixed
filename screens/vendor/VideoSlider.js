@@ -24,24 +24,26 @@ class VideoSlider extends Component {
 
   componentDidMount() {
     this._isMounted = true
-    AsyncStorage.getItem('LANG').then((value) => {
-      if (value == "en") { i18n.changeLanguage('en') }
-      else if (value == "hi") { i18n.changeLanguage('hi') }
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      AsyncStorage.getItem('LANG').then((value) => {
+        if (value == "en") { i18n.changeLanguage('en') }
+        else if (value == "hi") { i18n.changeLanguage('hi') }
+      });
     });
   }
 
-  componentWillUnmount() { this._isMounted = false }
+  componentWillUnmount() { this._isMounted = false; this._unsubscribe(); }
 
   render() {
     const { t } = this.props;
     return (
-      <ScrollView>
-        <Appbar.Header style={{ backgroundColor: '#99DD70' }}>
+      <ScrollView style={{ backgroundColor: "white" }}>
+        {/* <Appbar.Header style={{ backgroundColor: '#99DD70' }}>
           <Appbar.Content title="Indus" style={{ fontSize: 80, marginLeft: 0 }} />
-        </Appbar.Header>
-        <VideoScreen videoId={this.state.videoId} />
+        </Appbar.Header> */}
         <View style={styles.container}>
-          <View>
+          <VideoScreen videoId={this.state.videoId} />
+          <View style={{ marginTop: 30 }}>
             <Text style={styles.text}>{t('Uniworks Movies')}</Text>
             <FlatList
               style={{ marginTop: 20 }}
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
+    backgroundColor: "white"
   }
 });
 

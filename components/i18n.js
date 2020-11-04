@@ -57,6 +57,7 @@ i18n.use(initReactI18next).init({
                 'Search': 'Search',
                 // SettingsHomeScreen.js
                 'Settings': 'Settings',
+                "Tutorials": "Tutorials",
                 'Personal': 'Personal',
                 'Supervisors': 'Supervisors',
                 'Account Details': 'Account Details',
@@ -207,6 +208,7 @@ i18n.use(initReactI18next).init({
                 'Search': 'खोजें',
                 // SettingsHomeScreen.js
                 'Settings': 'समायोजन',
+                "Tutorials": "वीडियो",
                 'Personal': 'व्यक्तिगत',
                 'Supervisors': 'सुपरवाइज़र',
                 'Account Details': 'खाता विवरण',

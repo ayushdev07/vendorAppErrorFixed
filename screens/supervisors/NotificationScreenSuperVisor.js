@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, _FlatList, FlatList } from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'

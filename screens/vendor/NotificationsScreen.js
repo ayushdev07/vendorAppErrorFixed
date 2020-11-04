@@ -45,7 +45,7 @@ const NotificationsScreen = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         return (
-            <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
+            <View style={styles.mainContainer}>
                 <View style={styles.contentBox}>
                     <Text style={{ fontSize: 16 }}>{t('Supervisor Request')}</Text>
                     <View style={{ flex: 1, flexDirection: 'row' }} />
@@ -143,7 +143,7 @@ const NotificationsScreen = ({ navigation }) => {
                             {t('Approvals')}
                         </Text>
                         <FlatList
-                            style={{ marginTop: 20, marginStart: '9%' }}
+                            style={{ marginTop: 10, marginStart: '2%' }}
                             data={supervisors}
                             renderItem={renderItem}
                             ItemSeparatorComponent={FlatListItemSeparator}
@@ -193,7 +193,11 @@ const styles = StyleSheet.create({
         maxWidth: '88%'
     },
     mainContainer: {
-        flex: 1
+        flex: 1,
+        marginVertical: '1%',
+        backgroundColor: '#e3e4e6',
+        borderRadius: 15,
+        marginHorizontal:'5%'
     },
     contentBox: {
         flexDirection: 'row',

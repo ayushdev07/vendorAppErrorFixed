@@ -33,11 +33,11 @@ export default function HomeDrawer({ navigation }) {
 
     return (
         <>
-            <Header containerStyle={{ backgroundColor: 'white' }}>
+            <Header containerStyle={{ backgroundColor: 'rgb(150,200,90)' }}>
                 <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }} >
                     <Image source={require('../../components/HamburgerIcon.jpg')} style={{ width: 30, height: 30, tintColor: '#1F73BD' }} />
                 </TouchableOpacity>
-                <Text style={{ fontSize: 25 }}>Indus</Text>
+                <Text style={{ fontSize: 29,flex:1,justifyContent:'center',alignItems:'center', marginTop:8 }}>Indus</Text>
             </Header>
             <Drawer.Navigator initialRouteName="Tutorials">
                 <Drawer.Screen name={t("Tutorials")} component={VideoSlider}

@@ -146,7 +146,7 @@ return wait(2000).then(() => this.props.navigation.navigate('UpcomingTaskContrac
 render() {
 return (
 <View style={styles.container}>
-<Text style={{fontSize: 25}}>Hey, Welcome To Indus</Text>
+<Text style={{ fontSize: 29}}>Hey, Welcome To Indus</Text>
 </View>
 );
 }}
@@ -155,5 +155,6 @@ container: {
 flex: 1,
 justifyContent: 'center',
 alignItems: 'center',
+backgroundColor:'rgb(150,200,90)'
 },
 });

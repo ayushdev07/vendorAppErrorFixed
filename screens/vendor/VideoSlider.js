@@ -17,7 +17,7 @@ class VideoSlider extends Component {
   renderItem(item) {
     return (
       <TouchableOpacity onPress={() => { this.renderVideo(item.videoId) }}>
-        <Image style={{ width: 120, height: 180, marginLeft: 10 }} key={item.key} source={{ uri: item.image }} />
+        <Image style={{ width: 120, height: 150, marginLeft: 10 }} key={item.key} source={{ uri: item.image }} />
       </TouchableOpacity>
     )
   }
@@ -37,13 +37,13 @@ class VideoSlider extends Component {
   render() {
     const { t } = this.props;
     return (
-      <ScrollView style={{ backgroundColor: "white" }}>
+      <ScrollView style={{ backgroundColor: "black" }}>
         {/* <Appbar.Header style={{ backgroundColor: '#99DD70' }}>
           <Appbar.Content title="Indus" style={{ fontSize: 80, marginLeft: 0 }} />
         </Appbar.Header> */}
         <View style={styles.container}>
           <VideoScreen videoId={this.state.videoId} />
-          <View style={{ marginTop: 30 }}>
+          <View style={{ marginTop: 20 }}>
             <Text style={styles.text}>{t('Uniworks Movies')}</Text>
             <FlatList
               style={{ marginTop: 20 }}
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 20,
-    backgroundColor: "white"
+    marginTop: 40,
+    backgroundColor: "rgb(290,250,150)"
   }
 });
 

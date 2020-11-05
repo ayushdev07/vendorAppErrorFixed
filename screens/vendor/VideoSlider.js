@@ -10,7 +10,7 @@ import VideoScreen from '../common/VideoScreen'
 class VideoSlider extends Component {
   _isMounted = false
 
-  constructor() { super(); this.state = { videoId: "85z53bAebsI" } }
+  constructor() { super(); this.state = { videoId: "ml5wVLbxIiw" } }
 
   renderVideo(videoId) { this.setState({ videoId: videoId }) }
 

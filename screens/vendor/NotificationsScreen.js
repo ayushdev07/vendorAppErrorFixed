@@ -137,7 +137,7 @@ const NotificationsScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, marginTop:10 }}>
                     <View style={styles.mainContainer} >
                         <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 20, marginHorizontal: '7%', marginTop: 20 }}>
                             {t('Approvals')}
@@ -157,16 +157,54 @@ const NotificationsScreen = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={{ marginTop: 20, flex: 1 }}>
-                    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 18, marginStart: "7%" }}>{t('Upcoming Tasks')}</Text>
-                    <FlatList
+                <View style={styles.mainContainer} >
+                    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 20, marginHorizontal: '7%', marginTop: 20 }}>{t('Upcoming Tasks')}</Text>
+                    {/* <FlatList
                         data={upcomingTasks}
                         style={{ marginTop: 20, marginStart: '9%' }}
                         keyExtractor={item => item.bookingId}
                         renderItem={renderUpcomingTasks}
                         ItemSeparatorComponent={FlatListItemSeparator}
-                    />
+                    /> */}
+                    <FlatList
+                            style={{ marginTop: 10, marginStart: '2%' }}
+                            data={supervisors}
+                            renderItem={renderItem}
+                            ItemSeparatorComponent={FlatListItemSeparator}
+                        />
+                        <FlatList
+                            style={{ marginTop: 30, marginStart: '9%' }}
+                            data={siteRequests}
+                            renderItem={renderSiteRequest}
+                            ItemSeparatorComponent={FlatListItemSeparator}
+                        />
+                    </View>
                 </View>
             </View>
+            <View style={{ marginTop: 20, flex: 1 }}>
+                <View style={styles.mainContainer} >
+                    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 20, marginHorizontal: '7%', marginTop: 20 }}>{t('Completed task')}</Text>
+                    {/* <FlatList
+                        data={upcomingTasks}
+                        style={{ marginTop: 20, marginStart: '9%' }}
+                        keyExtractor={item => item.bookingId}
+                        renderItem={renderUpcomingTasks}
+                        ItemSeparatorComponent={FlatListItemSeparator}
+                    /> */}
+                    <FlatList
+                            style={{ marginTop: 10, marginStart: '2%' }}
+                            data={supervisors}
+                            renderItem={renderItem}
+                            ItemSeparatorComponent={FlatListItemSeparator}
+                        />
+                        <FlatList
+                            style={{ marginTop: 30, marginStart: '9%' }}
+                            data={siteRequests}
+                            renderItem={renderSiteRequest}
+                            ItemSeparatorComponent={FlatListItemSeparator}
+                        />
+                    </View>
+                </View>
         </ScrollView>
     )
 }

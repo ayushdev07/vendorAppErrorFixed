@@ -115,16 +115,16 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ alignItems: 'flex-start', marginLeft: '10%', top: 10 }}>
+        <View style={{ alignItems: 'flex-start', marginLeft: '15%', top: 14 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
             <Text style={{ color: '#5356C1' }}>{t('Forgot Password?')}</Text>
             {/* <Text style={{ color:'#5356C1'}} onPress={() => goBack()}>Sign Up</Text> */}
           </TouchableOpacity>
         </View>
-        <View style={{ alignItems: 'flex-end', marginRight: '10%', top: -10 }}>
+        <View style={{ alignItems: 'flex-end', marginRight: '14%', top: -4 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
-            <Text style={{ color: '#121212' }}>{t('Don\'t have an account?')}</Text>
-            <Text style={{ color: '#5356C1', textAlign: "right" }} onPress={() => goBack()}>{t('Sign Up')}</Text>
+            {/* <Text style={{ color: '#121212' }}>{t('Don\'t have an account?')}</Text> */}
+            <Text style={{ color: '#5356C1', textAlign: "right" }} onPress={() => goBack()}>{t('Create Account')}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>

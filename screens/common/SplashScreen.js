@@ -128,33 +128,34 @@
 
 // export default SplashScreen;
 
+import React, { Component } from 'react'
+import { Text, View, StyleSheet } from 'react-native'
 
-
-import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
 export default class SplashScreen extends Component {
-async componentDidMount() {
-const data = await this.navigateToHome();
-if (data !== null) {
-this.props.navigation.navigate('SignInScreen');
-}}
-navigateToHome = async () => {
+    async componentDidMount() {
+        const data = await this.navigateToHome()
+        if (data !== null) {
+            this.props.navigation.navigate('SignInScreen')
+        }
+    }
+    navigateToHome = async () => {
+        const wait = time => new Promise((resolve) => setTimeout(resolve, time))
+        return wait(2000).then(() => this.props.navigation.navigate('SignInScreen'))
+    };
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={{ fontSize: 29 }}>Hey, Welcome To Indus</Text>
+            </View>
+        );
+    }
+}
 
-const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-return wait(2000).then(() => this.props.navigation.navigate('SignInScreen'))
-};
-render() {
-return (
-<View style={styles.container}>
-<Text style={{ fontSize: 29}}>Hey, Welcome To Indus</Text>
-</View>
-);
-}}
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-justifyContent: 'center',
-alignItems: 'center',
-backgroundColor:'rgb(150,200,90)'
-},
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgb(150,200,90)'
+    },
 });

@@ -115,20 +115,20 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ alignItems: 'flex-start', marginLeft: '15%', top: 10 }}>
+        <View style={{ alignItems: 'flex-start', marginLeft: '10%', top: 10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
             <Text style={{ color: '#5356C1' }}>{t('Forgot Password?')}</Text>
             {/* <Text style={{ color:'#5356C1'}} onPress={() => goBack()}>Sign Up</Text> */}
           </TouchableOpacity>
         </View>
-        <View style={{ alignItems: 'flex-end', marginRight: '15%', top: -10 }}>
+        <View style={{ alignItems: 'flex-end', marginRight: '10%', top: -10 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Recover Account')}>
-            <Text style={{ color: '#121212', fontSize: 15 }}>{t('Don\'t have an account?')}</Text>
-            <Text style={{ color: '#5356C1' }} onPress={() => goBack()}>{t('Sign Up')}</Text>
+            <Text style={{ color: '#121212' }}>{t('Don\'t have an account?')}</Text>
+            <Text style={{ color: '#5356C1', textAlign: "right" }} onPress={() => goBack()}>{t('Sign Up')}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
-          <TouchableOpacity onPress={login}>
+          {/* <TouchableOpacity onPress={login}>
             <View>
               <View style={styles.icon1Stack}>
                 <FeatherIcon name="arrow-right" style={styles.icon1}></FeatherIcon>
@@ -137,6 +137,9 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
                 </View>
               </View>
             </View>
+          </TouchableOpacity> */}
+          <TouchableOpacity style={styles.SubmitButtonStyle} onPress={login}>
+            <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>{t('Proceed')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -212,13 +215,6 @@ const styles = StyleSheet.create({
   eyeIcon: {
     marginTop: 20,
   },
-  icon1: {
-    top: 8,
-    left: 9,
-    position: "absolute",
-    color: "rgba(128,128,128,1)",
-    fontSize: 40
-  },
   rect4: {
     top: 0,
     width: 60,
@@ -231,16 +227,37 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     left: 0
   },
-  icon2: {
-    color: "rgba(128,128,128,1)",
-    fontSize: 40,
-    height: 41,
-    width: 40,
-    marginTop: 8,
-    marginLeft: 9
+  SubmitButtonStyle: {
+    marginTop: '15%',
+    marginBottom: '15%',
+    marginLeft: '10%',
+    height: 60,
+    marginRight: '10%',
+    backgroundColor: '#99DD70',
+    borderRadius: 60,
+    borderWidth: 1,
+    borderColor: '#fff',
+    alignItems: 'center',
+    marginBottom: '10%',
+    width: '75%'
   },
-  icon1Stack: {
-    width: 60,
-    height: 60
-  }
+  // icon1Stack: {
+  //   width: 60,
+  //   height: 60
+  // },
+  // icon1: {
+  //   top: 8,
+  //   left: 9,
+  //   position: "absolute",
+  //   color: "rgba(128,128,128,1)",
+  //   fontSize: 40
+  // },
+  // icon2: {
+  //   color: "rgba(128,128,128,1)",
+  //   fontSize: 40,
+  //   height: 41,
+  //   width: 40,
+  //   marginTop: 8,
+  //   marginLeft: 9
+  // },
 });

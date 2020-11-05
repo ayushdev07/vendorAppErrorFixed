@@ -707,8 +707,8 @@ class SignInScreen extends Component {
             }
           </View>
           <View style={styles.bottomContainer}>
-            <TouchableOpacity onPress={this.confirmSignup} >
-              <View >
+            {/* <TouchableOpacity onPress={this.confirmSignup} >
+              <View>
                 <View style={styles.icon1Stack}>
                   <FeatherIcon name="arrow-right" style={styles.icon1}></FeatherIcon>
                   <View style={styles.rect4}>
@@ -716,6 +716,9 @@ class SignInScreen extends Component {
                   </View>
                 </View>
               </View>
+            </TouchableOpacity> */}
+            <TouchableOpacity style={styles.SubmitButtonStyle} onPress={this.confirmSignup}>
+              <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>{t('Proceed')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -758,8 +761,10 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontSize: 17,
     opacity: 0.8,
-    marginLeft: 170,
-    marginTop: 15
+    marginLeft: 150,
+    marginRight: 10,
+    marginTop: 15,
+    textAlign: "right",
   },
   clickLogin: {
     color: '#5356C1',
@@ -767,7 +772,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     opacity: 0.8,
     marginLeft: 250,
-    marginTop: 10
+    marginTop: 10,
+    marginRight: 10,
   },
   signInRow: {
     height: 40,
@@ -781,7 +787,6 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
-    // borderColor: "rgba(112,112,112,1)",
     borderStyle: "solid",
     borderRadius: 100,
     flexDirection: "row",
@@ -792,7 +797,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   bottomContainer: {
-    top: '10%',
+    top: '0%',
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
@@ -858,10 +863,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 9
   },
-  icon1Stack: {
-    width: 60,
-    height: 60
-  },
+  // icon1Stack: {
+  //   width: 60,
+  //   height: 60
+  // },
   buttons: {
     flexDirection: "row",
     backgroundColor: "#EBEBEB",
@@ -880,5 +885,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000000",
     shadowOffset: { width: 2, height: 10 },
+  },
+  SubmitButtonStyle: {
+    marginTop: '15%',
+    marginBottom: '15%',
+    marginLeft: '10%',
+    height: 60,
+    marginRight: '10%',
+    backgroundColor: '#99DD70',
+    borderRadius: 60,
+    borderWidth: 1,
+    borderColor: '#fff',
+    alignItems: 'center',
+    marginBottom: '10%',
+    width: '75%'
   },
 });

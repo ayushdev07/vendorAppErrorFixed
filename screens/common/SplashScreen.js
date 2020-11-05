@@ -140,14 +140,14 @@ this.props.navigation.navigate('SignInScreen');
 navigateToHome = async () => {
 
 const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-return wait(5000).then(() => this.props.navigation.navigate('SignInScreen'))
+return wait(6500).then(() => this.props.navigation.navigate('SignInScreen'))
 };
 // const onStateChange = useCallback((state) => { if (state === "ended") { setPlaying(false) } }, []);
 render() {
 return (
 <View style={styles.container}>
 {/* <Text style={{ fontSize: 29}}>Hey, Welcome To Indus</Text> */}
-<Image source = {require('../../assets/Splash.jpg')} style={styles.image}/>
+<Image source = {require('../../assets/Splash1.gif')} style={styles.image}/>
 </View>
 );
 }}

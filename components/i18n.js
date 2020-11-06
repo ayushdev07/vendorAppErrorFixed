@@ -9,6 +9,9 @@ i18n.use(initReactI18next).init({
         en: {
             translation: {
                 // UpcomingTaskSupervisorScreen.js
+                'Preparing the fitting': 'Preparing the fitting',
+                'Assembling': 'Assembling',
+                'Finishing': 'Finishing',
                 'Fetching Data': 'Fetching Data',
                 'Wooden Partition': 'Wooden Partition',
                 'Area 1': 'Area 1',
@@ -160,6 +163,9 @@ i18n.use(initReactI18next).init({
         hi: {
             translation: {
                 // UpcomingTaskSupervisorScreen.js
+                'Preparing the fitting': 'फिटिंग तैयार करना',
+                'Assembling': 'समधान',
+                'Finishing': 'तकमील करना',
                 'Fetching Data': 'डेटा लाया जा रहा है',
                 'Wooden Partition': 'लकड़ी का division',
                 'Area': 'क्षेत्र',

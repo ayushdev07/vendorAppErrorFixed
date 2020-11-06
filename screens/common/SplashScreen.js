@@ -128,39 +128,38 @@
 
 // export default SplashScreen;
 
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
-import YoutubePlayer from "react-native-youtube-iframe"
-export default class SplashScreen extends Component {
-async componentDidMount() {
-const data = await this.navigateToHome();
-if (data !== null) {
-this.props.navigation.navigate('SignInScreen');
-}}
-navigateToHome = async () => {
+import React, { Component } from 'react'
+import { View, StyleSheet, Image } from 'react-native'
 
-const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-return wait(6500).then(() => this.props.navigation.navigate('SignInScreen'))
-};
-// const onStateChange = useCallback((state) => { if (state === "ended") { setPlaying(false) } }, []);
-render() {
-return (
-<View style={styles.container}>
-{/* <Text style={{ fontSize: 29}}>Hey, Welcome To Indus</Text> */}
-<Image source = {require('../../assets/Splash1.gif')} style={styles.image}/>
-</View>
-);
-}}
+export default class SplashScreen extends Component {
+    async componentDidMount() {
+        const data = await this.navigateToHome()
+        if (data !== null) { this.props.navigation.navigate('UpcomingTaskSupervisorScreen') }
+    }
+    navigateToHome = async () => {
+        const wait = time => new Promise((resolve) => setTimeout(resolve, time))
+        return wait(6500).then(() => this.props.navigation.navigate('UpcomingTaskSupervisorScreen'))
+    };
+    // const onStateChange = useCallback((state) => { if (state === "ended") { setPlaying(false) } }, []);
+    render() {
+        return (
+            <View style={styles.container}>
+                {/* <Text style={{ fontSize: 29}}>Hey, Welcome To Indus</Text> */}
+                <Image source={require('../../assets/Splash1.gif')} style={styles.image} />
+            </View>
+        );
+    }
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column"
-      },
-      image: {
+    },
+    image: {
         flex: 1,
         resizeMode: "cover",
-        width:'100%',
-        height:200,
+        width: '100%',
+        height: 200,
         justifyContent: "center"
-      },
+    },
 });

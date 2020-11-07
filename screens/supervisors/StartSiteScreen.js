@@ -109,7 +109,8 @@ const StartSiteScreen = ({ navigation, route }) => {
                 longitude: parseFloat(project.long),
               }}
                 pinColor={"white"}
-                title={project.Category.categoryName}
+                // title={project.Category.categoryName}
+                title='Site location'
                 description={project.SubCategory.subcategoryName} />
             </MapView>
           </View>
@@ -184,9 +185,12 @@ const StartSiteScreen = ({ navigation, route }) => {
             <View style={{ alignItems: 'center', marginTop: '12%' }}  >
               <Text style={{ fontSize: 36 }}>₹ {project.budget}</Text>
             </View>
-            <View style={{ flexDirection: 'row', marginTop: 50, marginHorizontal: '10%', justifyContent: 'center' }}>
-              <TouchableOpacity onPress={() => navigation.navigate('UpcomingTaskSupervisorScreen')} >
-                <Text style={{ fontSize: 24, color: '#93D152', fontWeight: 'bold' }}>{t('Start Site')}</Text>
+            <View style={{ flexDirection: 'row', marginTop: 50, marginHorizontal: '10%', justifyContent: 'space-between' }}>
+              <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
+                <Text style={{ fontSize: 24, color: 'green', fontWeight: 'bold' }}>{t('Accept')}</Text>
+              </TouchableOpacity >
+              <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
+                <Text style={{ fontSize: 24, color: 'red', fontWeight: 'bold' }}>{t('Reject')}</Text>
               </TouchableOpacity >
             </View>
           </View>

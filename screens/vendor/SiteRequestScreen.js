@@ -109,6 +109,7 @@ const SiteRequestScreen = ({ navigation, route }) => {
                 }}
                   pinColor={"white"}
                   title={project.Category.categoryName}
+                  // title= 'Site location'
                   description={project.SubCategory.subcategoryName} />
               </MapView>
             </View>

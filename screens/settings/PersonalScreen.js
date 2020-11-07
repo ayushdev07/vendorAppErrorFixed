@@ -7,6 +7,7 @@ import { Picker } from '@react-native-picker/picker'
 import AsyncStorage from '@react-native-community/async-storage'
 import { withTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
+import ProfilePicture from 'react-native-profile-picture'
 
 class PersonalScreen extends React.Component {
 
@@ -193,8 +194,18 @@ class PersonalScreen extends React.Component {
       <ScrollView>
         <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
           <TouchableOpacity style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 50, marginStart: '10%' }}>
-            <Feather name='user' size={32} />
-            <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>{t('Personal')}</Text>
+            {/* <Feather name='user' size={32} /> */}
+            <ProfilePicture
+              isPicture={true}
+              requirePicture={require('../../assets/Splash.jpg')}
+              shape='circle'
+            />
+            <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginEnd: 80 }}>{t('Personal')}</Text>
+            {/* <ProfilePicture
+              isPicture={true}
+              requirePicture={require('../../assets/Splash.jpg')}
+              shape='circle'
+            /> */}
           </TouchableOpacity>
           <View style={styles.containerRecatnglePhone}>
             <View style={[styles.rect3, { borderColor: this.state.errors.includes('phoneNumber') ? 'red' : 'rgba(112,112,112,1)' }]}>

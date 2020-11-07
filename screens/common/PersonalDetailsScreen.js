@@ -338,7 +338,7 @@ function PersonalDetailsScreen({ navigation }) {
       }).then((response) => {
         const statusCode = response.status
         console.log(statusCode)
-        navigation.navigate("UpcomingTaskContractorScreen");
+        navigation.navigate("StartSiteScreen");
         return response.json();
       }).then(json => console.log(json))
         .catch(e => console.log(e.toString()))

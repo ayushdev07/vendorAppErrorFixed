@@ -3,8 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon from 'react-native-vector-icons/Ionicons'
 import HomeDrawer from '../screens/common/HomeDrawer'
 import WalletScreen from '../screens/vendor/WalletScreen'
-import NotificationsScreen from '../screens/vendor/NotificationsScreen'
+import Notifications from '../screens/vendor/Notifications'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Feather from 'react-native-vector-icons/Feather'
 // import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScreenSuperVisor'
 // import SettingsHomeScreen from '../screens/settings/SettingsHomeScreen'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -27,29 +28,25 @@ const HomeBottomTab = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <Tab.Navigator initialRouteName="Home" activeColor="#fff">
+    <Tab.Navigator initialRouteName="Notifications" activeColor="#fff">
+
+      <Tab.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{
+          tabBarLabel: t('Notifications'),
+          tabBarColor: '#694fad',
+          tabBarIcon: ({ color }) => (<Icon name="ios-notifications" color={color} size={26} />)
+        }}
+      />
 
       <Tab.Screen
         name="Tutorials"
         component={HomeDrawer}
         options={{
-          tabBarLabel: t('Home'),
+          tabBarLabel: t('Tutorials'),
           tabBarColor: '#009387',
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="home" color={color} size={26} />
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="Notifications"
-        component={NotificationsScreen}
-        options={{
-          tabBarLabel: t('Notifications'),
-          tabBarColor: '#694fad',
-          tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
-          ),
+          tabBarIcon: ({ color }) => (<Feather name='video' color={color} size={26} />)
         }}
       />
 
@@ -59,9 +56,7 @@ const HomeBottomTab = ({ navigation }) => {
         options={{
           tabBarLabel: t('Wallet'),
           tabBarColor: '#1f65ff',
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="account-balance-wallet" color={color} size={26} />
-          ),
+          tabBarIcon: ({ color }) => (<MaterialIcons name="account-balance-wallet" color={color} size={26} />)
         }}
       />
 

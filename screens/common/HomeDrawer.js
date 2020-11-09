@@ -38,10 +38,13 @@ export default function HomeDrawer({ navigation }) {
                 <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }} >
                     <Image source={require('../../components/HamburgerIcon.jpg')} style={{ width: 30, height: 30, tintColor: 'rgb(100,100,150)' }} />
                 </TouchableOpacity>
-                <Text style={{ fontSize: 29, flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 8,color:'black' }}>Indus</Text>
+                <Text style={{ fontSize: 29, flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 8, color: 'black' }}>Indus</Text>
             </Header>
             <Drawer.Navigator initialRouteName="Tutorials" drawerStyle={{ backgroundColor: 'rgba(128, 128, 128, 0.85)', color: "white" }}
-                drawerContentOptions={{ activeTintColor: '#ccc', inactiveTintColor: '#ccc', activeBackgroundColor: 'black',itemStyle: { marginVertical: 2 }, labelStyle:{fontSize:22} }}>
+                drawerContentOptions={{
+                    activeTintColor: '#ccc', inactiveTintColor: '#ccc', activeBackgroundColor: 'black',
+                    itemStyle: { marginVertical: 2 }, labelStyle: { fontSize: 22 }
+                }}>
                 <Drawer.Screen name={t("Tutorials")} component={VideoSlider}
                     options={{ drawerIcon: ({ focused }) => <Feather name='video' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
                 <Drawer.Screen name={t("Personal")} component={PersonalScreen} color={'fff'}

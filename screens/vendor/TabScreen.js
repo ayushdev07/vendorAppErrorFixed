@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import { Container, Header, Content,Left, Body, Right, Title, Tab, Tabs } from 'native-base';
-import Tab1 from './tabs/tab1';
-import Tab2 from './tabs/tab2';
-import Tab3 from './tabs/tab3';
+import { Container, Tab, Tabs } from 'native-base';
+import UpcomingTab from '../vendor/tabs/UpcomingTab';
+import OngoingTab from '../vendor/tabs/OngoingTab';
+import CompletedTab from '../vendor/tabs/CompletedTab';
+
 export default class TabsExample extends Component {
   render() {
     return (
       <Container>
-        <Tabs tabBarUnderlineStyle={{backgroundColor:'white'}}>
-          <Tab tabStyle={{backgroundColor:'#009387'}} activeTabStyle={{backgroundColor:'#009387'}} textStyle={{color:'white'}} activeTextStyle={{color:'white'}} heading="Upcoming">
-            <Tab1 />
+        <Tabs tabBarUnderlineStyle={{ backgroundColor: 'white' }}>
+          <Tab tabStyle={{ backgroundColor: '#009387' }}
+            activeTabStyle={{ backgroundColor: '#009387' }} textStyle={{ color: 'white' }} activeTextStyle={{ color: 'white' }} heading="Upcoming">
+            <UpcomingTab />
           </Tab>
-          <Tab tabStyle={{backgroundColor:'#009387'}} activeTabStyle={{backgroundColor:'#009387'}} textStyle={{color:'white'}} activeTextStyle={{color:'white'}} heading="Ongoing">
-            <Tab2 />
+          <Tab tabStyle={{ backgroundColor: '#009387' }}
+            activeTabStyle={{ backgroundColor: '#009387' }} textStyle={{ color: 'white' }} activeTextStyle={{ color: 'white' }} heading="Ongoing">
+            <OngoingTab />
           </Tab>
-          <Tab tabStyle={{backgroundColor:'#009387'}} activeTabStyle={{backgroundColor:'#009387'}} textStyle={{color:'white'}} activeTextStyle={{color:'white'}} heading="Completed">
-            <Tab3 />
+          <Tab tabStyle={{ backgroundColor: '#009387' }}
+            activeTabStyle={{ backgroundColor: '#009387' }} textStyle={{ color: 'white' }} activeTextStyle={{ color: 'white' }} heading="Completed">
+            <CompletedTab />
           </Tab>
         </Tabs>
       </Container>

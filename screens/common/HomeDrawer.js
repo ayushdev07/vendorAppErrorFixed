@@ -34,7 +34,7 @@ export default function HomeDrawer({ navigation }) {
 
     return (
         <>
-            <Header containerStyle={{ backgroundColor: 'rgba(250,255,255,0.3)' }}>
+            <Header containerStyle={{ backgroundColor: 'rgba(250,255,250,0.1)' }}>
                 <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }} >
                     <Image source={require('../../components/HamburgerIcon.jpg')} style={{ width: 30, height: 30, tintColor: 'rgb(100,100,150)' }} />
                 </TouchableOpacity>

@@ -35,7 +35,7 @@ const SecurityScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '10%' }}>
+            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 50, marginStart: '14%' }}>
                 <Feather name='lock' size={32} />
                 <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, marginStart: 10 }}>{t('Security')}</Text>
             </TouchableOpacity>
@@ -47,7 +47,7 @@ const SecurityScreen = ({ navigation }) => {
                         onChangeText={(val) => handlePasswordChange(val)}
                         placeholder={t('Password')}
                     />
-                    <View style={{ alignItems: 'flex-end', alignSelf: 'center', marginRight: 10 }} >
+                    <View style={{ alignItems: 'flex-end', alignSelf: 'center', marginRight: '10%' }} >
                         <TouchableOpacity onPress={() => navigation.navigate('Recover Account')} >
                             <Text style={{ color: '#5356C1' }}>{t('Confirm')}</Text>
                         </TouchableOpacity>

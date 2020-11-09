@@ -31,9 +31,9 @@ const CompletedTab = () => {
   return (
     <ScrollView>
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
-        <CompletedCard bookingId='UWHYD00001043' Name='Guddu' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
-        <CompletedCard bookingId='UWHYD00001043' Name='Guddu' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
-        <CompletedCard bookingId='UWHYD00001043' Name='Guddu' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        <CompletedCard bookingId='UWHYD00001043' Name='Arun' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        <CompletedCard bookingId='UWHYD00001043' Name='Ayush' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        <CompletedCard bookingId='UWHYD00001043' Name='Cm' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
       </View>
     </ScrollView>
   )

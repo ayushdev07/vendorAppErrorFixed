@@ -65,28 +65,28 @@ const OngoingTab = () => {
         {
           showPaused ?
             <>
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Arun'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Ayush'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='CM'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
               <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Guddu'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Aman'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
             </>
             :
             <>
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Ankit'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Piyush'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Aditya'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Ankush'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Guddu'
+              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Abhishek'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
             </>
         }

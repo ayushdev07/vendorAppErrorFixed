@@ -9,6 +9,7 @@ import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScr
 import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from './i18n'
+import TabScreen from '../screens/vendor/TabScreen'
 
 const Tab = createBottomTabNavigator();
 
@@ -29,13 +30,24 @@ const SupervisorBottomTabScreen = ({ navigation }) => {
     <Tab.Navigator initialRouteName="Tutorials" activeColor="#fff">
 
       <Tab.Screen
+        name="Tab"
+        component={TabScreen}
+        options={{
+          tabBarLabel: t('Home'),
+          tabBarColor: '#009387',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Tutorials"
         component={HomeDrawer}
         options={{
           tabBarLabel: t('Home'),
           tabBarColor: '#009387',
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="home" color={color} size={26} />
+            <MaterialIcons name="tutorials" color={color} size={26} />
           ),
         }}
       />

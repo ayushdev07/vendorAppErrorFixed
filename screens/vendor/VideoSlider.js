@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { withTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 import VideoScreen from '../common/VideoScreen'
+import TabScreen from './TabScreen';
 
 class VideoSlider extends Component {
   _isMounted = false
@@ -43,6 +44,7 @@ class VideoSlider extends Component {
         </Appbar.Header> */}
         <View style={styles.container}>
           <VideoScreen videoId={this.state.videoId} />
+          <TabScreen/>
           <View style={{ marginTop: 20 }}>
             <Text style={styles.text}>{t('Uniworks Movies')}</Text>
             <FlatList

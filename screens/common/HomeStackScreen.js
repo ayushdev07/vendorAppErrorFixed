@@ -18,6 +18,7 @@ import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
 import StartSiteScreen from '../supervisors/StartSiteScreen';
 import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
 import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen';
+import TabScreen from '../vendor/TabScreen';
 
 const HomeStack = createStackNavigator();
 
@@ -44,6 +45,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
     <HomeStack.Screen name="VideoSlider" component={VideoSlider} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
+    <HomeStack.Screen name="TabScreen" component={TabScreen} />
   </HomeStack.Navigator>
 );
 

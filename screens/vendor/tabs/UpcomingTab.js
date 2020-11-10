@@ -21,10 +21,10 @@ const UpcomingCard = ({ bookingId, Name, Sqft, Address, Amount }) => {
       </View>
       <View style={styles.contentBox}>
         {/* <Text style={{ fontSize: 18, color: '#353535', maxWidth: '50%' }}>{Address.substring(0, 14) + "..."}</Text> */}
-        <Button color='black' onPress={()=>alert("Approved")} style={{ fontSize: 18, maxWidth: '50%',marginStart:'-4%' }}>Approve</Button>
+        <Button color='black' onPress={() => alert("Approved")} style={{ fontSize: 18, maxWidth: '50%', marginStart: '-4%' }}>Approve</Button>
         <View style={styles.filler} />
         {/* <Text style={{ fontSize: 18, marginEnd: '4%', color: '#353535' }}>{"₹ " + Amount}</Text> */}
-        <Button color='black' onPress={()=>alert("Rejected")} style={{ fontSize: 18, maxWidth: '50%',marginLeft:'15%' }}>Reject</Button>
+        <Button color='black' onPress={() => alert("Rejected")} style={{ fontSize: 18, maxWidth: '50%', marginLeft: '15%' }}>Reject</Button>
       </View>
     </View>
   )

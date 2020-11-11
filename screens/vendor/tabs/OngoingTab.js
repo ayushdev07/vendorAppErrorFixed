@@ -23,7 +23,7 @@ const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days }) 
         <Text style={{ fontSize: 18, marginEnd: '5%', color: '#353535', fontWeight: "bold" }}>{Sqft + " Sqft"}</Text>
       </View>
       <View style={[styles.contentBox, { flexDirection: "row" }]}>
-        <Text style={{ fontSize: 18, color: '#353535', maxWidth: '50%' }}>{Address.substring(0, 14) + "..."}</Text>
+        <Text style={{ fontSize: 18, color: '#353535', maxWidth: '50%' }}><Feather name='map-pin' size={24} style={{ color: '#000' }} /></Text>
         <View style={styles.filler} />
         <Text style={{ fontSize: 18, marginEnd: '5%', marginBottom: '2%', color: '#353535', fontWeight: "bold" }}>{"₹ " + Amount}</Text>
       </View>
@@ -100,12 +100,20 @@ export default OngoingTab;
 const styles = StyleSheet.create({
   mainContainer: {
     marginVertical: '4%',
-    backgroundColor: '#e3e4e6',
+    backgroundColor: '#edda95',
     borderRadius: 15,
     marginHorizontal: '5%',
     flex: 1,
     maxHeight: '70%',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    shadowColor: '#0d0c0a',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 16.00,
+    elevation: 15,
   },
   contentBox: {
     marginStart: '5%',
@@ -115,25 +123,5 @@ const styles = StyleSheet.create({
   filler: {
     flex: 1,
     flexDirection: 'row'
-  },
-  rect3: {
-    width: "90%",
-    height: 60,
-    backgroundColor: "rgba(255,255,255,1)",
-    borderWidth: 1,
-    borderColor: "rgba(112,112,112,1)",
-    borderStyle: "solid",
-    borderRadius: 100,
-    flexDirection: "row",
-    paddingStart: 20,
-    alignSelf: 'center'
-  },
-  textInputPhone: {
-    flex: 1,
-    marginTop: Platform.OS === 'android' ? 0 : -12,
-    paddingLeft: 10,
-    color: '#05375a',
-    flexDirection: 'row',
-    maxWidth: '88%'
   },
 });

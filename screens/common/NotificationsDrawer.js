@@ -34,7 +34,7 @@ export default function NotificationsDrawer({ navigation }) {
     const [inputValue] = useState('9012913225')
 
     const triggerCall = () => {
-        if (inputValue.length != 10) { alert('Please enter correct contact number'); return; }
+        if (inputValue.length !== 10 || inputValue.length === "") { alert('Please enter correct contact number'); return; }
         const args = { number: inputValue, prompt: true }
         call(args).catch(console.error)
     }

@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 import call from 'react-native-phone-call'
 
-const Drawer2 = createDrawerNavigator();
+const Drawer3 = createDrawerNavigator();
 
 export default function TutorialsDrawer({ navigation }) {
 
@@ -49,7 +49,7 @@ export default function TutorialsDrawer({ navigation }) {
                 </TouchableOpacity>
                 <Text style={{ fontSize: 29, flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 8, color: 'black' }}>Indus</Text>
             </Header>
-            <Drawer2.Navigator
+            {/* <Drawer2.Navigator
 
                 initialRouteName="Tutorials" drawerStyle={{ backgroundColor: 'rgba(128, 128, 128, 0.85)', color: "white" }}
                 drawerContentOptions={{
@@ -72,7 +72,33 @@ export default function TutorialsDrawer({ navigation }) {
                     options={{ drawerIcon: ({ focused }) => <Feather name='alert-circle' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
                 <Drawer2.Screen name={t("Call")} component={triggerCall}
                     options={{ drawerIcon: ({ focused }) => <Feather name='phone-call' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
-            </Drawer2.Navigator>
+            </Drawer2.Navigator> */}
+            <Drawer3.Navigator
+
+initialRouteName="Wallet" drawerStyle={{ backgroundColor: 'rgba(128, 128, 128, 0.85)', color: "white" }}
+drawerContentOptions={{
+    activeTintColor: '#ccc', inactiveTintColor: '#ccc', activeBackgroundColor: 'black',
+    itemStyle: { marginVertical: 2 }, labelStyle: { fontSize: 22 }
+}}>
+<Drawer3.Screen name={t("Tutorials")} component={VideoSlider}
+    options={{
+        drawerIcon: ({ focused }) => <MaterialIcons name="account-balance-wallet" size={25} color={focused ? '#ccc' : '#ccc'} />
+    }} />
+<Drawer3.Screen name={t("Personal")} component={PersonalScreen} color={'fff'}
+    options={{ drawerIcon: ({ focused }) => <Feather name='user' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+<Drawer3.Screen name={t("Supervisors")} component={SuperVisorsScreen}
+    options={{ drawerIcon: ({ focused }) => <Feather name='users' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+<Drawer3.Screen name={t("Account Details")} component={AccountDetailsScreen}
+    options={{ drawerIcon: ({ focused }) => <MaterialIcons name='credit-card' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+<Drawer3.Screen name={t("Security")} component={SecurityScreen}
+    options={{ drawerIcon: ({ focused }) => <Feather name='lock' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+<Drawer3.Screen name={t("Language")} component={LanguageScreen}
+    options={{ drawerIcon: ({ focused }) => <Feather name='message-circle' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+<Drawer3.Screen name={t("About")} component={AboutScreen}
+    options={{ drawerIcon: ({ focused }) => <Feather name='alert-circle' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+<Drawer3.Screen name={t("Call")} component={triggerCall}
+    options={{ drawerIcon: ({ focused }) => <Feather name='phone-call' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+</Drawer3.Navigator>
         </>
     )
 }

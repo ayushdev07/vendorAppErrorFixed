@@ -4,6 +4,8 @@ import { Header } from 'react-native-elements'
 import Feather from 'react-native-vector-icons/Feather'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerActions } from '@react-navigation/native'
 import Notifications from '../vendor/Notifications'
@@ -18,9 +20,10 @@ import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 import call from 'react-native-phone-call'
 
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-export default function NotificationsDrawer({ navigation }) {
+function Notifications_Drawer({ navigation }) {
 
     const { t } = useTranslation();
 
@@ -49,7 +52,8 @@ export default function NotificationsDrawer({ navigation }) {
                 <Text style={{ fontSize: 29, flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 8, color: 'black' }}>Indus</Text>
             </Header>
             <Drawer.Navigator
-                initialRouteName="Notifications" drawerStyle={{ backgroundColor: 'rgba(128, 128, 128, 0.85)', color: "white" }}
+                initialRouteName="Notifications"
+                drawerStyle={{ backgroundColor: 'rgba(128, 128, 128, 0.85)', color: "white" }}
                 drawerContentOptions={{
                     activeTintColor: '#ccc', inactiveTintColor: '#ccc', activeBackgroundColor: 'black',
                     itemStyle: { marginVertical: 2 }, labelStyle: { fontSize: 22 }
@@ -72,5 +76,19 @@ export default function NotificationsDrawer({ navigation }) {
                     options={{ drawerIcon: ({ focused }) => <Feather name='phone-call' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
             </Drawer.Navigator>
         </>
+    )
+}
+
+export default function NotificationsDrawer() {
+    return (
+        <NavigationContainer independent={true}>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="Notifications_Drawer"
+                    component={Notifications_Drawer}
+                    options={{ headerShown: false }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }

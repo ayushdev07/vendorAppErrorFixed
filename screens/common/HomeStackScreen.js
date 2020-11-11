@@ -13,7 +13,6 @@ import LanguageScreen from '../settings/LanguageScreen';
 import VideoScreen from './VideoScreen';
 import VideoSlider from '../vendor/VideoSlider';
 import HomeBottomTab from '../../components/HomeBottomTab';
-// import HomeDrawer from '../common/HomeDrawer';
 import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
 import StartSiteScreen from '../supervisors/StartSiteScreen';
 import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
@@ -28,7 +27,6 @@ const HomeStackScreen = () => (
   <HomeStack.Navigator headerMode='none'>
     <HomeStack.Screen name="Login" component={Login} />
     <HomeStack.Screen name="HomeScreen" component={HomeBottomTab} />
-    {/* <HomeStack.Screen name="HomeDrawer" component={HomeDrawer} /> */}
     <HomeStack.Screen name="SuperVisorBottom" component={SupervisorBottomTabScreen} />
     <HomeStack.Screen name="AfterAcceptScreen" component={AfterAcceptScreen} />
     <HomeStack.Screen name="SiteRequestScreen" component={SiteRequestScreen} />

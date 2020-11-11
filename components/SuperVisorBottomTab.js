@@ -3,13 +3,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import TutorialsDrawer from '../screens/common/TutorialsDrawer'
+import NotificationsDrawer from '../screens/common/NotificationsDrawer'
 // import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 // import NotificationSuperVisorScreen from '../screens/supervisors/NotificationScreenSuperVisor'
-import NotificationsDrawer from '../screens/common/NotificationsDrawer'
 import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from './i18n'
-// import TabScreen from '../screens/vendor/TabScreen'
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +27,7 @@ const SupervisorBottomTabScreen = ({ navigation }) => {
 
   return (
     <Tab.Navigator initialRouteName="Notifications" activeColor="#fff">
+
       <Tab.Screen
         name="Notifications"
         component={NotificationsDrawer}

@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import YoutubePlayer from "react-native-youtube-iframe"
+import React, { Component } from 'react'
+import { View, StyleSheet, Image } from 'react-native'
+
 export default class SplashScreen extends Component {
+
     async componentDidMount() {
         const data = await this.navigateToHome();
-        if (data !== null) {
-            this.props.navigation.navigate('HomeScreen');
-        }
+        if (data !== null) { this.props.navigation.navigate('SuperVisorBottom') }
     }
-    navigateToHome = async () => {
 
+    navigateToHome = async () => {
         const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-        return wait(3000).then(() => this.props.navigation.navigate('HomeScreen'))
+        return wait(3000).then(() => this.props.navigation.navigate('SuperVisorBottom'))
     };
+
     render() {
         return (
             <View style={styles.container}>
@@ -21,6 +21,7 @@ export default class SplashScreen extends Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -1,9 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import Feather from 'react-native-vector-icons/Feather'
+import AsyncStorage from '@react-native-community/async-storage'
+import { useTranslation } from 'react-i18next'
+import i18n from '../../../components/i18n'
 
 const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days }) => {
+  // const { t } = useTranslation();
+
+  //   useEffect(() => {
+  //       navigation.addListener('focus', () => {
+  //           AsyncStorage.getItem('LANG').then((value) => {
+  //               if (value == "en") { i18n.changeLanguage('en') }
+  //               else if (value == "hi") { i18n.changeLanguage('hi') }
+  //           });
+  //       });
+  //   }, [navigation]);
   var progressbar = (Days == "24/27") ? true : false
   return (
     <View style={styles.mainContainer}>
@@ -50,14 +63,18 @@ const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days }) 
 }
 
 const OngoingTab = () => {
+  const { t } = useTranslation();
+      useEffect((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
 
   const [showPaused, setShowPaused] = useState(true)
-
   return (
     <ScrollView>
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
         <View style={{ marginTop: '5%', marginHorizontal: '10%', flex: 1, flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 16, fontWeight: "bold", marginRight: "5%" }}>Paused</Text>
+          <Text style={{ fontSize: 16, fontWeight: "bold", marginRight: "5%" }}>{t('Paused')}</Text>
           <TouchableOpacity onPress={() => setShowPaused(!showPaused)}>
             {showPaused ? <Feather name='chevron-down' size={18} /> : <Feather name='chevron-up' size={18} />}
           </TouchableOpacity>
@@ -65,28 +82,20 @@ const OngoingTab = () => {
         {
           showPaused ?
             <>
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Arun'
+              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name='Ayush'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Ayush'
+              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name='CM'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='CM'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Guddu'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Aman'
+              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name='Aman'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
             </>
             :
             <>
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Ankit'
+              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name='Ankit'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status="🟡 Paused" bookingId='UWHYD00001043' Name='Piyush'
+              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name='Piyush'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Aditya'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Ankush'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status="🔴 Live" bookingId='UWHYD00001043' Name='Abhishek'
+              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name='Aditya'
                 Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
             </>
         }

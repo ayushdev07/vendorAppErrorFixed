@@ -158,6 +158,25 @@ i18n.use(initReactI18next).init({
                 'Video has finished playing!': 'Video has finished playing!',
                 'pause': 'pause',
                 'play': 'play',
+                // WalletComponent.js
+                'Work History':'Work History',
+                'Amount':'Amount',
+                'Name':'Name',
+                'Sqft':'Sqft',
+                'Rs':'Rs',
+                'Completed':'Completed',
+                'Site Name':'Site Name',
+                '45,982':'45,982',
+                '24,000':'24,000',
+                //Tabs
+                'Opportunity':'Opportunity',
+                'Ongoing':'Ongoing',
+                'Upcoming':'Upcoming',
+                //Ongoing tab
+                'Paused':'Paused',
+                'Live':'Live',
+                'Approve':'Approve',
+                'Reject':'Reject'
             },
         },
         hi: {
@@ -165,7 +184,7 @@ i18n.use(initReactI18next).init({
                 // UpcomingTaskSupervisorScreen.js
                 'Preparing the fitting': 'फिटिंग तैयार करना',
                 'Assembling': 'समधान',
-                'Finishing': 'तकमील करना',
+                'Finishing': 'परिष्करण',
                 'Fetching Data': 'डेटा लाया जा रहा है',
                 'Wooden Partition': 'लकड़ी का division',
                 'Area': 'क्षेत्र',
@@ -263,7 +282,7 @@ i18n.use(initReactI18next).init({
                 'Home': 'होम',
                 'Profile': 'प्रोफ़ाइल',
                 // HomeBottomTab.js
-                'Wallet': 'बटुआ',
+                'Wallet': 'Work इतिहास',
                 // NotificationsScreen.js
                 'Approve': 'स्वीकृत करें',
                 'Site Request': 'साइट अनुरोध',
@@ -296,11 +315,10 @@ i18n.use(initReactI18next).init({
                 'Landmark': 'भूमि-चिह्न',
                 'Nearby place': 'पास की जगह',
                 // RecoverAccountScreen.js
-                'Recover Account': 'खाते की वसूली',
+                'Recover Account': 'अपने खाते का विवरण वापस लाएं',
                 'Phone': 'फ़ोन',
                 // SignInScreen.js
                 'Name': 'नाम',
-                'Already have an account?': 'पहले से ही एक खाता है?',
                 'Click to login': 'लॉगिन करने के लिए क्लिक करें',
                 'I am': 'मैं हूँ',
                 'Contractor': 'ठेकेदार',
@@ -312,6 +330,24 @@ i18n.use(initReactI18next).init({
                 'Video has finished playing!': 'वीडियो चलना समाप्त हो गया है!',
                 'pause': 'रोकें',
                 'play': 'चलाए',
+                //WalletComponent.js
+                'Work History':'कार्य इतिहास',
+                'Amount':'धनराशि',
+                'Name':'नाम',
+                'Sqft':'Sqft',
+                'Rs':'Rs',
+                'Completed':'पूरा कर लिया है',
+                'Site Name':'Site का नाम',
+                '45,982':'45,982',
+                '24,000':'24,000',
+                //Tabs
+                'Opportunity':'अवसर',
+                'Ongoing':'चल रही',
+                'Upcoming':'आगामी',
+                'Paused':'रोकें',
+                'Live':'फिलहाल',
+                'Approve':'स्वीकार',
+                'Reject':'अस्वीकार'
             },
         },
     },

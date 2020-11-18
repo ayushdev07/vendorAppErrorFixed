@@ -78,9 +78,9 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
     console.log(val.role)
     console.log(val.accessToken)
     if (val.role == "CSVD") {
-      navigation.navigate('UpcomingTaskSupervisorScreen')
+      navigation.navigate('SuperVisorBottom')
     } else {
-      navigation.navigate('UpcomingTaskContractorScreen')
+      navigation.navigate('SuperVisorBottom')
     }
   }
 
@@ -128,16 +128,6 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.bottomContainer}>
-          {/* <TouchableOpacity onPress={login}>
-            <View>
-              <View style={styles.icon1Stack}>
-                <FeatherIcon name="arrow-right" style={styles.icon1}></FeatherIcon>
-                <View style={styles.rect4}>
-                  <FeatherIcon name="arrow-right" style={styles.icon2}></FeatherIcon>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity> */}
           <TouchableOpacity style={styles.SubmitButtonStyle} onPress={login}>
             <Text style={{ fontSize: 20, marginTop: 13, color: '#ffffff' }}>{t('Proceed')}</Text>
           </TouchableOpacity>

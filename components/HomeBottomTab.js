@@ -50,7 +50,7 @@ const HomeBottomTab = ({ navigation }) => {
         name="Wallet"
         component={WalletDrawer}
         options={{
-          tabBarLabel: t('Wallet'), tabBarColor: '#1f65ff',
+          tabBarLabel: t('Work History'), tabBarColor: '#1f65ff',
           tabBarIcon: ({ color }) => <MaterialIcons name="account-balance-wallet" color={color} size={26} />
         }}
       />

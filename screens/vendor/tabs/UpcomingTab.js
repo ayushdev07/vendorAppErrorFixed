@@ -1,13 +1,19 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import Feather from 'react-native-vector-icons/Feather'
-
+import { useTranslation } from 'react-i18next'
+import i18n from '../../../components/i18n'
 const UpcomingCard = ({ bookingId, Name, Sqft, Address, Amount }) => {
+  const { t } = useTranslation();
+      useEffect((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
   return (
     <View style={styles.mainContainer}>
       <View style={styles.contentBox}>
-        <Text style={{ fontSize: 16 }}>Booking ID :</Text>
+        <Text style={{ fontSize: 16 }}>{t('Booking ID')} :</Text>
         <Text style={{ marginStart: '2%', fontSize: 14 }}>{bookingId}</Text>
         <TouchableOpacity style={{ marginLeft: '36%' }}>
           <Feather name='copy' size={24} style={{ color: '#000' }} />

@@ -350,8 +350,8 @@ function PersonalDetailsScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.mainContainer}>
-        <View style={{ marginLeft: 55, marginTop: 10 }}>
-          <Text style={{ fontFamily: 'Sansserif', fontSize: 28 }}>Hey, Arun!</Text>
+        <View style={{ marginLeft: 55, marginTop: 25 }}>
+          <Text style={{ fontFamily: 'Sansserif', fontSize: 28 }}>{t('Hey, Arun')}</Text>
           <Text style={{ color: 'rgb(150,150,150)', marginTop: 25, fontFamily: 'Sansserif', fontSize: 20 }}>{t('you\'re almost there')}{"..."} </Text>
         </View>
         <View style={styles.containerRectangleName}>
@@ -381,9 +381,9 @@ function PersonalDetailsScreen({ navigation }) {
               style={[styles.textInputPhone, { height: 40, width: '90%', marginTop: 10 }]}
               onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
             >
-              <Picker.Item label="Carpenter" value="Carpenter" />
-              <Picker.Item label="Labour" value="Labour" />
-              <Picker.Item label="Electrician" value="Electrician" />
+              <Picker.Item label={t('Carpenter')}value='Carpenter' />
+              <Picker.Item label={t('Labour')} value='Labour'/>
+              <Picker.Item label={t('Electrician')} value='Electrician' />
             </Picker>
             <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>{t('Category')}</Text>
           </View>

@@ -2,30 +2,26 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import Feather from 'react-native-vector-icons/Feather'
-import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../components/i18n'
+import SiteScreen from '../SiteRequestScreen'
 
-const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days }) => {
-  // const { t } = useTranslation();
+const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days,navigation,props }) => {
+  const { t } = useTranslation();
+      useEffect((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
 
-  //   useEffect(() => {
-  //       navigation.addListener('focus', () => {
-  //           AsyncStorage.getItem('LANG').then((value) => {
-  //               if (value == "en") { i18n.changeLanguage('en') }
-  //               else if (value == "hi") { i18n.changeLanguage('hi') }
-  //           });
-  //       });
-  //   }, [navigation]);
-  var progressbar = (Days == "24/27") ? true : false
+  var progressbar = (Days == "24/27 ") ? true : false
   return (
     <View style={styles.mainContainer}>
       <View style={styles.contentBox}>
         <Text style={{ fontSize: 16, fontWeight: "bold", marginBottom: '2%' }}>{status}</Text>
         <View style={{ flexDirection: "row" }}>
-          <Text style={{ fontSize: 16 }}>Booking ID :</Text>
+          <Text style={{ fontSize: 16 }}>{t('Booking ID')} :</Text>
           <Text style={{ marginStart: '2%', fontSize: 14 }}>{bookingId}</Text>
-          <TouchableOpacity style={{ marginLeft: '36%' }}>
+          <TouchableOpacity style={{ marginLeft: '36%' }} onPress={()=>{SiteScreen}}>
             <Feather name='copy' size={24} style={{ color: '#000' }} />
           </TouchableOpacity>
         </View>
@@ -40,7 +36,7 @@ const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days }) 
         <View style={styles.filler} />
         <Text style={{ fontSize: 18, marginEnd: '5%', marginBottom: '2%', color: '#353535', fontWeight: "bold" }}>{"₹ " + Amount}</Text>
       </View>
-      <Text style={{ fontSize: 18, marginStart: '5%', marginBottom: '2%', fontWeight: "bold" }}>{Days}{" Days"}</Text>
+      <Text style={{ fontSize: 18, marginStart: '5%', marginBottom: '2%', fontWeight: "bold" }}>{Days}{t('Days')}</Text>
       {
         progressbar
           ?
@@ -82,21 +78,21 @@ const OngoingTab = () => {
         {
           showPaused ?
             <>
-              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name='Ayush'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name='CM'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
-              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name='Aman'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
+              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name={t('Ayush')}
+                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27 " />
+              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name={t('CM')}
+                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27 " />
+              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name={t('Arun')}
+                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15 " />
             </>
             :
             <>
-              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name='Ankit'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name='Piyush'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15" />
-              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name='Aditya'
-                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27" />
+              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name={t('Arun')}
+                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15 " />
+              <UpcomingCard status={t('Paused')} bookingId='UWHYD00001043' Name={t('Ayush')}
+                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="10/15 " />
+              <UpcomingCard status={t('Live')} bookingId='UWHYD00001043' Name={t('CM')}
+                Sqft="45,982" Address="D-216, DSR For" Amount='24,500' Days="24/27 " />
             </>
         }
       </View>

@@ -420,7 +420,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
                   </View>
                 </View > */}
             <View style={{ alignItems: 'center', marginTop: 50 }}>
-              <TouchableOpacity style={styles.approvedButton} onPress={() => { onSubmit(); navigation.replace('SuperVisorBottom') }}>
+              <TouchableOpacity style={styles.approvedButton} onPress={() => { onSubmit(); navigation.replace('HomeScreen') }}>
                 <View style={{ alignItems: 'center' }}>
                   <Text style={{ fontSize: 20, color: '#fff' }}>{t('Submit')}</Text>
                 </View>

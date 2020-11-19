@@ -28,11 +28,9 @@ const OpportunityCard = ({ bookingId, Name, Sqft, Address, Amount }) => {
         <Text style={{ fontSize: 18, marginEnd: '5%', color: '#353535' }}>{Sqft + " Sqft"}</Text>
       </View>
       <View style={{ marginStart: '5%', flexDirection: 'row', marginTop: '2%', marginEnd: '5%', paddingBottom: 10, borderWidth: 1, marginBottom: 8, borderRadius: 10, backgroundColor: 'white' }} >
-        {/* <Text style={{ fontSize: 18, color: '#353535', maxWidth: '50%' }}>{Address.substring(0, 14) + "..."}</Text> */}
-        <Button color='green' onPress={() => alert("Approved")} style={{ fontSize: 18, maxWidth: '50%', marginStart: '-1%' }}>{t('Approve')}</Button>
+        <Button color='green' onPress={()=>alert('Approved')} style={{ fontSize: 18, maxWidth: '50%', marginStart: '-1%' }}>{t('Approve')}</Button>
         <View style={styles.filler} />
-        {/* <Text style={{ fontSize: 18, marginEnd: '4%', color: '#353535' }}>{"₹ " + Amount}</Text> */}
-        <Button color='red' onPress={() => alert("Rejected")} style={{ fontSize: 18, maxWidth: '50%', marginEnd: '2%', }}>{t('Reject')}</Button>
+        <Button color='red' onPress={()=>alert('Rejected')} style={{ fontSize: 18, maxWidth: '50%', marginEnd: '2%', }}>{t('Reject')}</Button>
       </View>
     </View>
   )
@@ -60,6 +58,7 @@ const OpportunityTab = () => {
         <OpportunityCard bookingId='UWHYD00001043' Name={t('Site Name')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
         <OpportunityCard bookingId='UWHYD00001043' Name={t('Site Name')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
         <OpportunityCard bookingId='UWHYD00001043' Name={t('Site Name')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        
       </View>
     </ScrollView>
   )

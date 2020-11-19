@@ -8,6 +8,7 @@ i18n.use(initReactI18next).init({
     resources: {
         en: {
             translation: {
+                'Hey, Arun':'Hey, Arun',
                 // UpcomingTaskSupervisorScreen.js
                 'Preparing the fitting': 'Preparing the fitting',
                 'Assembling': 'Assembling',
@@ -116,14 +117,22 @@ i18n.use(initReactI18next).init({
                 'Approvals': 'Approvals',
                 // StartSiteScreen.js
                 'Loading': 'Loading',
+                'StartSiteScreen':'StartSiteScreen',
                 'Tools': 'Tools',
                 'Start Site': 'Start Site',
+                'Financial district Hyderabad':'Financial district Hyderabad',
                 'to': 'to',
+                'Hammer':'Hammer',
+                'Axe':'Axe',
+                'UpcomingTaskContractorScreen':'UpcomingTaskContractorScreen',
+                'Rod':'Rod',
+                'Wooden Partition Description':'Wooden Partition Description',
                 // AfterAcceptScreen.js
                 'Site Engineer Name': 'Site Engineer Name',
                 'Update': 'Update',
                 'Cancel': 'Cancel',
                 'Tool': 'Tool',
+                'Call':'Call',
                 // SelectSuperVisorScreen.js
                 'Assign To': 'Assign To',
                 'Supservisor Name': 'SupserVisor Name',
@@ -176,7 +185,17 @@ i18n.use(initReactI18next).init({
                 'Paused':'Paused',
                 'Live':'Live',
                 'Approve':'Approve',
-                'Reject':'Reject'
+                'Reject':'Reject',
+                'Ayush':'Ayush',
+                'Arun':'Arun',
+                'CM':'CM',
+                'Hey':'Hey',
+                'day':'day',
+                'Electrician':'Electrician',
+                'Labour':'Labour',
+                'Days':'Days',
+                'Approved':'Approved',
+                'Rejected':'Rejected'
             },
         },
         hi: {
@@ -186,7 +205,7 @@ i18n.use(initReactI18next).init({
                 'Assembling': 'समधान',
                 'Finishing': 'परिष्करण',
                 'Fetching Data': 'डेटा लाया जा रहा है',
-                'Wooden Partition': 'लकड़ी का division',
+                'Wooden Partition': 'लकड़ी का विभाजन',
                 'Area': 'क्षेत्र',
                 'Description': 'विवरण',
                 'See More': 'और देखें',
@@ -222,6 +241,7 @@ i18n.use(initReactI18next).init({
                 'Number': 'संख्य',
                 'Skills': 'कौशल',
                 'Semi-skilled': 'अर्धकुशल',
+                'Semi skilled':'अर्धकुशल',
                 'Unskilled': 'अकुशल',
                 'Submit': 'प्रस्तुत',
                 // NotificationScreenSuperVisor.js
@@ -276,10 +296,11 @@ i18n.use(initReactI18next).init({
                 // LanguageScreen.js
                 'Change Language': 'भाषा बदलें',
                 // VideoSlider.js
-                'Uniworks Movies': 'Uniworks फिल्में',
+                'Uniworks Movies': 'उपयोगी फिल्में',
                 'Electrical': 'विद्युतीय',
                 'Carpenter': 'बढ़ई',
                 'Home': 'होम',
+                'Call':'कॉल',
                 'Profile': 'प्रोफ़ाइल',
                 // HomeBottomTab.js
                 'Wallet': 'Work इतिहास',
@@ -289,9 +310,17 @@ i18n.use(initReactI18next).init({
                 'Approvals': 'स्वीकृति',
                 // StartSiteScreen.js
                 'Loading': 'लोड हो रहा है',
+                'Carpentary':'Carpentary',
+                'Carpentary':'बढ़ईगीरी',
                 'Tools': 'उपकरण',
                 'Start Site': 'साइट शुरू करें',
+                'StartSiteScreen':'कार्य प्रारंभ करें',
+                'Financial district Hyderabad':'वित्तीय जिला हैदराबाद',
+                'Wooden Partition Description':'लकड़ी का विभाजन विवरण',
                 'to': 'से',
+                'Hammer':'हथौड़ा',
+                'Axe':'कुल्हाड़ी',
+                'Rod':'छड़ी',
                 // AfterAcceptScreen.js
                 'Site Engineer Name': 'साइट इंजीनियर का नाम',
                 'Update': 'अपडेट करें',
@@ -347,7 +376,19 @@ i18n.use(initReactI18next).init({
                 'Paused':'रोकें',
                 'Live':'फिलहाल',
                 'Approve':'स्वीकार',
-                'Reject':'अस्वीकार'
+                'Reject':'अस्वीकार',
+                'Ayush':'आयुष',
+                'Arun':'अरुण',
+                'CM':'सीयम',
+                'Hey':'नमस्कार',
+                'day':'दिन',
+                'Electrician':'बिजली मिस्त्री',
+                'Labour':'श्रम',
+                'Days':'दिन',
+                'Approved':'मंजूर की',
+                'Rejected':'अस्वीकृत',
+                'UpcomingTaskContractorScreen':'आगामी काम',
+                'Hey, Arun':'हैलो अरुण',
             },
         },
     },

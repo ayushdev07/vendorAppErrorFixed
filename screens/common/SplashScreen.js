@@ -5,12 +5,12 @@ export default class SplashScreen extends Component {
 
     async componentDidMount() {
         const data = await this.navigateToHome();
-        if (data !== null) { this.props.navigation.navigate('SiteRequestScreen') }
+        if (data !== null) { this.props.navigation.navigate('SignInScreen') }
     }
 
     navigateToHome = async () => {
         const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-        return wait(3000).then(() => this.props.navigation.navigate('SiteRequestScreen'))
+        return wait(3000).then(() => this.props.navigation.navigate('SignInScreen'))
     };
 
     render() {

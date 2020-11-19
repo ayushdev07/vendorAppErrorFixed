@@ -282,9 +282,9 @@ class PersonalScreen extends React.Component {
                   style={[styles.textInputPhone, { height: 40, width: '90%', marginTop: 10 }]}
                   onValueChange={(itemValue, itemIndex) => this.setState({ selectedValue: itemValue })}
                 >
-                  <Picker.Item label="Carpenter" value="Carpenter" />
-                  <Picker.Item label="Labour" value="Labour" />
-                  <Picker.Item label="Electrician" value="Electrician" />
+                  <Picker.Item label={t('Carpenter')} value="Carpenter" />
+                  <Picker.Item label={t('Labour')} value="Labour" />
+                  <Picker.Item label={t('Electrician')} value="Electrician" />
                 </Picker>
                 <Text style={{ color: 'black', marginTop: 18, marginRight: 10, fontSize: 15 }}>{t('Category')}</Text>
               </View>

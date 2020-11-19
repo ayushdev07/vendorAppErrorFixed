@@ -19,6 +19,8 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 import call from 'react-native-phone-call'
+import StartSiteScreen from '../supervisors/StartSiteScreen'
+import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -74,6 +76,10 @@ function Notifications_Drawer({ navigation }) {
                     options={{ drawerIcon: ({ focused }) => <Feather name='alert-circle' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
                 <Drawer.Screen name={t("Call")} component={triggerCall}
                     options={{ drawerIcon: ({ focused }) => <Feather name='phone-call' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+                <Drawer.Screen name={t("StartSiteScreen")} component={StartSiteScreen}
+                    options={{ drawerIcon: ({ focused }) => <Feather name='alert-octagon' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
+                <Drawer.Screen name={t("UpcomingTaskContractorScreen")} component={UpcomingTaskContractorScreen}
+                    options={{ drawerIcon: ({ focused }) => <Feather name='clock' size={25} color={focused ? '#ccc' : '#ccc'} /> }} />
             </Drawer.Navigator>
         </>
     )

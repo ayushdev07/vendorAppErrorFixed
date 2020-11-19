@@ -34,7 +34,11 @@ const SupervisorsScreen = ({ navigation }) => {
                 <Text style={{ color: '#353535', fontSize: 22, fontWeight: 'bold' }}>{item.name} </Text>
                 <View style={{ flexDirection: 'row', marginEnd: '5%' }}>
                     <Text style={{ marginTop: '5%' }}>+91-{item.phoneNumber}</Text>
-                    <View style={{ flex: 1, flexDirection: 'row' }} />
+                    <View style={{ flex: 1, flexDirection: 'column' }} />
+                    <TouchableOpacity style={{ top: 5 }}>
+                        <Text style={{ color: '#EB3333', alignSelf: 'center', fontSize: 20, fontWeight: 'bold' }}>{t('Approve')}</Text>
+                    </TouchableOpacity>
+                    <View style={{ flex: 1, flexDirection: 'column' }} />
                     <TouchableOpacity style={{ top: 5 }}>
                         <Text style={{ color: '#EB3333', alignSelf: 'center', fontSize: 20, fontWeight: 'bold' }}>{t('Remove')}</Text>
                     </TouchableOpacity>

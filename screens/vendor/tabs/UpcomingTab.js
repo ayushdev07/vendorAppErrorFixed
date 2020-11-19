@@ -34,12 +34,17 @@ const UpcomingCard = ({ bookingId, Name, Sqft, Address, Amount }) => {
 }
 
 const UpcomingTab = () => {
+  const { t } = useTranslation();
+      useEffect((value) => {
+                if (value == "en") { i18n.changeLanguage('en') }
+                else if (value == "hi") { i18n.changeLanguage('hi') }
+            });
   return (
     <ScrollView>
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
-        <UpcomingCard bookingId='UWHYD00001043' Name='Arun' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
-        <UpcomingCard bookingId='UWHYD00001043' Name='Ayush' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
-        <UpcomingCard bookingId='UWHYD00001043' Name='Cm' Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        <UpcomingCard bookingId='UWHYD00001043' Name={t('Arun')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        <UpcomingCard bookingId='UWHYD00001043' Name={t('Ayush')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
+        <UpcomingCard bookingId='UWHYD00001043' Name={t('CM')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500' />
       </View>
     </ScrollView>
   )

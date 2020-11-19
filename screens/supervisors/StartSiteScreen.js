@@ -69,17 +69,20 @@ const StartSiteScreen = ({ navigation, route }) => {
     <ScrollView>
       { isLoading ? <Spinner visible={isLoading} textContent={t('Loading')} textStyle={{ color: '#FFF' }} /> :
         <View style={styles.mainContainer}>
-          <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{project.Category.categoryName}</Text>
-          <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }}>{project.SubCategory.subcategoryName}</Text>
+          {/* <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{project.Category.categoryName}</Text> */}
+          <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{t('Carpentary')}</Text>
+          {/* <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }}>{project.SubCategory.subcategoryName}</Text> */}
+          <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }}>{t('Wooden Partition Description')}</Text>
           <View style={{ backgroundColor: '#000000', alignItems: 'center', marginTop: '5%' }}>
             <View style={{ alignItems: 'center', marginBottom: '5%' }}>
               <Text style={{ paddingTop: 15, color: '#ffffff', fontSize: 20 }}>{t('Description')}</Text>
               <View style={{ marginTop: 10, alignItems: 'center', width: '75%' }}>
                 {
                   showDescription ?
-                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{project.SubCategory.description}</Text>
+                    // <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{project.SubCategory.description}</Text>
+                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{t('Carpentary')}</Text>
                     :
-                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{project.SubCategory.description.substring(0, 100)}</Text>
+                    <Text style={{ color: '#ffffff', fontSize: 16, textAlign: 'left', }}>{t('Wooden Partition Description')}</Text>
                 }
               </View>
               <View style={{ marginTop: '5%' }}>
@@ -116,7 +119,8 @@ const StartSiteScreen = ({ navigation, route }) => {
           </View>
           <View style={{ flex: 1, marginTop: '10%' }}>
             <View style={styles.SiteEngineerRow}>
-              <Text style={{ color: '#353535', fontSize: 18, fontWeight: 'bold', maxWidth: '80%' }}>{project.address} {project.zip.toString()}</Text>
+              {/* <Text style={{ color: '#353535', fontSize: 18, fontWeight: 'bold', maxWidth: '80%' }}>{project.address} {project.zip.toString()}</Text> */}
+              <Text style={{ color: '#353535', fontSize: 18, fontWeight: 'bold', maxWidth: '80%' }}>{t('Financial district Hyderabad')} {project.zip.toString()}</Text>
               <View style={styles.SiteEngineerFiller}></View>
               <Feather name="share-alt" color="black" size={25} style={{ top: 5 }} />
             </View>
@@ -138,7 +142,7 @@ const StartSiteScreen = ({ navigation, route }) => {
               marginLeft: '20%',
               marginRight: '25%', flexDirection: 'row'
             }}>
-              <Text style={styles.TypeStyle} >{t('Semi Skilled')}</Text>
+              <Text style={styles.TypeStyle} >{t('Semi skilled')}</Text>
               <View style={styles.signInFiller}></View>
               <Text style={styles.Number}>{project.semiSkilled.toString()}</Text>
             </View>
@@ -153,10 +157,34 @@ const StartSiteScreen = ({ navigation, route }) => {
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.TypeStyle, { top: 25, fontSize: 20, marginLeft: '15%', marginBottom: 30 }}>{t('Tools')}</Text>
-              <FlatList
+              {/* <FlatList
                 data={project.SubCategory.tools}
                 renderItem={renderTools}
-              />
+              /> */}
+              <View style={{
+              marginTop: 15,
+              marginLeft: '20%', marginRight: '25%', flexDirection: 'row'
+            }}>
+              <Text style={styles.TypeStyle} >{t('Hammer')}</Text>
+              <View style={styles.signInFiller}></View>
+            </View>
+            <View style={{
+              marginTop: 15,
+              marginLeft: '20%',
+              marginRight: '25%', flexDirection: 'row'
+            }}>
+              <Text style={styles.TypeStyle} >{t('Rod')}</Text>
+              <View style={styles.signInFiller}></View>
+            </View>
+            <View style={{
+              marginTop: 15,
+              marginLeft: '20%',
+              marginRight: '25%', flexDirection: 'row'
+            }}>
+              <Text style={styles.TypeStyle} >{t('Axe')}</Text>
+              <View style={styles.signInFiller}></View>
+            </View>
+              
             </View>
             <View style={{ alignItems: 'center', marginTop: 60, flexDirection: 'row', marginLeft: '10%', marginRight: '10%' }}>
               <Text style={{ fontSize: 20, fontStyle: 'normal', color: '#353535' }}> {project.startDate} </Text>
@@ -179,6 +207,7 @@ const StartSiteScreen = ({ navigation, route }) => {
                 horizontal={true}
               />
             </View>
+
             <View style={{ alignItems: 'center', marginTop: '12%' }}  >
               <Text style={{ fontSize: 36 }}>{project.totalArea} {t('Sqft')}</Text>
             </View>
@@ -187,7 +216,7 @@ const StartSiteScreen = ({ navigation, route }) => {
             </View>
             <View style={{ flexDirection: 'row', marginTop: 50, marginHorizontal: '10%', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
-                <Text style={{ fontSize: 24, color: 'green', fontWeight: 'bold' }}>{t('Accept')}</Text>
+                <Text style={{ fontSize: 24, color: 'green', fontWeight: 'bold' }}>{t('Approve')}</Text>
               </TouchableOpacity >
               <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
                 <Text style={{ fontSize: 24, color: 'red', fontWeight: 'bold' }}>{t('Reject')}</Text>
@@ -248,6 +277,7 @@ const styles = StyleSheet.create({
   },
   TypeStyle: {
     color: "#000000",
+    fontSize:18
   },
   signInFiller: {
     flex: 1,

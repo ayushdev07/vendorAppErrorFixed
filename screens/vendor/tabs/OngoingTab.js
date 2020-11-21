@@ -5,7 +5,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../../components/i18n'
 import SiteScreen from '../SiteRequestScreen'
-
+import {CardItem} from 'native-base'
 const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days,navigation,props }) => {
   const { t } = useTranslation();
       useEffect((value) => {
@@ -21,9 +21,12 @@ const UpcomingCard = ({ status, bookingId, Name, Sqft, Address, Amount, Days,nav
         <View style={{ flexDirection: "row" }}>
           <Text style={{ fontSize: 16 }}>{t('Booking ID')} :</Text>
           <Text style={{ marginStart: '2%', fontSize: 14 }}>{bookingId}</Text>
-          <TouchableOpacity style={{ marginLeft: '36%' }} onPress={()=>{SiteScreen}}>
+          {/* <TouchableOpacity style={{ marginLeft: '36%' }} onPress={()=>{SiteScreen}}>
             <Feather name='copy' size={24} style={{ color: '#000' }} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <CardItem style={{ marginLeft: '36%' }} button onPress={()=>{SiteScreen}}>
+            <Feather name='copy' size={24} style={{ color: '#000' }} />
+          </CardItem>
         </View>
       </View>
       <View style={[styles.contentBox, { flexDirection: "row", marginTop: '5%' }]}>

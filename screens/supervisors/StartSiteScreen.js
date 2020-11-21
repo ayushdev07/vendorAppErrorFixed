@@ -60,14 +60,14 @@ const StartSiteScreen = ({ navigation, route }) => {
   const renderImages = ({ item }) => {
     return (
       <View>
-        <Image style={{ height: 300 }} source={item} />
+        <Image style={{ height: 250, width:420 }} source={item} />
       </View>
     )
   }
 
   return (
     <ScrollView>
-      { isLoading ? <Spinner visible={isLoading} textContent={t('Loading')} textStyle={{ color: '#FFF' }} /> :
+      { isLoading ? <Spinner visible={isLoading} textStyle={{ color: '#FFF' }} /> :
         <View style={styles.mainContainer}>
           {/* <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{project.Category.categoryName}</Text> */}
           <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{t('Carpentary')}</Text>
@@ -124,66 +124,48 @@ const StartSiteScreen = ({ navigation, route }) => {
               <View style={styles.SiteEngineerFiller}></View>
               <Feather name="share-alt" color="black" size={25} style={{ top: 5 }} />
             </View>
-            <View style={{ flexDirection: 'row', marginHorizontal: '20%', marginTop: 30 }}>
+            {/* <View style={{ flexDirection: 'row', marginHorizontal: '20%', marginTop: 30 }}>
               <Text style={styles.TypeStyle, { fontSize: 20 }}>{t('Type')}</Text>
               <View style={styles.signInFiller}></View>
               <Text style={styles.Number, { fontSize: 20 }}>{t('Number')}</Text>
-            </View>
-            <View style={{
-              marginTop: 15,
-              marginLeft: '20%', marginRight: '25%', flexDirection: 'row'
-            }}>
+            </View> */}
+            {/* <View style={{ marginTop: 15, marginLeft: '20%', marginRight: '25%', flexDirection: 'row'}}>
               <Text style={styles.TypeStyle} >{t('Skills')}</Text>
               <View style={styles.signInFiller}></View>
               <Text style={styles.Number}>{project.skilled.toString()}</Text>
-            </View>
-            <View style={{
-              marginTop: 15,
-              marginLeft: '20%',
-              marginRight: '25%', flexDirection: 'row'
-            }}>
+            </View> */}
+            {/* <View style={{marginTop: 15, marginLeft: '20%', marginRight: '25%', flexDirection: 'row'}}>
               <Text style={styles.TypeStyle} >{t('Semi skilled')}</Text>
               <View style={styles.signInFiller}></View>
               <Text style={styles.Number}>{project.semiSkilled.toString()}</Text>
-            </View>
-            <View style={{
-              marginTop: 15,
-              marginLeft: '20%',
-              marginRight: '25%', flexDirection: 'row'
-            }}>
+            </View> */}
+            {/* <View style={{marginTop: 15, marginLeft: '20%', marginRight: '25%', flexDirection: 'row' }}>
               <Text style={styles.TypeStyle} >{t('Unskilled')}</Text>
               <View style={styles.signInFiller}></View>
               <Text style={styles.Number}>{project.unSkilled.toString()}</Text>
-            </View>
+            </View> */}
             <View style={{ flex: 1 }}>
-              <Text style={styles.TypeStyle, { top: 25, fontSize: 20, marginLeft: '15%', marginBottom: 30 }}>{t('Tools')}</Text>
+              {/* <Text style={styles.TypeStyle, { top: 25, fontSize: 20, marginLeft: '15%', marginBottom: 30 }}>{t('Tools')}</Text> */}
               {/* <FlatList
                 data={project.SubCategory.tools}
                 renderItem={renderTools}
               /> */}
-              <View style={{
-              marginTop: 15,
-              marginLeft: '20%', marginRight: '25%', flexDirection: 'row'
-            }}>
-              <Text style={styles.TypeStyle} >{t('Hammer')}</Text>
-              <View style={styles.signInFiller}></View>
-            </View>
-            <View style={{
-              marginTop: 15,
-              marginLeft: '20%',
-              marginRight: '25%', flexDirection: 'row'
-            }}>
+              {/* <View style={{marginTop: 15,marginLeft: '20%', marginRight: '25%', flexDirection: 'row'}}>
+                <Text style={styles.TypeStyle} >{t('Hammer')}</Text>
+                <View style={styles.signInFiller}></View>
+              </View> */}
+            {/* <View style={{marginTop: 15, marginLeft: '20%',marginRight: '25%', flexDirection: 'row'}}>
               <Text style={styles.TypeStyle} >{t('Rod')}</Text>
               <View style={styles.signInFiller}></View>
-            </View>
-            <View style={{
+            </View> */}
+            {/* <View style={{
               marginTop: 15,
               marginLeft: '20%',
               marginRight: '25%', flexDirection: 'row'
             }}>
               <Text style={styles.TypeStyle} >{t('Axe')}</Text>
               <View style={styles.signInFiller}></View>
-            </View>
+            </View> */}
               
             </View>
             <View style={{ alignItems: 'center', marginTop: 60, flexDirection: 'row', marginLeft: '10%', marginRight: '10%' }}>
@@ -214,11 +196,19 @@ const StartSiteScreen = ({ navigation, route }) => {
             <View style={{ alignItems: 'center', marginTop: '12%' }}  >
               <Text style={{ fontSize: 36 }}>₹ {project.budget}</Text>
             </View>
-            <View style={{ flexDirection: 'row', marginTop: 50, marginHorizontal: '10%', justifyContent: 'space-between' }}>
+            {/* <View style={{ flexDirection: 'row', marginTop: 50, marginHorizontal: '10%', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
                 <Text style={{ fontSize: 24, color: 'green', fontWeight: 'bold' }}>{t('Approve')}</Text>
               </TouchableOpacity >
               <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} >
+                <Text style={{ fontSize: 24, color: 'red', fontWeight: 'bold' }}>{t('Reject')}</Text>
+              </TouchableOpacity >
+            </View> */}
+            <View style={{ flexDirection: 'row', marginTop: 50, marginHorizontal: '10%', justifyContent: 'space-between' }}>
+              <TouchableOpacity onPress={() => alert('आपका अनुरोध स्वीकार कर लिया गया है। साइट शुरू करने के लिए तैयार है')} >
+                <Text style={{ fontSize: 24, color: 'green', fontWeight: 'bold' }}>{t('Approve')}</Text>
+              </TouchableOpacity >
+              <TouchableOpacity onPress={() => alert('साइट अनुरोध अस्वीकार कर दिया गया')} >
                 <Text style={{ fontSize: 24, color: 'red', fontWeight: 'bold' }}>{t('Reject')}</Text>
               </TouchableOpacity >
             </View>

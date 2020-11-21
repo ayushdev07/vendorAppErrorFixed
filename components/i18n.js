@@ -298,7 +298,8 @@ i18n.use(initReactI18next).init({
                 // VideoSlider.js
                 'Uniworks Movies': 'उपयोगी फिल्में',
                 'Electrical': 'विद्युतीय',
-                'Carpenter': 'बढ़ई',
+                'Carpenter': 'कॉर्पन्टर',
+                'Incomplete':'Incomplete',
                 'Home': 'होम',
                 'Call':'कॉल',
                 'Profile': 'प्रोफ़ाइल',
@@ -311,7 +312,7 @@ i18n.use(initReactI18next).init({
                 // StartSiteScreen.js
                 'Loading': 'लोड हो रहा है',
                 'Carpentary':'Carpentary',
-                'Carpentary':'बढ़ईगीरी',
+                'Carpentary':'कॉर्पन्टर',
                 'Tools': 'उपकरण',
                 'Start Site': 'साइट शुरू करें',
                 'StartSiteScreen':'कार्य प्रारंभ करें',
@@ -389,6 +390,7 @@ i18n.use(initReactI18next).init({
                 'Rejected':'अस्वीकृत',
                 'UpcomingTaskContractorScreen':'आगामी काम',
                 'Hey, Arun':'हैलो अरुण',
+                'Incomplete':'काम पूरा नहीं हुआ है'
             },
         },
     },

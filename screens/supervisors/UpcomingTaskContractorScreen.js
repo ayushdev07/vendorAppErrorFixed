@@ -53,13 +53,6 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
     if (errors.length) { setErrors(errors) }
   }
 
-  // let PreRequisite = [
-  //   'White marking make a detailed mark at joints and a simple line for pipes',
-  //   'Check the pipes dia and set the chipping depth',
-  //   'Check if any damage is there in pipes',
-  //   'In case of damage inform the site engineer immediately and get it replaced before chipping is done'
-  // ]
-
   useEffect(() => { fetchAreaId(); let isMounted = true }, [])
 
   const fetchAreaId = async () => {
@@ -118,7 +111,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
     <>
       <ScrollView>
         {isLoading ?
-          <Spinner visible={isLoading} textContent={t('Fetching Data')} textStyle={{ color: '#000' }} /> :
+          <Spinner visible={isLoading} textStyle={{ color: '#000' }} /> :
           <View style={styles.mainContainer} >
             <Text style={{ color: '#909090', fontSize: 30, alignSelf: 'center' }}>{t('Wooden Partition')}</Text>
             {/* <Text style={{ color: '#909090', fontSize: 18, alignSelf: 'center', opacity: 0.5 }}>
@@ -152,7 +145,8 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
             </View>
             {/* <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, opacity: 0.7, fontWeight: 'bold' }}>{t('Drawings')}</Text>
                   <View style={{ width: '100%', height: 250, marginTop: 8 }}>
-                    <ImageSlider images={['http://placeimg.com/640/480/any', 'http://placeimg.com/640/480/any', 'http://placeimg.com/640/480/any']} />
+                    <ImageSlider 
+                    ={['http://placeimg.com/640/480/any', 'http://placeimg.com/640/480/any', 'http://placeimg.com/640/480/any']} />
                   </View>
                   <Image style={{ width: '100%', height: 250, marginTop: 8 }} source={require('../../assets/images/unnamed.jpg')} /> 
                   <Text style={{ alignSelf: 'center', color: '#353535', fontSize: 24, fontWeight: 'bold', marginTop: 15, opacity: 0.7 }}>{t('Prerequisite')}</Text>
@@ -371,14 +365,20 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
               />
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 15 }}>
-              <Text style={{ alignSelf: 'center', fontWeight: 'bold' }}>{t('Site Cleaned')}</Text>
-              <View style={{ marginRight: '18%' }}>
-                <CheckBox checked={siteCleaned}
+              <Text style={{ alignSelf: 'center', fontWeight: 'bold',marginTop: '-1%', marginRight:'-3%' }}>{t('Site Cleaned')}</Text>
+              <View style={{ marginRight: '15%',flexDirection: 'row', }}>
+                {/* <CheckBox checked={siteCleaned}
                   containerStyle={{
                     height: 24, width: 24, paddingLeft: 14, alignItems: "center", justifyContent: "center",
                     borderWidth: 1, borderColor: errors.includes('siteCleaned') ? 'red' : '#eee'
                   }}
-                  onPress={() => setSiteCleaned(!siteCleaned)} />
+                  onPress={() => setSiteCleaned(!siteCleaned)} /> */}
+                  <CheckBox checked={checked9} onPress={() => setChecked9(!checked9)} />
+                        {checked9 ? <View style={{ alignSelf: 'center', margin: 17 }}></View> : <View style={{ alignSelf: 'center', margin: 4}}>
+                          <TouchableOpacity>
+                            <Feather name='image' size={24} />
+                          </TouchableOpacity>
+                        </View>}
               </View>
             </View>
             {/* <View style={styles.SiteEngineerRow}>

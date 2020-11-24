@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import AfterAcceptScreen from '../vendor/AfterAcceptScreen'
+import AfterAcceptScreen from '../vendor/AfterAcceptScreen';
 import RootStackScreen from '../vendor/RootStackScreen';
 import UpcomingTaskScreen from '../vendor/UpcomingTaskScreen';
 import SiteRequestScreen from '../vendor/SiteRequestScreen';
@@ -17,14 +17,17 @@ import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
 import StartSiteScreen from '../supervisors/StartSiteScreen';
 import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
 import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen';
+import Notifications from '../vendor/Notifications';
 import TabScreen from '../vendor/TabScreen';
 
 const HomeStack = createStackNavigator();
 
-function Login() { return <RootStackScreen /> }
+function Login() {
+  return <RootStackScreen />;
+}
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator headerMode='none'>
+  <HomeStack.Navigator headerMode="none">
     <HomeStack.Screen name="Login" component={Login} />
     <HomeStack.Screen name="HomeScreen" component={HomeBottomTab} />
     <HomeStack.Screen name="SuperVisorBottom" component={SupervisorBottomTabScreen} />
@@ -43,6 +46,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
     <HomeStack.Screen name="VideoSlider" component={VideoSlider} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
+    <HomeStack.Screen name="Notifications" component={Notifications} />
     <HomeStack.Screen name="TabScreen" component={TabScreen} />
   </HomeStack.Navigator>
 );

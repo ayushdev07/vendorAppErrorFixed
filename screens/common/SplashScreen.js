@@ -5,12 +5,12 @@ export default class SplashScreen extends Component {
 
     async componentDidMount() {
         const data = await this.navigateToHome();
-        if (data !== null) { this.props.navigation.navigate('UpcomingTaskContractorScreen') }
+        if (data !== null) { this.props.navigation.navigate('HomeScreen') }
     }
 
     navigateToHome = async () => {
         const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-        return wait(3000).then(() => this.props.navigation.navigate('UpcomingTaskContractorScreen'))
+        return wait(3000).then(() => this.props.navigation.navigate('HomeScreen'))
     };
 
     render() {

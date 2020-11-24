@@ -1,22 +1,24 @@
-import React, {useEffect} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
-import Feather from 'react-native-vector-icons/Feather'
-import TabScreen from '../vendor/TabScreen'
-import AsyncStorage from '@react-native-community/async-storage'
-import { useTranslation } from 'react-i18next'
-import i18n from '../../components/i18n'
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
+import Feather from 'react-native-vector-icons/Feather';
+import TabScreen from '../vendor/TabScreen';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useTranslation } from 'react-i18next';
+import i18n from '../../components/i18n';
 
-export default function Notifications({navigation}) {
+export default function Notifications({ navigation }) {
+
     const { t } = useTranslation();
-        useEffect(() => {
+
+    useEffect(() => {
         navigation.addListener('focus', () => {
             AsyncStorage.getItem('LANG').then((value) => {
-                if (value == "en") { i18n.changeLanguage('en') }
-                else if (value == "hi") { i18n.changeLanguage('hi') }
+                if (value == 'en') { i18n.changeLanguage('en') } else if (value == 'hi') { i18n.changeLanguage('hi') }
             });
         });
     }, [navigation]);
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -27,12 +29,12 @@ export default function Notifications({navigation}) {
             <View style={styles.searchBox}>
                 <TextInput style={styles.searchText} placeholder={t('Booking ID')} />
                 <View style={styles.searchIcon}>
-                    <Feather name='search' size={24} />
+                    <Feather name="search" size={24} />
                 </View>
             </View>
-            <TabScreen />
+            <TabScreen navigation={navigation} />
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     headerContainer: {
-        flexDirection: "row",
+        flexDirection: 'row',
         width: '100%',
     },
     header: {
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
         width: '95%',
         marginBottom: 10,
         borderWidth: 1,
-        borderColor: "grey",
+        borderColor: 'grey',
         borderRadius: 50,
         paddingHorizontal: 20,
         zIndex: 2,
@@ -69,11 +71,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#A6BCD0',
         paddingLeft: 10,
-        alignItems: "flex-start"
+        alignItems: 'flex-start',
     },
     searchIcon: {
         flex: 1,
-        alignItems: "flex-end",
-        paddingRight: 10
+        alignItems: 'flex-end',
+        paddingRight: 10,
     },
 });

@@ -21,6 +21,7 @@ import i18n from '../../components/i18n'
 import call from 'react-native-phone-call'
 import StartSiteScreen from '../supervisors/StartSiteScreen'
 import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen'
+import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -89,11 +90,10 @@ export default function NotificationsDrawer() {
     return (
         <NavigationContainer independent={true}>
             <Stack.Navigator>
-                <Stack.Screen
-                    name="Notifications_Drawer"
-                    component={Notifications_Drawer}
-                    options={{ headerShown: false }}
-                />
+                <Stack.Screen name="Notifications_Drawer" component={Notifications_Drawer} options={{ headerShown: false }} />
+                <Stack.Screen name="UpcomingTaskSupervisorScreen" component={UpcomingTaskSupervisorScreen} />
+                <Stack.Screen name="StartSiteScreen" component={StartSiteScreen} />
+                <Stack.Screen name="UpcomingTaskContractorScreen" component={UpcomingTaskContractorScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

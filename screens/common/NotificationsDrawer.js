@@ -89,7 +89,7 @@ function Notifications_Drawer({ navigation }) {
 export default function NotificationsDrawer() {
     return (
         <NavigationContainer independent={true}>
-            <Stack.Navigator>
+            <Stack.Navigator headerMode="none">
                 <Stack.Screen name="Notifications_Drawer" component={Notifications_Drawer} options={{ headerShown: false }} />
                 <Stack.Screen name="UpcomingTaskSupervisorScreen" component={UpcomingTaskSupervisorScreen} />
                 <Stack.Screen name="StartSiteScreen" component={StartSiteScreen} />

@@ -110,7 +110,7 @@
 
 // export default WalletScreen;
 
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import WalletComponent from '../../components/WalletComponent'
 import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler'
@@ -119,9 +119,9 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 
-const WalletScreen = ({navigation}) => {
+const WalletScreen = ({ navigation }) => {
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     useEffect(() => {
         navigation.addListener('focus', () => {
@@ -132,27 +132,21 @@ const WalletScreen = ({navigation}) => {
         });
     }, [navigation]);
 
-    let Date = '23/06/2020'
-
     return (
         <ScrollView>
-            <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
+            <View style={{ backgroundColor: '#fff', flex: 1 }}>
                 <Text style={{ alignSelf: 'center', marginTop: '10%', color: '#353535', fontSize: 24, fontWeight: 'bold', marginBottom: '5%' }}>
                     {t('Work History')}
                 </Text>
                 <View style={styles.rect3}>
-                    <TextInput
-                        placeholder={t('Search')}
-                        style={styles.textInputPhone}
-                    />
+                    <TextInput placeholder={t('Search')} style={styles.textInputPhone} />
                     <View style={{ alignSelf: 'center', marginEnd: '2%' }}>
-                        <TouchableOpacity  >
+                        <TouchableOpacity>
                             <Feather name='search' size={24} />
                         </TouchableOpacity>
                     </View>
                 </View>
-                <WalletComponent
-                />
+                <WalletComponent />
             </View>
         </ScrollView>
     )

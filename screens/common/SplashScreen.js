@@ -4,21 +4,21 @@ import { View, StyleSheet, Image } from 'react-native'
 export default class SplashScreen extends Component {
 
     async componentDidMount() {
-        const data = await this.navigateToHome();
-        if (data !== null) { this.props.navigation.navigate('HomeScreen') }
+        const data = await this.navigateToHome()
+        if (data !== null) { this.props.navigation.navigate('LogInScreen') }
     }
 
     navigateToHome = async () => {
-        const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-        return wait(3000).then(() => this.props.navigation.navigate('HomeScreen'))
-    };
+        const wait = time => new Promise((resolve) => setTimeout(resolve, time))
+        return wait(3000).then(() => this.props.navigation.navigate('LogInScreen'))
+    }
 
     render() {
         return (
             <View style={styles.container}>
                 <Image source={require('../../assets/Splash1.gif')} style={styles.image} />
             </View>
-        );
+        )
     }
 }
 
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
         height: 200,
         justifyContent: "center"
     },
-});
+})

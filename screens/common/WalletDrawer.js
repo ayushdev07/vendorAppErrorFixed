@@ -47,9 +47,13 @@ function Wallet_Drawer({ navigation }) {
         <>
             <Header containerStyle={{ backgroundColor: 'rgba(250, 255, 250, 0.1)' }}>
                 <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }} >
-                    <Image source={require('../../components/HamburgerIcon.jpg')} style={{ width: 30, height: 30, tintColor: 'rgb(100, 100, 150)' }} />
+                    <Image source={require('../../components/HamburgerIcon.jpg')}
+                        style={{ width: 30, height: 30, tintColor: 'rgb(100, 100, 150)' }}
+                    />
                 </TouchableOpacity>
-                <Text style={{ fontSize: 29, flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 8, color: 'black' }}>Indus</Text>
+                <Text style={{ fontSize: 29, flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 8, color: 'black' }}>
+                    Indus
+                </Text>
             </Header>
             <Drawer.Navigator
                 initialRouteName="Wallet" drawerStyle={{ backgroundColor: 'rgba(128, 128, 128, 0.85)', color: "white" }}
@@ -91,5 +95,5 @@ export default function WalletDrawer() {
                 />
             </Stack.Navigator>
         </NavigationContainer>
-    );
+    )
 }

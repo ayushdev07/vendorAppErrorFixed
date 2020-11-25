@@ -11,20 +11,20 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
 
-LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs()
 
 const UpcomingTaskContractorScreen = ({ navigation }) => {
 
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   useEffect(() => {
     navigation.addListener('focus', () => {
       AsyncStorage.getItem('LANG').then((value) => {
         if (value == "en") { i18n.changeLanguage('en') }
         else if (value == "hi") { i18n.changeLanguage('hi') }
-      });
-    });
-  }, [navigation]);
+      })
+    })
+  }, [navigation])
 
   const [showDescription, setShowDescription] = useState(false)
   const [showMilestone1, setShowMilestone1] = useState(false)
@@ -64,7 +64,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
         let areaId = []
         json.projectArea.forEach(element => {
           areaId.push(element.areaId)
-        });
+        })
         setAreaId(areaId)
         fetchAreas(areaId)
       }).catch(e => {
@@ -163,7 +163,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
                 <View style={{ flexDirection: 'row' }}>
                   <Text style={{ color: "#353535", fontSize: 20, marginTop: 12, maxWidth: '80%' }}>{t('Preparing the fitting')}</Text>
                   <View style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}>
-                    <CheckBox checked={checked1 && checked2} onPress={() => { setChecked1(!checked1); setChecked2(!checked2); }} />
+                    <CheckBox checked={checked1 && checked2} onPress={() => { setChecked1(!checked1); setChecked2(!checked2) }} />
                     <View style={{ alignSelf: 'center', margin: 8 }}>
                       <TouchableOpacity onPress={handleShowMilestone1}>
                         {showMilestone1 ? <Feather name='chevron-up' size={18} /> : <Feather name='chevron-down' size={18} />}
@@ -209,7 +209,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
                 <View style={{ flexDirection: 'row' }}>
                   <Text style={{ color: "#353535", fontSize: 20, marginTop: 12, maxWidth: '80%' }}>{t('Assembling')}</Text>
                   <View style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}>
-                    <CheckBox checked={checked3 && checked4} onPress={() => { setChecked3(!checked3); setChecked4(!checked4); }} />
+                    <CheckBox checked={checked3 && checked4} onPress={() => { setChecked3(!checked3); setChecked4(!checked4) }} />
                     <View style={{ alignSelf: 'center', margin: 8 }}>
                       <TouchableOpacity onPress={handleShowMilestone2}>
                         {showMilestone2 ? <Feather name='chevron-up' size={18} /> : <Feather name='chevron-down' size={18} />}
@@ -365,20 +365,19 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
               />
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 15 }}>
-              <Text style={{ alignSelf: 'center', fontWeight: 'bold',marginTop: '-1%', marginRight:'-3%' }}>{t('Site Cleaned')}</Text>
-              <View style={{ marginRight: '15%',flexDirection: 'row', }}>
-                {/* <CheckBox checked={siteCleaned}
+              <Text style={{ alignSelf: 'center', fontWeight: 'bold', marginTop: '-1%', marginRight: '2%' }}>{t('Site Cleaned')}</Text>
+              <View style={{ flex: 0.5, flexDirection: "row", justifyContent: "flex-start" }}>
+                <CheckBox checked={siteCleaned} onPress={() => setSiteCleaned(!siteCleaned)}
                   containerStyle={{
                     height: 24, width: 24, paddingLeft: 14, alignItems: "center", justifyContent: "center",
                     borderWidth: 1, borderColor: errors.includes('siteCleaned') ? 'red' : '#eee'
                   }}
-                  onPress={() => setSiteCleaned(!siteCleaned)} /> */}
-                  <CheckBox checked={checked9} onPress={() => setChecked9(!checked9)} />
-                        {checked9 ? <View style={{ alignSelf: 'center', margin: 17 }}></View> : <View style={{ alignSelf: 'center', margin: 4}}>
-                          <TouchableOpacity>
-                            <Feather name='image' size={24} />
-                          </TouchableOpacity>
-                        </View>}
+                />
+                {siteCleaned ? <View style={{ alignSelf: 'center', margin: 17 }}></View> : <View style={{ alignSelf: 'center', margin: 4 }}>
+                  <TouchableOpacity>
+                    <Feather name='image' size={24} />
+                  </TouchableOpacity>
+                </View>}
               </View>
             </View>
             {/* <View style={styles.SiteEngineerRow}>
@@ -443,7 +442,7 @@ const UpcomingTaskContractorScreen = ({ navigation }) => {
       </View>
     </>
   )
-};
+}
 
 const styles = StyleSheet.create({
   mainContainer: {

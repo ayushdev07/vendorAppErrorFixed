@@ -59,7 +59,7 @@ const OpportunityTab = ({ navigation }) => {
         <View style={{ marginTop: '5%', marginHorizontal: '10%' }}>
           <Text style={{ fontSize: 18, color: '#353535' }}>08/11/2020</Text>
         </View>
-        <OpportunityCard bookingId='UWHYD00001043' Name={t('Site')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500'
+        <OpportunityCard bookingId='UWHYD00001043' Name={t('Site Name')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500'
           navigation={navigation} />
         <OpportunityCard bookingId='UWHYD00001043' Name={t('Site Name')} Sqft="45,982" Address="D-216, DSR For" Amount='24,500'
           navigation={navigation} />

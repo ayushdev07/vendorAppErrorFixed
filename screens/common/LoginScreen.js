@@ -1,8 +1,6 @@
-/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react"
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native"
 import Feather from 'react-native-vector-icons/Feather'
-import FeatherIcon from "react-native-vector-icons/Feather"
 import { ScrollView } from "react-native-gesture-handler"
 import Spinner from 'react-native-loading-spinner-overlay'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -78,15 +76,17 @@ export default function LoginScreen({ navigation: { goBack }, navigation }) {
     console.log(val.role)
     console.log(val.accessToken)
     if (val.role == "CSVD") {
-      navigation.navigate('SuperVisorBottom')
+      // navigation.navigate('SuperVisorBottom')
+      navigation.navigate('HomeScreen')
     } else {
-      navigation.navigate('SuperVisorBottom')
+      // navigation.navigate('SuperVisorBottom')
+      navigation.navigate('HomeScreen')
     }
   }
 
   return (
     <ScrollView>
-      <Spinner visible={isLoading} textContent={'Logging In...'} textStyle={{ color: '#000' }} />
+      <Spinner visible={isLoading} textContent={t('Logging In') + '...'} textStyle={{ color: '#000' }} />
       <View style={styles.mainContainer}>
         <View style={styles.signInRow}>
           {/* <Text style={styles.signIn} onPress={() => goBack()}>Sign Up</Text> */}

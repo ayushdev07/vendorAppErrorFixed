@@ -1,30 +1,28 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import AfterAcceptScreen from '../vendor/AfterAcceptScreen';
-import RootStackScreen from '../vendor/RootStackScreen';
-import UpcomingTaskScreen from '../vendor/UpcomingTaskScreen';
-import SiteRequestScreen from '../vendor/SiteRequestScreen';
-import SelectSuperVisorScreen from '../vendor/SelectSuperVisorScreen';
-import PersonalScreen from '../settings/PersonalScreen';
-import SupervisorsScreen from '../settings/SupervisorsScreen';
-import AccountDetailsScreen from '../settings/AccountDetails';
-import SecurityScreen from '../settings/SecurityScreen';
-import LanguageScreen from '../settings/LanguageScreen';
-import VideoScreen from './VideoScreen';
-import VideoSlider from '../vendor/VideoSlider';
-import HomeBottomTab from '../../components/HomeBottomTab';
-import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab';
-import StartSiteScreen from '../supervisors/StartSiteScreen';
-import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen';
-import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen';
-import Notifications from '../vendor/Notifications';
-import TabScreen from '../vendor/TabScreen';
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
+import AfterAcceptScreen from '../vendor/AfterAcceptScreen'
+import RootStackScreen from '../vendor/RootStackScreen'
+import UpcomingTaskScreen from '../vendor/UpcomingTaskScreen'
+import SiteRequestScreen from '../vendor/SiteRequestScreen'
+import SelectSuperVisorScreen from '../vendor/SelectSuperVisorScreen'
+import PersonalScreen from '../settings/PersonalScreen'
+import SupervisorsScreen from '../settings/SupervisorsScreen'
+import AccountDetailsScreen from '../settings/AccountDetails'
+import SecurityScreen from '../settings/SecurityScreen'
+import LanguageScreen from '../settings/LanguageScreen'
+import VideoScreen from './VideoScreen'
+import VideoSlider from '../vendor/VideoSlider'
+import HomeBottomTab from '../../components/HomeBottomTab'
+import SupervisorBottomTabScreen from '../../components/SuperVisorBottomTab'
+import StartSiteScreen from '../supervisors/StartSiteScreen'
+import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorScreen'
+import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen'
+import Notifications from '../vendor/Notifications'
+import TabScreen from '../vendor/TabScreen'
 
-const HomeStack = createStackNavigator();
+const HomeStack = createStackNavigator()
 
-function Login() {
-  return <RootStackScreen />;
-}
+function Login() { return <RootStackScreen /> }
 
 const HomeStackScreen = () => (
   <HomeStack.Navigator headerMode="none">
@@ -49,6 +47,6 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="Notifications" component={Notifications} />
     <HomeStack.Screen name="TabScreen" component={TabScreen} />
   </HomeStack.Navigator>
-);
+)
 
-export default HomeStackScreen;
+export default HomeStackScreen

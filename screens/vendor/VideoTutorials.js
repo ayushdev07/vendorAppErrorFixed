@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { Appbar } from 'react-native-paper'
 import { withTranslation } from 'react-i18next'
 import i18n from '../../components/i18n'
-import VideoScreen from '../common/VideoScreen'
+import YoutubeScreen from '../common/Youtube'
 
 class VideoTutorials extends Component {
   _isMounted = false
@@ -38,11 +38,11 @@ class VideoTutorials extends Component {
     const { t } = this.props;
     return (
       <ScrollView style={{ backgroundColor: "black" }}>
-        <Appbar.Header style={{ backgroundColor: '#fff', marginTop:'5%' }}>
-          <Appbar.Content title="Login/SignUp" style={{ fontSize: 100, marginTop:'2%', alignItems:'center' }}  onPress={()=>this.props.navigation.navigate('LogInScreen')} />
+        <Appbar.Header style={{ backgroundColor: '#fff', marginTop:'2%' }}>
+          <Appbar.Content title={t('Login/SignUp')} style={{ fontSize: 10, marginTop:'-1%', alignItems:'center' }}  onPress={()=>this.props.navigation.navigate('LogInScreen')} />
         </Appbar.Header>
         <View style={styles.container}>
-          <VideoScreen videoId={this.state.videoId} />
+          <YoutubeScreen videoId={this.state.videoId} />
           <View style={{ marginTop: 20 }}>
             <Text style={styles.text}>{t('Uniworks Movies')}</Text>
             <FlatList

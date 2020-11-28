@@ -20,6 +20,7 @@ import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorS
 import Notifications from '../vendor/Notifications'
 import TabScreen from '../vendor/TabScreen'
 import Tutorial from '../vendor/VideoTutorials'
+import Youtube from './Youtube'
 
 const HomeStack = createStackNavigator()
 
@@ -43,6 +44,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="SecurityScreen" component={SecurityScreen} />
     <HomeStack.Screen name="LanguageScreen" component={LanguageScreen} />
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
+    <HomeStack.Screen name="Youtube" component={Youtube} />
     <HomeStack.Screen name="VideoSlider" component={VideoSlider} />
     <HomeStack.Screen name="Tutorial" component={Tutorial} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />

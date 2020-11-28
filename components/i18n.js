@@ -9,6 +9,7 @@ i18n.use(initReactI18next).init({
         en: {
             translation: {
                 'Hey, Arun': 'Hey, Arun',
+                'Login/SignUp':'Login/SignUp',
                 // UpcomingTaskSupervisorScreen.js
                 'Preparing the fitting': 'Preparing the fitting',
                 'Assembling': 'Assembling',
@@ -394,7 +395,8 @@ i18n.use(initReactI18next).init({
                 'Rejected': 'अस्वीकृत',
                 'UpcomingTaskContractorScreen': 'आगामी काम',
                 'Hey, Arun': 'हैलो अरुण',
-                'Incomplete': 'काम पूरा नहीं हुआ है'
+                'Incomplete': 'काम पूरा नहीं हुआ है',
+                'Login/SignUp':'लॉग इन करें'
             },
         },
     },

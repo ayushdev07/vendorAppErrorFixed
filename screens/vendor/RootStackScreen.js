@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SplashScreen from '../common/SplashScreen';
 import SignUpScreen from '../common/SignUpScreen';
-import LogInScreen from '../common/LogInScreen';
+import LogInScreen from '../common/LoginScreen';
 import PersonalDetailsScreen from '../common/PersonalDetailsScreen';
 import PaymentDetailsScreen from '../common/PaymentDetailsScreen';
 import RecoverAccountScreen from '../common/RecoverAccountScreen';

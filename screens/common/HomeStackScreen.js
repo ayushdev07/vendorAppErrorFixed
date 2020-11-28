@@ -19,6 +19,7 @@ import UpcomingTaskSupervisorScreen from '../supervisors/UpcomingTaskSupervisorS
 import UpcomingTaskContractorScreen from '../supervisors/UpcomingTaskContractorScreen'
 import Notifications from '../vendor/Notifications'
 import TabScreen from '../vendor/TabScreen'
+import Tutorial from '../vendor/VideoTutorials'
 
 const HomeStack = createStackNavigator()
 
@@ -31,7 +32,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="SuperVisorBottom" component={SupervisorBottomTabScreen} />
     <HomeStack.Screen name="AfterAcceptScreen" component={AfterAcceptScreen} />
     <HomeStack.Screen name="SiteRequestScreen" component={SiteRequestScreen} />
-    <HomeStack.Screen name="After Reaching Site" component={UpcomingTaskScreen} />
+    {/* <HomeStack.Screen name="AfterReachingSite" component={UpcomingTaskScreen} /> */}
     <HomeStack.Screen name="UpcomingTaskScreen" component={UpcomingTaskScreen} />
     <HomeStack.Screen name="UpcomingTaskSupervisorScreen" component={UpcomingTaskSupervisorScreen} />
     <HomeStack.Screen name="UpcomingTaskContractorScreen" component={UpcomingTaskContractorScreen} />
@@ -43,6 +44,7 @@ const HomeStackScreen = () => (
     <HomeStack.Screen name="LanguageScreen" component={LanguageScreen} />
     <HomeStack.Screen name="VideoScreen" component={VideoScreen} />
     <HomeStack.Screen name="VideoSlider" component={VideoSlider} />
+    <HomeStack.Screen name="Tutorial" component={Tutorial} />
     <HomeStack.Screen name="StartSiteScreen" component={StartSiteScreen} />
     <HomeStack.Screen name="Notifications" component={Notifications} />
     <HomeStack.Screen name="TabScreen" component={TabScreen} />
